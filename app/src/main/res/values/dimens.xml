@@ -1,5 +1,57 @@
 <resources>
-  <!-- Default screen margins, per the Android Design guidelines. -->
-  <dimen name="activity_horizontal_margin">16dp</dimen>
-  <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--text size-->
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
+
+    <!--padding size-->
+    <dimen name="padding_2">2dp</dimen>
+    <dimen name="padding_4">4dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_24">24dp</dimen>
+
+    <!--margin size-->
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+
+    <!--button height size-->
+    <dimen name="button_size_10">24dp</dimen>
+    <dimen name="button_size_20">32dp</dimen>
+    <dimen name="button_size_30">40dp</dimen>
+    <dimen name="button_size_40">48dp</dimen>
+    <dimen name="button_size_50">56dp</dimen>
+
+    <!--actionbar size-->
+    <dimen name="actionbar_size_10">46dp</dimen>
+    <dimen name="actionbar_size_20">54dp</dimen>
+    <dimen name="actionbar_size_40">60dp</dimen>
+    <dimen name="actionbar_size_50">68dp</dimen>
+
+    <!--circle profile size-->
+    <dimen name="circle_size_10">24dp</dimen>
+    <dimen name="circle_size_20">32dp</dimen>
+    <dimen name="circle_size_30">40dp</dimen>
+    <dimen name="circle_size_40">48dp</dimen>
+    <dimen name="circle_size_50">56dp</dimen>
+    <dimen name="circle_size_60">64dp</dimen>
+    <dimen name="circle_size_70">72dp</dimen>
+    <dimen name="circle_size_80">80dp</dimen>
+    <dimen name="circle_size_90">92dp</dimen>
 </resources>

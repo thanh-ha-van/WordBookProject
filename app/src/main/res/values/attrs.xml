@@ -1,0 +1,11 @@
+<resources>
+
+    <declare-styleable name="MyTextView">
+        <attr name="myFont" format="enum">
+            <enum name="Roboto_Regular" value="1" />
+            <enum name="Roboto_Medium" value="2" />
+            <enum name="Roboto_Light" value="3" />
+            <enum name="Roboto_Bold" value="4" />
+        </attr>
+    </declare-styleable>
+</resources>

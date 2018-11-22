@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 
-@Database(entities = [DefinitionEntity::class], version = 1)
+@Database(entities = [DefinitionEntity::class], version = 1,exportSchema = false)
 abstract class RoomDataSource : RoomDatabase() {
 
     abstract fun currencyDao(): RoomDefinitionDao

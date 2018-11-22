@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#2962ff</color>
-  <color name="colorPrimaryDark">#0039cb</color>
-  <color name="colorAccent">#1de9b6</color>
-  <color name="colorAccentDark">#102027</color>
-  <color name="white_trans">#58ffffff</color>
+    <color name="colorPrimary">#2962ff</color>
+    <color name="colorPrimaryDark">#0039cb</color>
+    <color name="colorAccent">#1de9b6</color>
+    <color name="colorAccentDark">#102027</color>
+
+    <color name="white_trans">#58ffffff</color>
+    <color name="white">#ffffff</color>
+
+    <!--blue-->
+    <color name="blue_5">#E1F5FE</color>
+    <color name="blue_10">#B3E5FC</color>
+    <color name="blue_30">#4FC3F7</color>
+    <color name="blue_50">#03A9F4</color>
+    <color name="blue_70">#0288D1</color>
+    <color name="blue_90">#01579B</color>
+
+    <!--blue-->
+    <color name="violet_10">#ceb6ce</color>
+    <color name="violet_30">#9e6d9d</color>
+    <color name="violet_50">#7e3c7c</color>
+    <color name="violet_70">#5E0C5C</color>
+    <color name="violet_90">#4b0949</color>
+
+    <!--green-->
+    <color name="green_30">#81C784</color>
+    <color name="green_50">#4CAF50</color>
+    <color name="green_70">#388E3C</color>
+
+    <!--orange-->
+    <color name="orange_30">#FFB74D</color>
+    <color name="orange_50">#FF9800</color>
+    <color name="orange_70">#F57C00</color>
+
+    <!--yellow-->
+    <color name="yellow_30">#FFF176</color>
+    <color name="yellow_50">#FFEB3B</color>
+    <color name="yellow_70">#FBC02D</color>
+
+    <!--red-->
+    <color name="red_30">#f54734</color>
+    <color name="red_50">#f31a02</color>
+    <color name="red_70">#C21401</color>
+
+    <!--gray-->
+    <color name="gray_10">#f2f2f2</color>
+    <color name="gray_20">#d8d8d8</color>
+    <color name="gray_30">#bfbfbf</color>
+    <color name="gray_40">#a6a6a6</color>
+    <color name="gray_50">#8c8c8c</color>
+
+    <!--black-->
+    <color name="black_30">#808080</color>
+    <color name="black_40">#666666</color>
+    <color name="black_50">#4c4c4c</color>
+    <color name="black_60">#333333</color>
+    <color name="black_70">#191919</color>
+    <color name="black_80">#191919</color>
 </resources>
