@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:background="@color/blue_50"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_4">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="top|end"
-            android:text="@string/powered_by_kotlin"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bar_height"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rectangle_white"
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingLeft="@dimen/padding_4"
+            android:paddingRight="@dimen/padding_4" />
 
-        <TextView
-            android:id="@+id/example_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
+        <ImageView
+            android:layout_width="@dimen/search_button_size"
+            android:layout_height="@dimen/search_button_size"
+            android:layout_marginStart="@dimen/padding_4"
+            android:contentDescription="@string/search_button"
+            android:padding="10dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_search" />
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

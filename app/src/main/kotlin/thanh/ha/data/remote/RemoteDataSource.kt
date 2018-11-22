@@ -4,6 +4,6 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val remoteService: RemoteService) {
 
-    fun requestWordDefinition(word: String) = remoteService.requestWordDefinition(word)
+    fun getWordDefinition(word: String) = remoteService.getWordDefinition(word)
 
 }

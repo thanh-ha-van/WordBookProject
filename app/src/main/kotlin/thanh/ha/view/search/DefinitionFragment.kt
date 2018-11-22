@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import thanh.ha.R
 
 
@@ -16,10 +15,6 @@ class DefinitionFragment : Fragment() {
     companion object {
         fun newInstance() = DefinitionFragment()
     }
-
-    private val definitions = ArrayList<String>()
-
-    private lateinit var tv: TextView
 
     private lateinit var definitionViewModel: DefinitionViewModel
 
@@ -36,7 +31,6 @@ class DefinitionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tv = view.findViewById(R.id.example_tv)
         getRawData()
     }
 
@@ -47,12 +41,14 @@ class DefinitionFragment : Fragment() {
 
 
     private fun getRawData() {
-        definitionViewModel.getWordDefinition("example")?.observe(this, Observer { definitionList ->
-            definitionList?.forEach {
-                definitions.add(it.info)
-
-            }
-            tv.text = definitions[1]
-        })
+        definitionViewModel
+                .getWordDefinition("example")?.observe(
+                        this,
+                        Observer { definitionList ->
+                            definitionList?.forEach {
+                                it.author
+                                it.currentVote
+                            }
+                        })
     }
 }

@@ -17,7 +17,7 @@ class DefinitionViewModel : ViewModel(), LifecycleObserver {
     private var liveCurrencyData: LiveData<List<DefinitionInfo>>? = null
 
     init {
-        initializeDagger()
+        WordBookApp.appComponent.inject(this)
     }
 
     fun getWordDefinition(info: String): LiveData<List<DefinitionInfo>>? {
@@ -39,44 +39,4 @@ class DefinitionViewModel : ViewModel(), LifecycleObserver {
         unSubscribeViewModel()
         super.onCleared()
     }
-
-    private fun initializeDagger() = WordBookApp.appComponent.inject(this)
-
-//    private fun isRoomEmpty(currenciesTotal: Int) = currenciesTotal == 0
-//
-//    private fun populate() {
-//        Completable.fromAction { definitionRepository.addCurrencies() }
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(object : CompletableObserver {
-//                    override fun onSubscribe(@NonNull d: Disposable) {
-//                        compositeDisposable.add(d)
-//                    }
-//
-//                    override fun onComplete() {
-//                        Log.i(DefinitionRepository::class.java.simpleName, "DataSource has been Populated")
-//
-//                    }
-//
-//                    override fun onError(@NonNull e: Throwable) {
-//                        e.printStackTrace()
-//                        Log.e(DefinitionRepository::class.java.simpleName, "DataSource hasn't been Populated")
-//                    }
-//                })
-//    }
-
-//
-//    fun initLocalCurrencies() {
-//        val disposable = definitionRepository.getTotalCurrencies()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe {
-//                    if (isRoomEmpty(it)) {
-//                        populate()
-//                    } else {
-//                        Log.i(DefinitionRepository::class.java.simpleName, "DataSource has been already Populated")
-//                    }
-//                }
-//        compositeDisposable.add(disposable)
-//    }
 }

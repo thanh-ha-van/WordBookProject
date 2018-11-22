@@ -3,14 +3,13 @@ package thanh.ha.data.remote
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
+//TODO consider update this duplicated classes.
 class DefinitionResponse {
 
     @SerializedName("definition")
     @Expose
     var definition: String? = null
-    @SerializedName("permalink")
-    @Expose
-    var permalink: String? = null
     @SerializedName("thumbs_up")
     @Expose
     var thumbsUp: Int? = null
@@ -35,5 +34,4 @@ class DefinitionResponse {
     @SerializedName("thumbs_down")
     @Expose
     var thumbsDown: Int? = null
-
 }

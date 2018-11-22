@@ -20,27 +20,43 @@ class DefinitionRepository @Inject constructor(
 
     val allCompositeDisposable: MutableList<Disposable> = arrayListOf()
 
-
-    override fun getWordDefinition(currencies: String): LiveData<List<DefinitionInfo>> {
+    // Get word definitions from api.
+    override fun getWordDefinition(currencies: String):
+            LiveData<List<DefinitionInfo>> {
         val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
-        val disposable = remoteDataSource.requestWordDefinition(currencies)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ currencyResponse ->
+        val disposable =
+                remoteDataSource.getWordDefinition(currencies)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                { currencyResponse ->
+                                    mutableLiveData.value = transform(currencyResponse)
 
-                    mutableLiveData.value = transform(currencyResponse)
-
-                }, { t: Throwable? -> t?.printStackTrace() })
+                                },
+                                { t: Throwable? ->
+                                    t?.printStackTrace()
+                                }
+                        )
         allCompositeDisposable.add(disposable)
         return mutableLiveData
     }
 
+    // transform Response to Info object
     private fun transform(response: DefinitionListResponse): List<DefinitionInfo> {
         val currencyList = ArrayList<DefinitionInfo>()
         response.list?.forEach {
-            currencyList.add(DefinitionInfo(it.definition!!))
+            currencyList.add(
+                    DefinitionInfo(
+                            it.defid!!,
+                            it.word!!,
+                            it.definition!!,
+                            it.thumbsUp,
+                            it.thumbsDown,
+                            it.author!!,
+                            it.currentVote!!,
+                            it.writtenOn,
+                            it.example))
         }
         return currencyList
     }
-
 }

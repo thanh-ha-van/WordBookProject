@@ -1,3 +1,14 @@
 package thanh.ha.domain
 
-data class DefinitionInfo(var info: String)
+//TODO consider update this duplicated classes.
+data class DefinitionInfo(
+        var defId: Int,
+        var word: String,
+        var definition: String,
+        var thumbsUp: Int?,
+        var thumbsDown: Int?,
+        var author: String,
+        var currentVote: String?,
+        var writtenOn: String?,
+        var example: String?
+)

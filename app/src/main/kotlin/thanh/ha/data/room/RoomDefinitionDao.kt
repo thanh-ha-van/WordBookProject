@@ -9,10 +9,10 @@ import io.reactivex.Flowable
 interface RoomDefinitionDao {
 
     @Insert
-    fun insertAll(definitions: List<DefinitionEntity>)
+    fun insertAll(defList: List<DefEntity>)
 
     @Query(RoomContract.SELECT_DEFINITION)
-    fun getAllLocalDefinition(): Flowable<List<DefinitionEntity>>
+    fun getAllLocalDefinition(): Flowable<List<DefEntity>>
 
 }
 

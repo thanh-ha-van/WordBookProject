@@ -1,4 +1,4 @@
-package thanh.ha.view.search
+package thanh.ha.view
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import thanh.ha.R
-import thanh.ha.view.about.AboutFragment
+import thanh.ha.view.about.SettingFragment
+import thanh.ha.view.history.HistoryFragment
+import thanh.ha.view.search.DefinitionFragment
 
 
 class NavigationActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -25,12 +27,16 @@ class NavigationActivity : AppCompatActivity(), BottomNavigationView.OnNavigatio
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_home -> {
+            R.id.home -> {
                 replaceFragment(DefinitionFragment.newInstance())
                 return true
             }
-            R.id.navigation_dashboard -> {
-                replaceFragment(AboutFragment.newInstance())
+            R.id.history -> {
+                replaceFragment(HistoryFragment.newInstance())
+                return true
+            }
+            R.id.settings -> {
+                replaceFragment(SettingFragment.newInstance())
                 return true
             }
         }
