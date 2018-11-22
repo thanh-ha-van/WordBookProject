@@ -1,0 +1,15 @@
+<resources>
+  <string name="app_name">Android-Kotlin-Devises</string>
+  <string name="title_home">Conversion</string>
+  <string name="title_dashboard">About</string>
+  <string name="show_me_code"><u>Show me code</u></string>
+  <string name="show_me_post"><u>Read Post - Support of Kotlin &amp; Architecture Components</u></string>
+  <string name="developed_by">Developed by Erik Jhordan Rey</string>
+  <string name="disclaimer_sample">Sample used to practice kotlin and Android Architecture Components.</string>
+  <string name="currency_converter">Currency Converter</string>
+  <string name="currency">Currency Converter</string>
+  <string name="powered_by_kotlin">powered by kotlin</string>
+  <string name="convert">Convert</string>
+  <string name="to">To</string>
+  <string name="_0_00">1.00</string>
+</resources>
