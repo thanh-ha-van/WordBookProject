@@ -1,4 +1,4 @@
-package thanh.ha.view
+package thanh.ha.view.search
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -30,7 +30,7 @@ class DefinitionFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.definition_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_definition, container, false)
 
     }
 
@@ -47,13 +47,12 @@ class DefinitionFragment : Fragment() {
 
 
     private fun getRawData() {
-        definitionViewModel.getWordDefinition("word")?.observe(this, Observer { currencyList ->
-            currencyList?.forEach {
+        definitionViewModel.getWordDefinition("example")?.observe(this, Observer { definitionList ->
+            definitionList?.forEach {
                 definitions.add(it.info)
 
             }
-            tv.text = definitions.toString()
+            tv.text = definitions[1]
         })
     }
-
 }

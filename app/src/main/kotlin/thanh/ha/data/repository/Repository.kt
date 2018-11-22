@@ -1,11 +1,10 @@
 package thanh.ha.data.repository
 
 import android.arch.lifecycle.LiveData
-import io.reactivex.Flowable
-import thanh.ha.domain.Definition
+import thanh.ha.domain.DefinitionInfo
 
 interface Repository {
 
-    fun getWordDefinition(currencies: String): LiveData<List<Definition>>
+    fun getWordDefinition(currencies: String): LiveData<List<DefinitionInfo>>
 
 }

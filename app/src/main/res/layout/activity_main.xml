@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="thanh.ha.view.NavigationActivity"
+    tools:context="thanh.ha.view.search.NavigationActivity"
     >
-
 
   <FrameLayout
       android:id="@+id/content"

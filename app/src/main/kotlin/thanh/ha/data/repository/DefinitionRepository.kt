@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import thanh.ha.data.remote.RemoteDataSource
 import thanh.ha.data.room.RoomDataSource
-import thanh.ha.domain.Definition
+import thanh.ha.domain.DefinitionInfo
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,8 +21,8 @@ class DefinitionRepository @Inject constructor(
     val allCompositeDisposable: MutableList<Disposable> = arrayListOf()
 
 
-    override fun getWordDefinition(currencies: String): LiveData<List<Definition>> {
-        val mutableLiveData = MutableLiveData<List<Definition>>()
+    override fun getWordDefinition(currencies: String): LiveData<List<DefinitionInfo>> {
+        val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
         val disposable = remoteDataSource.requestWordDefinition(currencies)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -35,10 +35,10 @@ class DefinitionRepository @Inject constructor(
         return mutableLiveData
     }
 
-    private fun transform(response: DefinitionListResponse): List<Definition> {
-        val currencyList = ArrayList<Definition>()
+    private fun transform(response: DefinitionListResponse): List<DefinitionInfo> {
+        val currencyList = ArrayList<DefinitionInfo>()
         response.list?.forEach {
-            currencyList.add(Definition(it.toString()))
+            currencyList.add(DefinitionInfo(it.definition!!))
         }
         return currencyList
     }

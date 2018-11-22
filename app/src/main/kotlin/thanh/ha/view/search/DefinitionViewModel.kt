@@ -1,11 +1,11 @@
-package thanh.ha.view
+package thanh.ha.view.search
 
 import android.arch.lifecycle.*
 import android.arch.lifecycle.Lifecycle.Event.ON_DESTROY
 import io.reactivex.disposables.CompositeDisposable
 import thanh.ha.data.repository.DefinitionRepository
 import thanh.ha.di.WordBookApp
-import thanh.ha.domain.Definition
+import thanh.ha.domain.DefinitionInfo
 import javax.inject.Inject
 
 class DefinitionViewModel : ViewModel(), LifecycleObserver {
@@ -14,16 +14,16 @@ class DefinitionViewModel : ViewModel(), LifecycleObserver {
     lateinit var definitionRepository: DefinitionRepository
 
     private val compositeDisposable = CompositeDisposable()
-    private var liveCurrencyData: LiveData<List<Definition>>? = null
+    private var liveCurrencyData: LiveData<List<DefinitionInfo>>? = null
 
     init {
         initializeDagger()
     }
 
-    fun getWordDefinition(currencies: String): LiveData<List<Definition>>? {
+    fun getWordDefinition(info: String): LiveData<List<DefinitionInfo>>? {
         liveCurrencyData = null
-        liveCurrencyData = MutableLiveData<List<Definition>>()
-        liveCurrencyData = definitionRepository.getWordDefinition(currencies)
+        liveCurrencyData = MutableLiveData<List<DefinitionInfo>>()
+        liveCurrencyData = definitionRepository.getWordDefinition(info)
         return liveCurrencyData
     }
 
