@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import thanh.ha.data.remote.RemoteContract
-import thanh.ha.data.remote.RemoteCurrencyService
+import thanh.ha.data.remote.RemoteService
 import javax.inject.Singleton
 
 @Module
@@ -35,7 +35,7 @@ class RemoteModule {
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
-                    .baseUrl(RemoteContract.BASE_API_LAYER)
+                    .baseUrl(RemoteContract.BASE_API)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)
@@ -44,7 +44,7 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideRemoteCurrencyService(retrofit: Retrofit): RemoteCurrencyService =
-            retrofit.create(RemoteCurrencyService::class.java)
+    fun provideRemoteCurrencyService(retrofit: Retrofit): RemoteService =
+            retrofit.create(RemoteService::class.java)
 
 }

@@ -4,22 +4,14 @@ class RemoteContract {
 
     companion object {
 
-        const val BASE_API_LAYER = "http://apilayer.net/api/"
+        const val BASE_API = "http://api.urbandictionary.com/"
 
-        const val LIVE = "live"
+        private const val API_VERSION = "v0/"
+        private const val DEFINE = "define"
+        const val GET_WORD_END_POINT = API_VERSION + DEFINE
+        const val TERM = "term"
 
-        const val ACCESS_KEY = "access_key"
-        const val CURRENCIES = "currencies"
-        const val FORMAT = "format"
-
-        const val SUCCESS = "success"
-        const val QUOTES = "quotes"
-
-        // I shouldn't expose the access key but it is to didactic use
-        const val ACCESS_KEY_API_LAYER = "be4554e86f3a5670b287ccc40f5bead8"
-        const val FORMAT_TYPE = "1"
     }
-
 }
 
 

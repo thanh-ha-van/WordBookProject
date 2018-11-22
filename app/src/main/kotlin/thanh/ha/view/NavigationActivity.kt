@@ -16,7 +16,7 @@ class NavigationActivity : AppCompatActivity(), BottomNavigationView.OnNavigatio
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            replaceFragment(CurrencyFragment.newInstance())
+            replaceFragment(DefinitionFragment.newInstance())
         }
 
         initNavigation()
@@ -25,7 +25,7 @@ class NavigationActivity : AppCompatActivity(), BottomNavigationView.OnNavigatio
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.navigation_home -> {
-                replaceFragment(CurrencyFragment.newInstance())
+                replaceFragment(DefinitionFragment.newInstance())
                 return true
             }
 //      R.id.navigation_dashboard -> {

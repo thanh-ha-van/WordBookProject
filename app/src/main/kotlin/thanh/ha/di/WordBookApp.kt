@@ -2,7 +2,7 @@ package thanh.ha.di
 
 import android.app.Application
 
-class CurrencyApplication : Application() {
+class WordBookApp : Application() {
 
     companion object {
         lateinit var appComponent: AppComponent

@@ -2,17 +2,10 @@ package thanh.ha.data.repository
 
 import android.arch.lifecycle.LiveData
 import io.reactivex.Flowable
-import thanh.ha.domain.AvailableExchange
-import thanh.ha.domain.Currency
+import thanh.ha.domain.Definition
 
 interface Repository {
 
-    fun getTotalCurrencies(): Flowable<Int>
-
-    fun addCurrencies()
-
-    fun getCurrencyList(): LiveData<List<Currency>>
-
-    fun getAvailableExchange(currencies: String): LiveData<AvailableExchange>
+    fun getWordDefinition(currencies: String): LiveData<List<Definition>>
 
 }
