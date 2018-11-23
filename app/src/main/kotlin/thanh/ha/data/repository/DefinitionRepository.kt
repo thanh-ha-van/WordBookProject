@@ -9,6 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import thanh.ha.data.remote.RemoteDataSource
 import thanh.ha.data.room.RoomDataSource
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.utitls.DateTimeUtil
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -54,7 +55,7 @@ class DefinitionRepository @Inject constructor(
                             it.thumbsDown,
                             it.author!!,
                             it.currentVote!!,
-                            it.writtenOn,
+                            DateTimeUtil.convertToNewFormat(it.writtenOn!!),
                             it.example))
         }
         return currencyList

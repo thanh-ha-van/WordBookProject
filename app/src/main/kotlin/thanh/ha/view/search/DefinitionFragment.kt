@@ -25,7 +25,6 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
         initViewModel()
     }
 
@@ -33,6 +32,7 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rv_definition.layoutManager = layoutManager
         adapter = DefAdapter(context, this)
+        rv_definition.adapter = adapter
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,14 +41,16 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         getRawData()
     }
 
     private fun initViewModel() {
         definitionViewModel = ViewModelProviders.of(this).get(DefinitionViewModel::class.java)
-        definitionViewModel.let { lifecycle.addObserver(it) }
+        definitionViewModel.let {
+            lifecycle.addObserver(it)
+        }
     }
-
 
     private fun getRawData() {
         definitionViewModel
@@ -60,10 +62,9 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
     }
 
     override fun onThumbUp(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onThumbUpDown(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }

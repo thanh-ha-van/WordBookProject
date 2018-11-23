@@ -16,7 +16,7 @@ import thanh.ha.domain.DefinitionInfo
 class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     : RecyclerView.Adapter<DefAdapter.MyViewHolder>() {
 
-    private lateinit var mDefList: List<DefinitionInfo>
+    private var mDefList: List<DefinitionInfo> = ArrayList()
     private val mContext = context
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -33,7 +33,6 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         var mTime: TextView? = null
 
         init {
-
             mThumbUpBtn = view.findViewById(R.id.btn_up)
             mThumbDownBtn = view.findViewById(R.id.btn_down)
             mThumbUpValue = view.findViewById(R.id.tv_thumb_up_value)
@@ -48,7 +47,6 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     }
 
     fun updateInfo(newItems: List<DefinitionInfo>) {
-
         val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize(): Int {
                 return mDefList.size
@@ -70,7 +68,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         })
         mDefList = newItems
         result.dispatchUpdatesTo(this)
-
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
