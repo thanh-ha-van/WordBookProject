@@ -19,4 +19,36 @@
         <item name="android:background">@android:color/white</item>
     </style>
 
+
+    <style name="WordDefinitionStyle" parent="AppTheme">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ExampleStyle" parent="AppTheme">
+        <item name="android:textColor">@color/black_30</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+    </style>
+
+    <style name="ThumbValueStyle" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue_50</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">@dimen/margin_8</item>
+        <item name="android:layout_marginEnd">@dimen/margin_8</item>
+    </style>
+
+    <style name="ThumbIconStyle" parent="AppTheme">
+        <item name="android:layout_width">@dimen/button_size_10</item>
+        <item name="android:layout_height">@dimen/button_size_10</item>
+        <item name="android:background">@drawable/shape_thumb_background</item>
+        <item name="android:padding">@dimen/padding_4</item>
+        <item name="android:tint">@color/white</item>
+    </style>
+
 </resources>

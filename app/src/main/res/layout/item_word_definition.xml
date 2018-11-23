@@ -1,8 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white_trans">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_10"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/padding_8"
+    app:cardElevation="@dimen/padding_8"
+    app:cardPreventCornerOverlap="true">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_8">
+
+        <ImageView
+            android:id="@+id/img_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_4"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_star_border"
+            android:tint="@color/orange_50" />
+
+        <TextView
+            android:id="@+id/tv_definition"
+            style="@style/WordDefinitionStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Means 'as fuck' and is used to clarify things. You can also use it as the word 'very' or 'really'. Mostly used online or in text messages." />
+
+        <TextView
+            android:id="@+id/tv_example"
+            style="@style/ExampleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1) I'm really tired; I'm tired af
+2) I ship them so hard, I'm (shipname) af
+3) He won't stop poking me, he's annoying af." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btn_up"
+                style="@style/ThumbIconStyle"
+                android:src="@drawable/ic_thumb_up" />
+
+            <TextView
+                android:id="@+id/tv_thumb_up_value"
+                style="@style/ThumbValueStyle"
+                android:text="121" />
+
+            <ImageView
+                android:id="@+id/btn_down"
+                style="@style/ThumbIconStyle"
+                android:src="@drawable/ic_thumb_down" />
+
+            <TextView
+                android:id="@+id/tv_thumb_down_value"
+                style="@style/ThumbValueStyle"
+                android:text="123" />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Thanh Ha"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/blue_50"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:text="Nov 21, 2018"
+                android:textColor="@color/gray_50"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -25,6 +25,7 @@
     <dimen name="margin_2">2dp</dimen>
     <dimen name="margin_4">4dp</dimen>
     <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_24">24dp</dimen>
@@ -56,6 +57,6 @@
     <dimen name="circle_size_90">92dp</dimen>
 
     <!--search bar-->
-    <dimen name="bar_height">52dp</dimen>
-    <dimen name="search_button_size">52dp</dimen>
+    <dimen name="bar_height">48dp</dimen>
+    <dimen name="search_button_size">48dp</dimen>
 </resources>
