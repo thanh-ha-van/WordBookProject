@@ -10,7 +10,7 @@ object DateTimeUtil {
     fun convertToNewFormat(dateStr: String): String {
         val utc = TimeZone.getTimeZone("UTC")
         val sourceFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val destFormat = SimpleDateFormat("yyyy-MM-dd")
+        val destFormat = SimpleDateFormat("yyyy MMM dd")
         sourceFormat.timeZone = utc
         val convertedDate = sourceFormat.parse(dateStr)
         return destFormat.format(convertedDate)

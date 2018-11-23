@@ -13,7 +13,7 @@
         android:layout_marginLeft="@dimen/margin_10"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginRight="@dimen/margin_10"
-        android:layout_marginBottom="@dimen/margin_4"
+        android:layout_marginBottom="@dimen/margin_negative"
         android:backgroundTint="@color/blue_50"
         app:cardCornerRadius="@dimen/padding_8"
         app:cardElevation="@dimen/padding_4">
@@ -31,6 +31,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:lines="1"
                 android:paddingLeft="@dimen/padding_4"
@@ -47,8 +48,8 @@
                 android:layout_marginStart="@dimen/padding_4"
                 android:contentDescription="@string/search_button"
                 android:padding="@dimen/padding_8"
-                android:tint="@color/white"
-                app:srcCompat="@drawable/ic_search" />
+                android:src="@drawable/ic_search"
+                android:tint="@color/white" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -57,5 +58,6 @@
         android:id="@+id/rv_definition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:overScrollMode="never"
         tools:listitem="@layout/item_word_definition" />
 </LinearLayout>

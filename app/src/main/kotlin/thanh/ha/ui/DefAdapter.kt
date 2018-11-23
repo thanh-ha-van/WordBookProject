@@ -3,6 +3,7 @@ package thanh.ha.ui
 
 import android.content.Context
 import android.support.v7.util.DiffUtil
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -20,19 +21,19 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     private val mContext = context
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+        var mCv: CardView? = null
+        var mStar: ImageView? = null
         var mThumbUpBtn: ImageView? = null
         var mThumbDownBtn: ImageView? = null
-
         var mThumbUpValue: TextView? = null
         var mThumbDownValue: TextView? = null
-
         var mDefinition: TextView? = null
         var mExample: TextView? = null
         var mAuthor: TextView? = null
         var mTime: TextView? = null
 
         init {
+            mStar = view.findViewById(R.id.img_star)
             mThumbUpBtn = view.findViewById(R.id.btn_up)
             mThumbDownBtn = view.findViewById(R.id.btn_down)
             mThumbUpValue = view.findViewById(R.id.tv_thumb_up_value)
@@ -84,6 +85,9 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()
         holder.mAuthor!!.text = mDefList[position].author
         holder.mTime!!.text = mDefList[position].writtenOn
+        if (position == 0) {
+            holder.mStar!!.visibility = View.VISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
