@@ -12,8 +12,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_definition.*
 import thanh.ha.R
-import thanh.ha.ui.DefAdapter
-import thanh.ha.ui.LoadingDialog
+import thanh.ha.ui.adapters.DefAdapter
+import thanh.ha.ui.dialogs.LoadingDialog
 
 
 class DefinitionFragment : Fragment(), DefAdapter.ClickListener {

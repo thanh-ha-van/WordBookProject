@@ -1,16 +1,16 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/transparent">
 
-    <ImageView
-        android:id="@+id/custom_loading_imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/loading_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:indicatorColor="@color/blue_50"
+        app:indicatorName="BallRotateIndicator" />
 </android.support.constraint.ConstraintLayout>

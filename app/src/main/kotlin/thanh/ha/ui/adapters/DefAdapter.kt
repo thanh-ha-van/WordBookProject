@@ -1,4 +1,4 @@
-package thanh.ha.ui
+package thanh.ha.ui.adapters
 
 
 import android.content.Context
