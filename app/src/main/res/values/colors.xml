@@ -9,6 +9,8 @@
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
 
+    <color name="roundedTextBg">#554fC3f7</color>
+    <color name="roundedTextBorder">#DD0277BD</color>
     <!--blue-->
     <color name="blue_5">#E1F5FE</color>
     <color name="blue_10">#B3E5FC</color>

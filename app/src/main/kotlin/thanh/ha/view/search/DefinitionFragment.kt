@@ -1,15 +1,16 @@
 package thanh.ha.view.search
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_definition.*
 import thanh.ha.R
 import thanh.ha.ui.adapters.DefAdapter
@@ -34,7 +35,7 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
 
     private fun initView() {
         val layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL, false)
+                RecyclerView.VERTICAL, false)
         rv_definition.layoutManager = layoutManager
         adapter = DefAdapter(context, this)
         rv_definition.adapter = adapter

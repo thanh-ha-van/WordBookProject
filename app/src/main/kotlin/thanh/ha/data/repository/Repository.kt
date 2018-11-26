@@ -1,6 +1,6 @@
 package thanh.ha.data.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import thanh.ha.domain.DefinitionInfo
 
 interface Repository {

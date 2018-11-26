@@ -1,7 +1,6 @@
 package thanh.ha.view.search
 
-import android.arch.lifecycle.*
-import android.arch.lifecycle.Lifecycle.Event.ON_DESTROY
+import androidx.lifecycle.*
 import io.reactivex.disposables.CompositeDisposable
 import thanh.ha.data.repository.DefinitionRepository
 import thanh.ha.di.WordBookApp
@@ -27,7 +26,7 @@ class DefinitionViewModel : ViewModel(), LifecycleObserver {
         return liveCurrencyData
     }
 
-    @OnLifecycleEvent(ON_DESTROY)
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun unSubscribeViewModel() {
         for (disposable in definitionRepository.allCompositeDisposable) {
             compositeDisposable.addAll(disposable)
