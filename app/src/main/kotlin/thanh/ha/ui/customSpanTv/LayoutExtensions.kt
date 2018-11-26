@@ -1,21 +1,5 @@
-/*
- * Copyright (C) 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package thanh.ha.ui.customSpanTv
 
-import android.os.Build
 import android.text.Layout
 
 // Extension functions for Layout object
@@ -23,36 +7,35 @@ import android.text.Layout
 /**
  * Android system default line spacing extra
  */
-private const val DEFAULT_LINESPACING_EXTRA = 0f
+private const val DEFAULT_LINE_SPACING_EXTRA = 0f
 
 /**
  * Android system default line spacing multiplier
  */
-private const val DEFAULT_LINESPACING_MULTIPLIER = 1f
+private const val DEFAULT_LINE_SPACING_MULTIPLIER = 1f
 
 /**
  * Get the line bottom discarding the line spacing added.
  */
 fun Layout.getLineBottomWithoutSpacing(line: Int): Int {
     val lineBottom = getLineBottom(line)
-    val lastLineSpacingNotAdded = Build.VERSION.SDK_INT >= 19
     val isLastLine = line == lineCount - 1
 
     val lineBottomWithoutSpacing: Int
     val lineSpacingExtra = spacingAdd
     val lineSpacingMultiplier = spacingMultiplier
-    val hasLineSpacing = lineSpacingExtra != DEFAULT_LINESPACING_EXTRA
-        || lineSpacingMultiplier != DEFAULT_LINESPACING_MULTIPLIER
+    val hasLineSpacing = lineSpacingExtra != DEFAULT_LINE_SPACING_EXTRA
+            || lineSpacingMultiplier != DEFAULT_LINE_SPACING_MULTIPLIER
 
-    if (!hasLineSpacing || isLastLine && lastLineSpacingNotAdded) {
+    if (!hasLineSpacing || isLastLine) {
         lineBottomWithoutSpacing = lineBottom
     } else {
         val extra: Float
-        if (lineSpacingMultiplier.compareTo(DEFAULT_LINESPACING_MULTIPLIER) != 0) {
+        extra = if (lineSpacingMultiplier.compareTo(DEFAULT_LINE_SPACING_MULTIPLIER) != 0) {
             val lineHeight = getLineHeight(line)
-            extra = lineHeight - (lineHeight - lineSpacingExtra) / lineSpacingMultiplier
+            lineHeight - (lineHeight - lineSpacingExtra) / lineSpacingMultiplier
         } else {
-            extra = lineSpacingExtra
+            lineSpacingExtra
         }
 
         lineBottomWithoutSpacing = (lineBottom - extra).toInt()

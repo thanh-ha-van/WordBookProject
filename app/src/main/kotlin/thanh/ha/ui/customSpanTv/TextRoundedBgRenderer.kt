@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
-*/
 package thanh.ha.ui.customSpanTv
 
 import android.graphics.Canvas
@@ -22,7 +7,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * Base class for single and multi line rounded background renderers.
+ * Base class for single and multi line rounded background renders.
  *
  * @param horizontalPadding the padding to be applied to left & right of the background
  * @param verticalPadding the padding to be applied to top & bottom of the background
@@ -43,12 +28,12 @@ internal abstract class TextRoundedBgRenderer(
      * @param endOffset the character offset that the background should end at
      */
     abstract fun draw(
-        canvas: Canvas,
-        layout: Layout,
-        startLine: Int,
-        endLine: Int,
-        startOffset: Int,
-        endOffset: Int
+            canvas: Canvas,
+            layout: Layout,
+            startLine: Int,
+            endLine: Int,
+            startOffset: Int,
+            endOffset: Int
     )
 
     /**
@@ -82,18 +67,18 @@ internal abstract class TextRoundedBgRenderer(
  * @param drawable the drawable used to draw the background
  */
 internal class SingleLineRenderer(
-    horizontalPadding: Int,
-    verticalPadding: Int,
-    val drawable: Drawable
+        horizontalPadding: Int,
+        verticalPadding: Int,
+        val drawable: Drawable
 ) : TextRoundedBgRenderer(horizontalPadding, verticalPadding) {
 
     override fun draw(
-        canvas: Canvas,
-        layout: Layout,
-        startLine: Int,
-        endLine: Int,
-        startOffset: Int,
-        endOffset: Int
+            canvas: Canvas,
+            layout: Layout,
+            startLine: Int,
+            endLine: Int,
+            startOffset: Int,
+            endOffset: Int
     ) {
         val lineTop = getLineTop(layout, startLine)
         val lineBottom = getLineBottom(layout, startLine)
@@ -116,20 +101,20 @@ internal class SingleLineRenderer(
  * @param drawableRight the drawable used to draw right edge of the background
  */
 internal class MultiLineRenderer(
-    horizontalPadding: Int,
-    verticalPadding: Int,
-    val drawableLeft: Drawable,
-    val drawableMid: Drawable,
-    val drawableRight: Drawable
+        horizontalPadding: Int,
+        verticalPadding: Int,
+        val drawableLeft: Drawable,
+        val drawableMid: Drawable,
+        val drawableRight: Drawable
 ) : TextRoundedBgRenderer(horizontalPadding, verticalPadding) {
 
     override fun draw(
-        canvas: Canvas,
-        layout: Layout,
-        startLine: Int,
-        endLine: Int,
-        startOffset: Int,
-        endOffset: Int
+            canvas: Canvas,
+            layout: Layout,
+            startLine: Int,
+            endLine: Int,
+            startOffset: Int,
+            endOffset: Int
     ) {
         // draw the first line
         val paragDir = layout.getParagraphDirection(startLine)
@@ -148,10 +133,10 @@ internal class MultiLineRenderer(
             lineTop = getLineTop(layout, line)
             lineBottom = getLineBottom(layout, line)
             drawableMid.setBounds(
-                (layout.getLineLeft(line).toInt() - horizontalPadding),
-                lineTop,
-                (layout.getLineRight(line).toInt() + horizontalPadding),
-                lineBottom
+                    (layout.getLineLeft(line).toInt() - horizontalPadding),
+                    lineTop,
+                    (layout.getLineRight(line).toInt() + horizontalPadding),
+                    lineBottom
             )
             drawableMid.draw(canvas)
         }

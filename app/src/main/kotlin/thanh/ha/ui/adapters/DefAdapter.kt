@@ -21,7 +21,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     private val mContext = context
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var mCv: CardView? = null
+
         var mStar: ImageView? = null
         var mThumbUpBtn: ImageView? = null
         var mThumbDownBtn: ImageView? = null
@@ -79,7 +79,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mDefinition!!.text = mDefList[position].definition
+        //holder.mDefinition!!.text = mDefList[position].definition
         holder.mExample!!.text = mDefList[position].example
         holder.mThumbUpValue!!.text = mDefList[position].thumbsUp.toString()
         holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()

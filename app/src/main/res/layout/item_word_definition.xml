@@ -35,7 +35,7 @@
             style="@style/WordDefinitionStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Means 'as fuck' and is used to clarify things. You can also use it as the word 'very' or 'really'. Mostly used online or in text messages." />
+            android:text="@string/ltr_long" />
 
         <TextView
             android:id="@+id/tv_example"

@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
-*/
 package thanh.ha.ui.customSpanTv
 
 import android.content.Context
@@ -43,30 +28,30 @@ class TextRoundedBgAttributeReader(context: Context, attrs: AttributeSet?) {
 
     init {
         val typedArray = context.obtainStyledAttributes(
-            attrs,
-            R.styleable.TextRoundedBgHelper,
-            0,
-            R.style.RoundedBgTextView
+                attrs,
+                R.styleable.TextRoundedBgHelper,
+                0,
+                R.style.RoundedBgTextView
         )
         horizontalPadding = typedArray.getDimensionPixelSize(
-            R.styleable.TextRoundedBgHelper_roundedTextHorizontalPadding,
-            0
+                R.styleable.TextRoundedBgHelper_roundedTextHorizontalPadding,
+                0
         )
         verticalPadding = typedArray.getDimensionPixelSize(
-            R.styleable.TextRoundedBgHelper_roundedTextVerticalPadding,
-            0
+                R.styleable.TextRoundedBgHelper_roundedTextVerticalPadding,
+                0
         )
         drawable = typedArray.getDrawableOrThrow(
-            R.styleable.TextRoundedBgHelper_roundedTextDrawable
+                R.styleable.TextRoundedBgHelper_roundedTextDrawable
         )
         drawableLeft = typedArray.getDrawableOrThrow(
-            R.styleable.TextRoundedBgHelper_roundedTextDrawableLeft
+                R.styleable.TextRoundedBgHelper_roundedTextDrawableLeft
         )
         drawableMid = typedArray.getDrawableOrThrow(
-            R.styleable.TextRoundedBgHelper_roundedTextDrawableMid
+                R.styleable.TextRoundedBgHelper_roundedTextDrawableMid
         )
         drawableRight = typedArray.getDrawableOrThrow(
-            R.styleable.TextRoundedBgHelper_roundedTextDrawableRight
+                R.styleable.TextRoundedBgHelper_roundedTextDrawableRight
         )
         typedArray.recycle()
     }
