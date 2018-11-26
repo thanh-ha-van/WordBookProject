@@ -30,7 +30,7 @@
             android:tint="@color/orange_50"
             android:visibility="gone" />
 
-        <TextView
+        <thanh.ha.ui.customSpanTv.RoundedBgTextView
             android:id="@+id/tv_definition"
             style="@style/WordDefinitionStyle"
             android:layout_width="match_parent"
