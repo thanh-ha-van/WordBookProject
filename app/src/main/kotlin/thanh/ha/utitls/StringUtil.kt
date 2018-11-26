@@ -1,8 +1,15 @@
 package thanh.ha.utitls
 
-class StringUtil {
-    public fun converStringToSepratedChip(string: String): List<String> {
-        val toReturn = ArrayList<String>()
-        return toReturn
+import java.util.regex.Pattern
+
+object StringUtils {
+    fun ggez(text: String): String {
+        var fff = String()
+        val m = Pattern.compile("\\[(.*?)]")
+                .matcher(text)
+        while (m.find()) {
+            fff += (m.group())
+        }
+        return fff
     }
 }
