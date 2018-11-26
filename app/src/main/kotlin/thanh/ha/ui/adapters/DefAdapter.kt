@@ -6,8 +6,6 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -21,39 +19,13 @@ import java.util.*
 
 
 class DefAdapter(context: Context?, private val mClickListener: ClickListener)
-    : RecyclerView.Adapter<DefAdapter.MyViewHolder>() {
+    : RecyclerView.Adapter<DefItemViewHolder>() {
     private val TEXT_COLOR = "#ffffff"
     private var mDefList: List<DefinitionInfo> = ArrayList()
     private val mContext = context
     private var viewModel: BadgeListViewModel? = null
     val badgeBuilder = AndroidTagBadgeBuilder(SpannableStringBuilder(), 2, TEXT_COLOR)
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        var mStar: ImageView? = null
-        var mThumbUpBtn: ImageView? = null
-        var mThumbDownBtn: ImageView? = null
-        var mThumbUpValue: TextView? = null
-        var mThumbDownValue: TextView? = null
-        var mDefinition: TextView? = null
-        var mExample: TextView? = null
-        var mAuthor: TextView? = null
-        var mTime: TextView? = null
-
-        init {
-            mStar = view.findViewById(R.id.img_star)
-            mThumbUpBtn = view.findViewById(R.id.btn_up)
-            mThumbDownBtn = view.findViewById(R.id.btn_down)
-            mThumbUpValue = view.findViewById(R.id.tv_thumb_up_value)
-            mThumbDownValue = view.findViewById(R.id.tv_thumb_down_value)
-            mDefinition = view.findViewById(R.id.tv_definition)
-            mExample = view.findViewById(R.id.tv_example)
-            mAuthor = view.findViewById(R.id.tv_author)
-            mTime = view.findViewById(R.id.tv_time)
-            mThumbUpBtn!!.setOnClickListener { mClickListener.onThumbUp(adapterPosition) }
-            mThumbDownBtn!!.setOnClickListener { mClickListener.onThumbUpDown(adapterPosition) }
-        }
-    }
 
     fun updateInfo(newItems: List<DefinitionInfo>) {
         val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
@@ -80,13 +52,13 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefItemViewHolder {
         val inflater = LayoutInflater.from(mContext)
-        return MyViewHolder(inflater.inflate(R.layout.item_word_definition, parent, false))
+        return DefItemViewHolder(inflater.inflate(R.layout.item_word_definition, parent, false), mClickListener)
 
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DefItemViewHolder, position: Int) {
 
         holder.mExample!!.text = mDefList[position].example
         holder.mThumbUpValue!!.text = mDefList[position].thumbsUp.toString()
@@ -101,15 +73,16 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         holder.mDefinition!!.text = viewModel?.renderedTagBadges
     }
 
-    fun getDefaultClickAction(): SpannableClickAction {
-        val context = this
+    private fun getDefaultClickAction(): SpannableClickAction {
+
         return SpannableClickAction {
 
             fun onClick() {
-               Toast.makeText(this.mContext, "", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.mContext, "", Toast.LENGTH_LONG).show()
             }
         }
     }
+
     private val dummyTagData = Arrays.asList(
             TagDto.createWith("#Dummy1", "#3BC23F"),
             TagDto.createWith("#Dummy2", "#29BDCC"),

@@ -9,7 +9,6 @@ import thanh.ha.domain.DefinitionInfo;
 public class BadgeListViewModel {
     private final TagBadgeBuilder badgeBuilder;
     private List<TagDto> tags;
-    private DefinitionInfo definitionInfo;
     private SpannableClickAction clickAction;
 
     public BadgeListViewModel(TagBadgeBuilder badgeBuilder, SpannableClickAction clickAction) {
@@ -40,7 +39,6 @@ public class BadgeListViewModel {
                 badgeBuilder.appendTag(tag.getName(), tag.getColorHex());
             }
         }
-
         return badgeBuilder.getTags();
     }
 
