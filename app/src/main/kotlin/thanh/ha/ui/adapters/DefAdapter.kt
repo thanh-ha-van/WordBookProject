@@ -3,7 +3,6 @@ package thanh.ha.ui.adapters
 
 import android.content.Context
 import android.support.v7.util.DiffUtil
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +20,6 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     private val mContext = context
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var mCv: CardView? = null
         var mStar: ImageView? = null
         var mThumbUpBtn: ImageView? = null
         var mThumbDownBtn: ImageView? = null
