@@ -104,4 +104,9 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
     override fun onThumbUpDown(position: Int) {
 
     }
+
+    override fun onClickKeyWord(string: String) {
+        et_search.setText(string)
+        searchKeyword(string)
+    }
 }

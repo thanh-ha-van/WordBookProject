@@ -4,6 +4,7 @@ package thanh.ha.ui.adapters
 import android.content.Context
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.ui.customSpanable.SpannableClickAction
 import thanh.ha.utitls.StringUtils
 
 
 class DefAdapter(context: Context?, private val mClickListener: ClickListener)
-    : RecyclerView.Adapter<DefAdapter.MyViewHolder>() {
+    : RecyclerView.Adapter<DefAdapter.MyViewHolder>(), SpannableClickAction {
 
     private var mDefList: List<DefinitionInfo> = ArrayList()
     private val mContext = context
@@ -78,8 +80,10 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mDefinition?.text = StringUtils.appSpirit(mContext!!, mDefList[position].definition)
-        holder.mExample!!.text = StringUtils.appSpirit(mContext, mDefList[position].example)
+        holder.mDefinition?.movementMethod = LinkMovementMethod.getInstance()
+        holder.mExample?.movementMethod = LinkMovementMethod.getInstance()
+        holder.mDefinition?.text = StringUtils.appSpirit(mContext!!, mDefList[position].definition, this)
+        holder.mExample!!.text = StringUtils.appSpirit(mContext, mDefList[position].example, this)
         holder.mThumbUpValue!!.text = mDefList[position].thumbsUp.toString()
         holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()
         holder.mAuthor!!.text = mDefList[position].author
@@ -96,6 +100,10 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     interface ClickListener {
         fun onThumbUp(position: Int)
         fun onThumbUpDown(position: Int)
+        fun onClickKeyWord(string: String)
+    }
 
+    override fun onClick(string: String) {
+        mClickListener.onClickKeyWord(string)
     }
 }

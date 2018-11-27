@@ -4,12 +4,14 @@ import android.content.Context
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import thanh.ha.ui.customSpanable.CustomSpannable
+import thanh.ha.ui.customSpanable.SpannableClickAction
+import thanh.ha.ui.customSpanable.SpannableClickOverlay
 import java.util.regex.Pattern
 
 
 object StringUtils {
 
-    fun appSpirit(context: Context, text: String?): SpannableStringBuilder {
+    fun appSpirit(context: Context, text: String?, clickAction: SpannableClickAction): SpannableStringBuilder {
         var startIndex: Int
         var endIndex = 0
         val stringBuilder = SpannableStringBuilder()
@@ -17,14 +19,20 @@ object StringUtils {
                 .matcher(text)
         while (m.find()) {
             startIndex = m.start()
-            stringBuilder.append(" " + text?.substring(endIndex, startIndex) + " ")
+            stringBuilder.append( " " + text?.substring(endIndex, startIndex))
             endIndex = m.end()
-            stringBuilder.append(m.group()
+            val stringToAdd = m.group()
                     .replace("[", "")
-                    .replace("]", ""))
+                    .replace("]", " ")
+            stringBuilder.append(stringToAdd)
             stringBuilder.setSpan(CustomSpannable(context),
-                    startIndex + 2,
-                    endIndex,
+                    startIndex + 1,
+                    endIndex - 1,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            stringBuilder.setSpan(SpannableClickOverlay(clickAction, stringToAdd.trim()),
+                    startIndex + 1,
+                    endIndex - 1,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
         stringBuilder.replace(0, 1, "")

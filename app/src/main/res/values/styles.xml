@@ -21,15 +21,17 @@
 
 
     <style name="WordDefinitionStyle" parent="AppTheme">
+        <item name="android:clickable">true</item>
         <item name="android:textColor">@color/gray_50</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ExampleStyle" parent="AppTheme">
+        <item name="android:clickable">true</item>
         <item name="android:textColor">@color/black_30</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
     </style>
 
