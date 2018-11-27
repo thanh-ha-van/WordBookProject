@@ -1,7 +1,6 @@
 package thanh.ha.ui.adapters
 
 
-import android.arch.persistence.room.util.StringUtil
 import android.content.Context
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
@@ -79,8 +78,8 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mDefinition!!.text = StringUtils.ggez(mDefList[position].definition)
-        holder.mExample!!.text = mDefList[position].example
+        holder.mDefinition?.text = StringUtils.appSpirit(mContext!!, mDefList[position].definition)
+        holder.mExample!!.text = StringUtils.appSpirit(mContext, mDefList[position].example)
         holder.mThumbUpValue!!.text = mDefList[position].thumbsUp.toString()
         holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()
         holder.mAuthor!!.text = mDefList[position].author
