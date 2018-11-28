@@ -3,6 +3,10 @@ package thanh.ha.view.search
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.transition.Fade
+import android.support.transition.Scene
+import android.support.transition.Transition
+import android.support.transition.TransitionManager
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -17,7 +21,7 @@ import thanh.ha.ui.adapters.DefAdapter
 import thanh.ha.ui.dialogs.LoadingDialog
 
 
-class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
+class DefinitionFragment : Fragment(), DefAdapter.ClickListener, View.OnFocusChangeListener {
 
     companion object {
         fun newInstance() = DefinitionFragment()
@@ -26,7 +30,9 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
     private lateinit var definitionViewModel: DefinitionViewModel
     private lateinit var adapter: DefAdapter
     private lateinit var dialog: LoadingDialog
-
+    private lateinit var mAScene: Scene
+    private lateinit var mAnotherScene: Scene
+    private val mFadeTransition: Transition = Fade()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +56,12 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
                     }
                     false
                 })
+        et_search.onFocusChangeListener = this
         btn_search.setOnClickListener {
             searchKeyword(et_search.text.toString().trim())
         }
+        mAScene = Scene.getSceneForLayout(content_search, R.layout.fragment_definition, context!!)
+        mAnotherScene = Scene.getSceneForLayout(content_search, R.layout.fragment_definition_focused, context!!)
         dialog = LoadingDialog(activity!!)
     }
 
@@ -63,10 +72,24 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
                 container, false)
     }
 
+
+    override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        if (hasFocus)
+            animateFocus() else animateReleaseFocus()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         lastSearch()
+    }
+
+    private fun animateFocus() {
+        TransitionManager.go(mAnotherScene, mFadeTransition)
+    }
+
+    private fun animateReleaseFocus() {
+        TransitionManager.go(mAScene, mFadeTransition)
     }
 
     private fun lastSearch() {
