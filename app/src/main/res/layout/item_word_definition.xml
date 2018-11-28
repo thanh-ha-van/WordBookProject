@@ -83,8 +83,7 @@
                 android:text="Thanh Ha"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/blue_50"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_size_14" />
 
             <TextView
                 android:id="@+id/tv_time"

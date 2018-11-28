@@ -8,9 +8,10 @@ import android.support.v4.content.ContextCompat
 import android.text.style.ReplacementSpan
 import thanh.ha.R
 
+
 class CustomSpannable(context: Context) : ReplacementSpan() {
-    val cornerRadius = 16
-    private val backgroundColor = ContextCompat.getColor(context, R.color.orange_50)
+    val cornerRadius: Float = 16f
+    private val backgroundColor = ContextCompat.getColor(context, R.color.green_50)
     private val textColor = ContextCompat.getColor(context, R.color.white)
     override fun draw(
             canvas: Canvas,
@@ -26,14 +27,14 @@ class CustomSpannable(context: Context) : ReplacementSpan() {
         val rect = RectF(
                 x,
                 top.toFloat(),
-                x + paint.measureText(text, start, end) + cornerRadius.toFloat(),
+                x + paint.measureText(text, start, end) + cornerRadius,
                 bottom.toFloat()
         )
         paint.color = backgroundColor
         canvas.drawRoundRect(
                 rect,
-                cornerRadius.toFloat(),
-                cornerRadius.toFloat(),
+                cornerRadius,
+                cornerRadius,
                 paint
         )
         paint.color = textColor
