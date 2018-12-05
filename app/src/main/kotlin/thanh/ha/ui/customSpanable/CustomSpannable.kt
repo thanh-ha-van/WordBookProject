@@ -11,8 +11,9 @@ import thanh.ha.R
 
 class CustomSpannable(context: Context) : ReplacementSpan() {
     val cornerRadius: Float = 16f
-    private val backgroundColor = ContextCompat.getColor(context, R.color.green_50)
-    private val textColor = ContextCompat.getColor(context, R.color.white)
+    private val backgroundColor = ContextCompat.getColor(context, R.color.gray_10)
+    private val borderColor = ContextCompat.getColor(context, R.color.blue_70)
+    private val textColor = ContextCompat.getColor(context, R.color.gray_50)
     override fun draw(
             canvas: Canvas,
             text: CharSequence,
@@ -30,13 +31,27 @@ class CustomSpannable(context: Context) : ReplacementSpan() {
                 x + paint.measureText(text, start, end) + cornerRadius,
                 bottom.toFloat()
         )
+        // fill
         paint.color = backgroundColor
+        paint.style = Paint.Style.FILL
         canvas.drawRoundRect(
                 rect,
                 cornerRadius,
                 cornerRadius,
                 paint
         )
+        // border
+        paint.color = borderColor
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = 2f
+        canvas.drawRoundRect(
+                rect,
+                cornerRadius,
+                cornerRadius,
+                paint
+        )
+
+        // text
         paint.color = textColor
         canvas.drawText(
                 text,

@@ -35,8 +35,12 @@ object SpanHelper {
                     endIndex - 1,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
-        stringBuilder.replace(0, 1, "")
-        stringBuilder.append(" " + text?.subSequence(endIndex, text.length))
+        try {
+            stringBuilder.replace(0, 1, "")
+            stringBuilder.append(" " + text?.subSequence(endIndex, text.length))
+        } catch (e: IndexOutOfBoundsException) {
+        }
+
         return stringBuilder
     }
 }
