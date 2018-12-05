@@ -20,16 +20,6 @@
         android:orientation="vertical"
         android:padding="@dimen/padding_8">
 
-        <ImageView
-            android:id="@+id/img_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_6"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_star_border"
-            android:tint="@color/orange_50"
-            android:visibility="gone" />
-
         <TextView
             android:id="@+id/tv_definition"
             style="@style/WordDefinitionStyle"
@@ -37,6 +27,11 @@
             android:layout_height="wrap_content"
             android:text="Means 'as fuck' and is used to clarify things. You can also use it as the word 'very' or 'really'. Mostly used online or in text messages." />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="@dimen/margin_8"
+            android:background="@color/gray_30"/>
         <TextView
             android:id="@+id/tv_example"
             style="@style/ExampleStyle"
@@ -49,7 +44,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_4"
+            android:padding="@dimen/margin_8"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 

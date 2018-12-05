@@ -38,7 +38,7 @@
                 android:paddingRight="@dimen/padding_4"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="@dimen/text_size_16"
+                android:textSize="@dimen/text_size_18"
                 android:textStyle="bold" />
 
             <ImageView
@@ -58,7 +58,7 @@
         android:id="@+id/rv_definition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never"
         android:layoutAnimation="@anim/layout_animation_fall_down"
+        android:overScrollMode="never"
         tools:listitem="@layout/item_word_definition" />
 </LinearLayout>

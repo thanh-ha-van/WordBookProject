@@ -7,16 +7,12 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
 import thanh.ha.helpers.SpanHelper
 import thanh.ha.ui.customSpanable.SpannableClickAction
-import kotlin.contracts.contract
 
 
 class DefAdapter(context: Context?, private val mClickListener: ClickListener)
@@ -26,7 +22,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     private val mContext = context
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var mStar: ImageView? = null
+
         var mThumbUpBtn: ImageView? = null
         var mThumbDownBtn: ImageView? = null
         var mThumbUpValue: TextView? = null
@@ -37,7 +33,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         var mTime: TextView? = null
 
         init {
-            mStar = view.findViewById(R.id.img_star)
+
             mThumbUpBtn = view.findViewById(R.id.btn_up)
             mThumbDownBtn = view.findViewById(R.id.btn_down)
             mThumbUpValue = view.findViewById(R.id.tv_thumb_up_value)
@@ -78,9 +74,6 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()
         holder.mAuthor!!.text = mDefList[position].author
         holder.mTime!!.text = mDefList[position].writtenOn
-        if (position == 0) {
-            holder.mStar!!.visibility = View.VISIBLE
-        }
     }
 
     override fun getItemCount(): Int {
