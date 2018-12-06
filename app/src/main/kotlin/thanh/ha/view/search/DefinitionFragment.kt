@@ -70,7 +70,7 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
 
 
     private fun lastSearch() {
-        //TODO show last search result, some working with database. far future.
+
     }
 
     private fun initViewModel() {
