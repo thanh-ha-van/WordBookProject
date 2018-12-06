@@ -1,4 +1,4 @@
-package thanh.ha.view.history
+package thanh.ha.view.setting
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import thanh.ha.R
 
-class HistoryFragment : Fragment() {
+class SettingFragment : Fragment() {
 
     companion object {
-        fun newInstance() = HistoryFragment()
+        fun newInstance() = SettingFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_setting, container, false)
 
     }
 }

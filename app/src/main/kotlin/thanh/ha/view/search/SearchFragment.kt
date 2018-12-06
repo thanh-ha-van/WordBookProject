@@ -11,19 +11,19 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import kotlinx.android.synthetic.main.fragment_definition.*
+import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.ui.adapters.DefAdapter
 import thanh.ha.ui.dialogs.LoadingDialog
 
 
-class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
+class SearchFragment : Fragment(), DefAdapter.ClickListener {
 
     companion object {
-        fun newInstance() = DefinitionFragment()
+        fun newInstance() = SearchFragment()
     }
 
-    private lateinit var definitionViewModel: DefinitionViewModel
+    private lateinit var searchViewModel: SearchViewModel
     private lateinit var adapter: DefAdapter
     private lateinit var dialog: LoadingDialog
 
@@ -58,7 +58,7 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_definition,
+        return inflater.inflate(R.layout.fragment_search,
                 container, false)
     }
 
@@ -74,10 +74,10 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
     }
 
     private fun initViewModel() {
-        definitionViewModel = ViewModelProviders
+        searchViewModel = ViewModelProviders
                 .of(this)
-                .get(DefinitionViewModel::class.java)
-        definitionViewModel
+                .get(SearchViewModel::class.java)
+        searchViewModel
                 .let {
                     lifecycle.addObserver(it)
                 }
@@ -85,7 +85,7 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
 
     private fun searchKeyword(word: String) {
         showLoadingDialog()
-        definitionViewModel
+        searchViewModel
                 .getWordDefinition(word)?.observe(
                         this,
                         Observer { definitionList ->

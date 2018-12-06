@@ -9,8 +9,9 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import thanh.ha.R
 import thanh.ha.ui.adapters.ViewPagerAdapter
-import thanh.ha.view.about.SettingFragment
-import thanh.ha.view.search.DefinitionFragment
+import thanh.ha.view.home.HomeFragment
+import thanh.ha.view.search.SearchFragment
+import thanh.ha.view.setting.SettingFragment
 import java.util.*
 
 class NavigationActivity : AppCompatActivity(),
@@ -18,7 +19,8 @@ class NavigationActivity : AppCompatActivity(),
         BottomNavigationView.OnNavigationItemSelectedListener {
 
     private var fragments: MutableList<Fragment> = ArrayList()
-    private var searchFragment: DefinitionFragment? = null
+    private var homeFragment: HomeFragment? = null
+    private var searchFragment: SearchFragment? = null
     private var settingFragment: SettingFragment? = null
     private var prevMenuItem: MenuItem? = null
 
@@ -32,7 +34,8 @@ class NavigationActivity : AppCompatActivity(),
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId) {
-            R.id.action_summary -> viewpager.currentItem = 0
+            R.id.action_home -> viewpager.currentItem = 0
+            R.id.action_search -> viewpager.currentItem = 1
             R.id.action_setting -> viewpager.currentItem = 2
         }
         return false
@@ -58,11 +61,14 @@ class NavigationActivity : AppCompatActivity(),
 
     private fun setupViewPager(viewPager: ViewPager) {
         fragments = ArrayList()
-        searchFragment = DefinitionFragment()
+        homeFragment = HomeFragment()
+        searchFragment = SearchFragment()
         settingFragment = SettingFragment()
+        fragments.add(homeFragment!!)
         fragments.add(searchFragment!!)
         fragments.add(settingFragment!!)
         val adapter = ViewPagerAdapter(supportFragmentManager, fragments)
         viewPager.adapter = adapter
+        viewPager.currentItem = 1
     }
 }

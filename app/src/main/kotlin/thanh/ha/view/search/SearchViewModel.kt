@@ -8,23 +8,23 @@ import thanh.ha.di.WordBookApp
 import thanh.ha.domain.DefinitionInfo
 import javax.inject.Inject
 
-class DefinitionViewModel : ViewModel(), LifecycleObserver {
+class SearchViewModel : ViewModel(), LifecycleObserver {
 
     @Inject
     lateinit var definitionRepository: DefinitionRepository
 
     private val compositeDisposable = CompositeDisposable()
-    private var liveCurrencyData: LiveData<List<DefinitionInfo>>? = null
+    private var liveDefinitionData: LiveData<List<DefinitionInfo>>? = null
 
     init {
         WordBookApp.appComponent.inject(this)
     }
 
     fun getWordDefinition(info: String): LiveData<List<DefinitionInfo>>? {
-        liveCurrencyData = null
-        liveCurrencyData = MutableLiveData<List<DefinitionInfo>>()
-        liveCurrencyData = definitionRepository.getWordDefinition(info)
-        return liveCurrencyData
+        liveDefinitionData = null
+        liveDefinitionData = MutableLiveData<List<DefinitionInfo>>()
+        liveDefinitionData = definitionRepository.getWordDefinition(info)
+        return liveDefinitionData
     }
 
     @OnLifecycleEvent(ON_DESTROY)

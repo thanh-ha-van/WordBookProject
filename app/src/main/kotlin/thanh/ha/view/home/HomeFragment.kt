@@ -1,4 +1,4 @@
-package thanh.ha.view.about
+package thanh.ha.view.home
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import thanh.ha.R
 
-class SettingFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SettingFragment()
+        fun newInstance() = HomeFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
 }
