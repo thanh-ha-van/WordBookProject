@@ -2,7 +2,6 @@ package thanh.ha.ui.adapters
 
 
 import android.content.Context
-import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -12,8 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.helpers.SpanHelper
 import thanh.ha.ui.customSpanable.SpannableClickAction
-import thanh.ha.utitls.StringUtils
 
 
 class DefAdapter(context: Context?, private val mClickListener: ClickListener)
@@ -23,7 +22,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     private val mContext = context
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var mStar: ImageView? = null
+
         var mThumbUpBtn: ImageView? = null
         var mThumbDownBtn: ImageView? = null
         var mThumbUpValue: TextView? = null
@@ -34,7 +33,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         var mTime: TextView? = null
 
         init {
-            mStar = view.findViewById(R.id.img_star)
+
             mThumbUpBtn = view.findViewById(R.id.btn_up)
             mThumbDownBtn = view.findViewById(R.id.btn_down)
             mThumbUpValue = view.findViewById(R.id.tv_thumb_up_value)
@@ -49,48 +48,32 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     }
 
     fun updateInfo(newItems: List<DefinitionInfo>) {
-        val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-            override fun getOldListSize(): Int {
-                return mDefList.size
-            }
-
-            override fun getNewListSize(): Int {
-                return newItems.size
-            }
-
-            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return mDefList[oldItemPosition].defId == newItems[newItemPosition].defId
-            }
-
-            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                val newWeather = newItems[newItemPosition]
-                val oldWeather = mDefList[oldItemPosition]
-                return newWeather.defId == oldWeather.defId
-            }
-        })
         mDefList = newItems
-        result.dispatchUpdatesTo(this)
         notifyDataSetChanged()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(mContext)
-        return MyViewHolder(inflater.inflate(R.layout.item_word_definition, parent, false))
+        return MyViewHolder(
+                inflater.inflate(R.layout.item_word_definition,
+                        parent,
+                        false)
+        )
 
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.mDefinition?.movementMethod = LinkMovementMethod.getInstance()
         holder.mExample?.movementMethod = LinkMovementMethod.getInstance()
-        holder.mDefinition?.text = StringUtils.appSpirit(mContext!!, mDefList[position].definition, this)
-        holder.mExample!!.text = StringUtils.appSpirit(mContext, mDefList[position].example, this)
+        holder.mDefinition?.text =
+                SpanHelper.appSpirit(mContext!!, mDefList[position].definition, this)
+        holder.mExample!!.text =
+                SpanHelper.appSpirit(mContext, mDefList[position].example, this)
         holder.mThumbUpValue!!.text = mDefList[position].thumbsUp.toString()
         holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()
         holder.mAuthor!!.text = mDefList[position].author
         holder.mTime!!.text = mDefList[position].writtenOn
-        if (position == 0) {
-            holder.mStar!!.visibility = View.VISIBLE
-        }
     }
 
     override fun getItemCount(): Int {

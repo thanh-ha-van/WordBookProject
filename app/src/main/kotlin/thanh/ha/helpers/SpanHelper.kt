@@ -1,4 +1,4 @@
-package thanh.ha.utitls
+package thanh.ha.helpers
 
 import android.content.Context
 import android.text.SpannableStringBuilder
@@ -9,7 +9,7 @@ import thanh.ha.ui.customSpanable.SpannableClickOverlay
 import java.util.regex.Pattern
 
 
-object StringUtils {
+object SpanHelper {
 
     fun appSpirit(context: Context, text: String?, clickAction: SpannableClickAction): SpannableStringBuilder {
         var startIndex: Int
@@ -19,7 +19,7 @@ object StringUtils {
                 .matcher(text)
         while (m.find()) {
             startIndex = m.start()
-            stringBuilder.append( " " + text?.substring(endIndex, startIndex))
+            stringBuilder.append(" " + text?.substring(endIndex, startIndex))
             endIndex = m.end()
             val stringToAdd = m.group()
                     .replace("[", "")
@@ -35,9 +35,12 @@ object StringUtils {
                     endIndex - 1,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
-        stringBuilder.replace(0, 1, "")
-        stringBuilder.append(" " + text?.subSequence(endIndex, text.length))
+        try {
+            stringBuilder.replace(0, 1, "")
+            stringBuilder.append(" " + text?.subSequence(endIndex, text.length))
+        } catch (e: IndexOutOfBoundsException) {
+        }
+
         return stringBuilder
     }
-
 }

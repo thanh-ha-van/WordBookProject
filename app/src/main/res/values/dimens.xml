@@ -9,6 +9,7 @@
     <dimen name="text_size_14">14sp</dimen>
 
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_24">24sp</dimen>
     <dimen name="text_size_28">28sp</dimen>
@@ -22,7 +23,7 @@
     <dimen name="padding_24">24dp</dimen>
 
     <!--margin size-->
-    <dimen name="margin_negative">-4dp</dimen>
+    <dimen name="margin_negative">-8dp</dimen>
     <dimen name="margin_2">2dp</dimen>
     <dimen name="margin_4">4dp</dimen>
     <dimen name="margin_6">6dp</dimen>
@@ -60,6 +61,6 @@
     <dimen name="circle_size_90">92dp</dimen>
 
     <!--search bar-->
-    <dimen name="bar_height">48dp</dimen>
-    <dimen name="search_button_size">48dp</dimen>
+    <dimen name="bar_height">42dp</dimen>
+    <dimen name="search_button_size">42dp</dimen>
 </resources>

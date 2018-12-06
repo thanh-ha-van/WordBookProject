@@ -10,42 +10,69 @@ import thanh.ha.R
 
 
 class CustomSpannable(context: Context) : ReplacementSpan() {
-    val cornerRadius = 16
-    private val backgroundColor = ContextCompat.getColor(context, R.color.orange_50)
-    private val textColor = ContextCompat.getColor(context, R.color.white)
-    override fun draw(canvas: Canvas,
-                      text: CharSequence,
-                      start: Int,
-                      end: Int,
-                      x: Float,
-                      top: Int,
-                      y: Int,
-                      bottom: Int,
-                      paint: Paint) {
-        val rect = RectF(x,
-                top.toFloat(),
-                x + paint.measureText(text, start, end) + cornerRadius.toFloat(),
-                bottom.toFloat())
+
+    val cornerRadius: Float = 16f
+    val padding: Float = 2f
+
+    private val backgroundColor = ContextCompat.getColor(context, R.color.gray_10)
+    private val borderColor = ContextCompat.getColor(context, R.color.blue_70)
+
+
+    override fun draw(
+            canvas: Canvas,
+            text: CharSequence,
+            start: Int,
+            end: Int,
+            x: Float,
+            top: Int,
+            y: Int,
+            bottom: Int,
+            paint: Paint
+    ) {
+        val rect = RectF(
+                x + padding,
+                top.toFloat() + padding,
+                x + paint.measureText(text, start, end) + cornerRadius - padding,
+                bottom.toFloat() - padding
+        )
+        // fill
         paint.color = backgroundColor
-        canvas.drawRoundRect(rect,
-                cornerRadius.toFloat(),
-                cornerRadius.toFloat(),
-                paint)
-        paint.color = textColor
-        canvas.drawText(text,
+        paint.style = Paint.Style.FILL
+        canvas.drawRoundRect(
+                rect,
+                cornerRadius,
+                cornerRadius,
+                paint
+        )
+        // text
+        paint.color = borderColor
+        canvas.drawText(
+                text,
                 start,
                 end,
                 x + cornerRadius / 2,
                 y.toFloat(),
-                paint)
+                paint
+        )
+        // border
+        paint.color = borderColor
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = 1f
+        canvas.drawRoundRect(
+                rect,
+                cornerRadius,
+                cornerRadius,
+                paint
+        )
     }
 
-    override fun getSize(paint: Paint,
-                         text: CharSequence,
-                         start: Int,
-                         end: Int,
-                         fm: Paint.FontMetricsInt?): Int {
+    override fun getSize(
+            paint: Paint,
+            text: CharSequence,
+            start: Int,
+            end: Int,
+            fm: Paint.FontMetricsInt?
+    ): Int {
         return Math.round(paint.measureText(text, start, end))
     }
-
 }

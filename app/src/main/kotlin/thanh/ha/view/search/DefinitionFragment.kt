@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_definition.*
@@ -26,7 +27,6 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
     private lateinit var adapter: DefAdapter
     private lateinit var dialog: LoadingDialog
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
@@ -38,6 +38,9 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
         rv_definition.layoutManager = layoutManager
         adapter = DefAdapter(context, this)
         rv_definition.adapter = adapter
+        val animation = AnimationUtils
+                .loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
+        rv_definition.layoutAnimation = animation
         et_search.setOnEditorActionListener(
                 TextView.OnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -65,6 +68,7 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
         lastSearch()
     }
 
+
     private fun lastSearch() {
         //TODO show last search result, some working with database. far future.
     }
@@ -86,8 +90,14 @@ class DefinitionFragment : Fragment(), DefAdapter.ClickListener {
                         this,
                         Observer { definitionList ->
                             adapter.updateInfo(definitionList!!)
+                            reRunAnimation()
+                            rv_definition.smoothScrollToPosition(0)
                             hideLoadingDialog()
                         })
+    }
+
+    private fun reRunAnimation() {
+        rv_definition.scheduleLayoutAnimation()
     }
 
     private fun showLoadingDialog() {
