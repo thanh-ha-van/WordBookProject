@@ -1,28 +1,68 @@
 package thanh.ha.view
 
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_main.*
 import thanh.ha.R
+import thanh.ha.ui.adapters.ViewPagerAdapter
+import thanh.ha.view.about.SettingFragment
 import thanh.ha.view.search.DefinitionFragment
+import java.util.*
 
+class NavigationActivity : AppCompatActivity(),
+        ViewPager.OnPageChangeListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
-class NavigationActivity : AppCompatActivity() {
-
+    private var fragments: MutableList<Fragment> = ArrayList()
+    private var searchFragment: DefinitionFragment? = null
+    private var settingFragment: SettingFragment? = null
+    private var prevMenuItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
-            replaceFragment(DefinitionFragment.newInstance())
+        bottom_navigation.setOnNavigationItemSelectedListener(this)
+        setupViewPager(viewpager)
+        viewpager.offscreenPageLimit = 3
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when (p0.itemId) {
+            R.id.action_summary -> viewpager.currentItem = 0
+            R.id.action_setting -> viewpager.currentItem = 2
         }
-
+        return false
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.content, fragment)
-                .commit()
+    override fun onPageScrollStateChanged(p0: Int) {
+        // do nothing
     }
 
+    override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+        // do nothing
+    }
+
+    override fun onPageSelected(p0: Int) {
+        if (prevMenuItem != null) {
+            prevMenuItem!!.isChecked = false
+        } else {
+            bottom_navigation.menu.getItem(0).isChecked = false
+        }
+        bottom_navigation.menu.getItem(p0).isChecked = true
+        prevMenuItem = bottom_navigation.menu.getItem(p0)
+    }
+
+    private fun setupViewPager(viewPager: ViewPager) {
+        fragments = ArrayList()
+        searchFragment = DefinitionFragment()
+        settingFragment = SettingFragment()
+        fragments.add(searchFragment!!)
+        fragments.add(settingFragment!!)
+        val adapter = ViewPagerAdapter(supportFragmentManager, fragments)
+        viewPager.adapter = adapter
+    }
 }

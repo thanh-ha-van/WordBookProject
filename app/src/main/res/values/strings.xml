@@ -8,4 +8,14 @@
 
     <string name="search_hint">Search…</string>
     <string name="search_button">search</string>
+
+    <string name="ok">OK</string>
+    <string name="op_cancel">Cancel</string>
+
+    <!-- for the bottom navigation -->
+    <string name="text_summary">Profile</string>
+    <string name="text_quest">News</string>
+    <string name="text_message">Messages</string>
+    <string name="text_setting">Settings</string>
+
 </resources>
