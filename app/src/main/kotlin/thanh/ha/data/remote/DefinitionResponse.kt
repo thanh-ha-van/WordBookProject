@@ -22,9 +22,6 @@ class DefinitionResponse {
     @SerializedName("defid")
     @Expose
     var defid: Int? = null
-    @SerializedName("current_vote")
-    @Expose
-    var currentVote: String? = null
     @SerializedName("written_on")
     @Expose
     var writtenOn: String? = null

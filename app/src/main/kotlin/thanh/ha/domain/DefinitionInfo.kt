@@ -8,7 +8,6 @@ data class DefinitionInfo(
         var thumbsUp: Int?,
         var thumbsDown: Int?,
         var author: String,
-        var currentVote: String?,
         var writtenOn: String?,
         var example: String?
 )

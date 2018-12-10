@@ -73,7 +73,6 @@ class DefinitionRepository @Inject constructor(
                             it.thumbsUp,
                             it.thumbsDown,
                             it.author!!,
-                            it.currentVote!!,
                             DateTimeUtil.convertToNewFormat(it.writtenOn!!),
                             it.example))
         }
@@ -93,7 +92,6 @@ class DefinitionRepository @Inject constructor(
                             it.thumbsUp,
                             it.thumbsDown,
                             it.author,
-                            it.currentVote,
                             DateTimeUtil.convertToNewFormat(it.writtenOn),
                             it.example))
         }
