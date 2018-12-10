@@ -19,10 +19,6 @@ import thanh.ha.ui.dialogs.LoadingDialog
 
 class SearchFragment : Fragment(), DefAdapter.ClickListener {
 
-    companion object {
-        fun newInstance() = SearchFragment()
-    }
-
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var adapter: DefAdapter
     private lateinit var dialog: LoadingDialog

@@ -69,6 +69,7 @@ class NavigationActivity : AppCompatActivity(),
         fragments.add(settingFragment!!)
         val adapter = ViewPagerAdapter(supportFragmentManager, fragments)
         viewPager.adapter = adapter
+        viewPager.addOnPageChangeListener(this)
         viewPager.currentItem = 1
     }
 }

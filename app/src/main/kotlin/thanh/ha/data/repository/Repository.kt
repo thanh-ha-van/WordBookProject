@@ -7,4 +7,6 @@ interface Repository {
 
     fun getWordDefinition(currencies: String): LiveData<List<DefinitionInfo>>
 
+    fun getLocalDefs(): LiveData<List<DefinitionInfo>>
+
 }

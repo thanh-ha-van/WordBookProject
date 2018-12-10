@@ -13,7 +13,7 @@ data class DefEntity(
         var thumbsDown: Int,
         var author: String,
         var word: String,
-        var currentVote: Int,
+        var currentVote: String,
         var writtenOn: String,
         var example: String
 )

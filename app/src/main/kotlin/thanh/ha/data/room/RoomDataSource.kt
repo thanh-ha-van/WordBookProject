@@ -18,7 +18,6 @@ abstract class RoomDataSource : RoomDatabase() {
                 RoomContract.DATABASE_DEFINITION
         ).build()
 
-        //TODO use this to catch data to local, save search history...
     }
 
 }

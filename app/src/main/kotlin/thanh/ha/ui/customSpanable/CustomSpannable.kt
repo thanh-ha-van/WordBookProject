@@ -12,7 +12,7 @@ import thanh.ha.R
 class CustomSpannable(context: Context) : ReplacementSpan() {
 
     val cornerRadius: Float = 16f
-    val padding: Float = 2f
+    private val padding: Float = 2f
 
     private val backgroundColor = ContextCompat.getColor(context, R.color.gray_10)
     private val borderColor = ContextCompat.getColor(context, R.color.blue_70)

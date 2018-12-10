@@ -10,7 +10,11 @@ class RoomContract {
 
         private const val SELECT_FROM = "SELECT * FROM "
 
+        private const val DELETE_FROM = "SELECT * FROM "
+
         const val SELECT_DEFINITION = SELECT_FROM + TABLE_DEFINITION
+
+        const val DELETE_DEFINITION = DELETE_FROM + TABLE_DEFINITION
 
     }
 }

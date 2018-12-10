@@ -2,23 +2,44 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/cv_def"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/margin_16"
-    android:layout_marginTop="@dimen/margin_12"
-    android:layout_marginRight="@dimen/margin_16"
-    android:layout_marginBottom="@dimen/margin_4"
+    android:layout_margin="@dimen/margin_12"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/padding_8"
     app:cardElevation="@dimen/padding_4"
     app:cardPreventCornerOverlap="true">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/padding_8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_8">
+
+            <ImageView
+                android:id="@+id/img_top_def"
+                style="@style/TopButtonStyle"
+                android:src="@drawable/ic_star" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/img_save"
+                style="@style/SaveButtonStyle"
+                android:src="@drawable/ic_add" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_definition"
@@ -31,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_margin="@dimen/margin_8"
-            android:background="@color/gray_30"/>
+            android:background="@color/gray_30" />
+
         <TextView
             android:id="@+id/tv_example"
             style="@style/ExampleStyle"
@@ -44,9 +66,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_8"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_8">
 
             <ImageView
                 android:id="@+id/btn_up"

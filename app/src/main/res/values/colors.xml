@@ -49,6 +49,11 @@
     <color name="red_50">#f31a02</color>
     <color name="red_70">#C21401</color>
 
+    <!--red-->
+    <color name="pink_30">#fe7eaf</color>
+    <color name="pink_50">#fe5394</color>
+    <color name="pink_70">#fe297a</color>
+
     <!--gray-->
     <color name="gray_10">#f2f2f2</color>
     <color name="gray_20">#d8d8d8</color>

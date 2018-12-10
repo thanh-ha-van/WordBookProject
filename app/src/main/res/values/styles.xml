@@ -26,15 +26,15 @@
         <item name="android:textColor">@color/gray_50</item>
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:padding">@dimen/margin_8</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ExampleStyle" parent="AppTheme">
         <item name="android:clickable">true</item>
         <item name="android:lineSpacingExtra">4dp</item>
-        <item name="android:textColor">@color/black_30</item>
+        <item name="android:textColor">@color/black_40</item>
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:padding">@dimen/margin_8</item>
-        <item name="android:textStyle">italic</item>
     </style>
 
     <style name="ThumbValueStyle" parent="AppTheme">
@@ -50,6 +50,19 @@
         <item name="android:layout_width">@dimen/button_size_10</item>
         <item name="android:layout_height">@dimen/button_size_10</item>
         <item name="android:background">@drawable/shape_thumb_background</item>
+        <item name="android:padding">@dimen/padding_4</item>
+        <item name="android:tint">@color/white</item>
+    </style>
+
+
+    <style name="TopButtonStyle" parent="SaveButtonStyle">
+        <item name="android:background">@drawable/shape_rectangle_orange</item>
+    </style>
+
+    <style name="SaveButtonStyle" parent="AppTheme">
+        <item name="android:layout_width">@dimen/button_size_40</item>
+        <item name="android:layout_height">@dimen/button_size_10</item>
+        <item name="android:background">@drawable/shape_rectangle_pink</item>
         <item name="android:padding">@dimen/padding_4</item>
         <item name="android:tint">@color/white</item>
     </style>
