@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import thanh.ha.domain.DefinitionInfo
 
-@Database(entities = [DefinitionInfo::class], version = 1,exportSchema = false)
+@Database(entities = [DefinitionInfo::class], version = 1, exportSchema = false)
 abstract class RoomDataSource : RoomDatabase() {
 
     abstract fun currencyDao(): RoomDefinitionDao
