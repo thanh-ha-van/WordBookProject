@@ -5,8 +5,9 @@ import thanh.ha.domain.DefinitionInfo
 
 interface Repository {
 
-    fun getWordDefinition(currencies: String): LiveData<List<DefinitionInfo>>
+    fun getWordDefs(word: String): LiveData<List<DefinitionInfo>>
 
     fun getLocalDefs(): LiveData<List<DefinitionInfo>>
 
+    fun saveLocalDefs(definitionInfo: DefinitionInfo)
 }

@@ -27,6 +27,10 @@ class HomeViewModel : ViewModel(), LifecycleObserver {
         return liveDefinitionData
     }
 
+    fun saveDefToLocal(definitionInfo: DefinitionInfo) {
+        definitionRepository.saveLocalDefs(definitionInfo)
+    }
+
     fun deleteAllLocalWord() {
         definitionRepository.getLocalDefs()
 

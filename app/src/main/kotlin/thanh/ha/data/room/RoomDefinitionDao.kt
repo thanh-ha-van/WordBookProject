@@ -2,21 +2,22 @@ package thanh.ha.data.room
 
 import android.arch.persistence.room.*
 import io.reactivex.Flowable
+import thanh.ha.domain.DefinitionInfo
 
 @Dao
 interface RoomDefinitionDao {
 
-    @Insert
-    fun insertAll(defList: List<DefEntity>)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDef(def: DefEntity)
+    fun insertDef(def: DefinitionInfo)
 
     @Delete
-    fun deleteUsers(def: DefEntity)
+    fun deleteDef(def: DefinitionInfo)
+
+    @Insert
+    fun insertAllDefs(defList: List<DefinitionInfo>)
 
     @Query(RoomContract.SELECT_DEFINITION)
-    fun getAllLocalDefinition(): Flowable<List<DefEntity>>
+    fun getAllDefs(): Flowable<List<DefinitionInfo>>
 
 }
 

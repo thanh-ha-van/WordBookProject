@@ -23,7 +23,7 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
     fun getWordDefinition(info: String): LiveData<List<DefinitionInfo>>? {
         liveDefinitionData = null
         liveDefinitionData = MutableLiveData<List<DefinitionInfo>>()
-        liveDefinitionData = definitionRepository.getWordDefinition(info)
+        liveDefinitionData = definitionRepository.getWordDefs(info)
         return liveDefinitionData
     }
 

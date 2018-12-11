@@ -1,8 +1,12 @@
 package thanh.ha.domain
 
-//TODO consider update this duplicated classes.
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import thanh.ha.data.room.RoomContract
+
+@Entity(tableName = RoomContract.TABLE_DEFINITION)
 data class DefinitionInfo(
-        var defId: Int,
+        @PrimaryKey(autoGenerate = false) var defId: Int,
         var word: String,
         var definition: String,
         var thumbsUp: Int?,

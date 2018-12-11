@@ -6,8 +6,7 @@ import com.example.DefinitionListResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import thanh.ha.data.remote.RemoteDataSource
-import thanh.ha.data.room.DefEntity
+import thanh.ha.data.remote.RemoteService
 import thanh.ha.data.room.RoomDataSource
 import thanh.ha.domain.DefinitionInfo
 import thanh.ha.utitls.DateTimeUtil
@@ -15,18 +14,19 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DefinitionRepository @Inject constructor(
+class DefinitionRepository
+@Inject constructor(
         private val roomDataSource: RoomDataSource,
-        private val remoteDataSource: RemoteDataSource
+        private val remoteService: RemoteService
 ) : Repository {
 
     val allCompositeDisposable: MutableList<Disposable> = arrayListOf()
 
     // Get word definitions from api.
-    override fun getWordDefinition(currencies: String): LiveData<List<DefinitionInfo>> {
+    override fun getWordDefs(word: String): LiveData<List<DefinitionInfo>> {
         val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
         val disposable =
-                remoteDataSource.getWordDefinition(currencies)
+                remoteService.getWordDefinition(word)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -47,18 +47,23 @@ class DefinitionRepository @Inject constructor(
     override fun getLocalDefs(): LiveData<List<DefinitionInfo>> {
         val roomCurrencyDao = roomDataSource.currencyDao()
         val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
-        val disposable = roomCurrencyDao.getAllLocalDefinition()
+        val disposable = roomCurrencyDao.getAllDefs()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { currencyResponse ->
-                            mutableLiveData.value = transform(currencyResponse)
+                            mutableLiveData.value = currencyResponse
                         },
                         { t: Throwable? ->
                             t?.printStackTrace()
                         })
         allCompositeDisposable.add(disposable)
         return mutableLiveData
+    }
+
+
+    override fun saveLocalDefs(definitionInfo: DefinitionInfo) {
+        roomDataSource.currencyDao().insertDef(definitionInfo)
     }
 
     // transform Response from api to Info object
@@ -74,25 +79,6 @@ class DefinitionRepository @Inject constructor(
                             it.thumbsDown,
                             it.author!!,
                             DateTimeUtil.convertToNewFormat(it.writtenOn!!),
-                            it.example))
-        }
-        return currencyList
-    }
-
-
-    // transform from local data to object.
-    private fun transform(response: List<DefEntity>): List<DefinitionInfo> {
-        val currencyList = ArrayList<DefinitionInfo>()
-        response.forEach {
-            currencyList.add(
-                    DefinitionInfo(
-                            it.defId,
-                            it.word,
-                            it.definition,
-                            it.thumbsUp,
-                            it.thumbsDown,
-                            it.author,
-                            DateTimeUtil.convertToNewFormat(it.writtenOn),
                             it.example))
         }
         return currencyList
