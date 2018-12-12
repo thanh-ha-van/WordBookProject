@@ -2,12 +2,8 @@
     android:color="@color/white">
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-            <corners android:radius="20dp" />
-            <solid android:color="@color/pink_30" />
-            <stroke
-                android:width="1px"
-                android:color="@color/pink_70" />
+            <corners android:radius="25dp" />
+            <solid android:color="@color/gray_50" />
         </shape>
     </item>
 </ripple>

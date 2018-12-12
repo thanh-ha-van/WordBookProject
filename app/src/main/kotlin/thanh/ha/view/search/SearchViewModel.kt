@@ -27,6 +27,13 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
         return liveDefinitionData
     }
 
+    fun getRandom(): LiveData<List<DefinitionInfo>>? {
+        liveDefinitionData = null
+        liveDefinitionData = MutableLiveData<List<DefinitionInfo>>()
+        liveDefinitionData = definitionRepository.getRandom()
+        return liveDefinitionData
+    }
+
     @OnLifecycleEvent(ON_DESTROY)
     fun unSubscribeViewModel() {
         for (disposable in definitionRepository.allCompositeDisposable) {

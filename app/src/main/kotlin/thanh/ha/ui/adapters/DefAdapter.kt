@@ -7,8 +7,7 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import kotlinx.android.synthetic.main.item_word_definition.view.*
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
 import thanh.ha.helpers.SpanHelper
@@ -21,31 +20,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     private var mDefList: List<DefinitionInfo> = ArrayList()
     private val mContext = context
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        var mThumbUpBtn: ImageView? = null
-        var mThumbDownBtn: ImageView? = null
-        var mThumbUpValue: TextView? = null
-        var mThumbDownValue: TextView? = null
-        var mDefinition: TextView? = null
-        var mExample: TextView? = null
-        var mAuthor: TextView? = null
-        var mTime: TextView? = null
-
-        init {
-
-            mThumbUpBtn = view.findViewById(R.id.btn_up)
-            mThumbDownBtn = view.findViewById(R.id.btn_down)
-            mThumbUpValue = view.findViewById(R.id.tv_thumb_up_value)
-            mThumbDownValue = view.findViewById(R.id.tv_thumb_down_value)
-            mDefinition = view.findViewById(R.id.tv_definition)
-            mExample = view.findViewById(R.id.tv_example)
-            mAuthor = view.findViewById(R.id.tv_author)
-            mTime = view.findViewById(R.id.tv_time)
-            mThumbUpBtn!!.setOnClickListener { mClickListener.onThumbUp(adapterPosition) }
-            mThumbDownBtn!!.setOnClickListener { mClickListener.onThumbUpDown(adapterPosition) }
-        }
-    }
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     fun updateInfo(newItems: List<DefinitionInfo>) {
         mDefList = newItems
@@ -64,16 +39,21 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mDefinition?.movementMethod = LinkMovementMethod.getInstance()
-        holder.mExample?.movementMethod = LinkMovementMethod.getInstance()
-        holder.mDefinition?.text =
+
+        holder.itemView.tv_definition.movementMethod = LinkMovementMethod.getInstance()
+        holder.itemView.tv_example.movementMethod = LinkMovementMethod.getInstance()
+
+        holder.itemView.tv_definition?.text =
                 SpanHelper.appSpirit(mContext!!, mDefList[position].definition, this)
-        holder.mExample!!.text =
+
+        holder.itemView.tv_example!!.text =
                 SpanHelper.appSpirit(mContext, mDefList[position].example, this)
-        holder.mThumbUpValue!!.text = mDefList[position].thumbsUp.toString()
-        holder.mThumbDownValue!!.text = mDefList[position].thumbsDown.toString()
-        holder.mAuthor!!.text = mDefList[position].author
-        holder.mTime!!.text = mDefList[position].writtenOn
+
+        holder.itemView.tv_thumb_up_value!!.text = mDefList[position].thumbsUp.toString()
+        holder.itemView.tv_thumb_down_value!!.text = mDefList[position].thumbsDown.toString()
+        holder.itemView.tv_author!!.text = mDefList[position].author
+        holder.itemView.tv_time!!.text = mDefList[position].writtenOn
+        holder.itemView.tv_word!!.text = mDefList[position].word
     }
 
     override fun getItemCount(): Int {

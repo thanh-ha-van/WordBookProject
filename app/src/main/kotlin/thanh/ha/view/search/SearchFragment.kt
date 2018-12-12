@@ -3,7 +3,6 @@ package thanh.ha.view.search
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,12 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
+import thanh.ha.base.BaseFragment
 import thanh.ha.ui.adapters.DefAdapter
 import thanh.ha.ui.dialogs.LoadingDialog
 
 
-class SearchFragment : Fragment(), DefAdapter.ClickListener {
+class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
 
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var adapter: DefAdapter
@@ -34,9 +34,11 @@ class SearchFragment : Fragment(), DefAdapter.ClickListener {
         rv_definition.layoutManager = layoutManager
         adapter = DefAdapter(context, this)
         rv_definition.adapter = adapter
+
         val animation = AnimationUtils
                 .loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
         rv_definition.layoutAnimation = animation
+
         et_search.setOnEditorActionListener(
                 TextView.OnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -61,12 +63,21 @@ class SearchFragment : Fragment(), DefAdapter.ClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        lastSearch()
+        getRandom()
     }
 
 
-    private fun lastSearch() {
-        //TODO show last search result, some working with database. far future.
+    private fun getRandom() {
+        showLoadingDialog()
+        searchViewModel.getRandom()?.observe(
+                this,
+                Observer {
+                    adapter.updateInfo(it!!)
+                    reRunAnimation()
+                    rv_definition.smoothScrollToPosition(0)
+                    hideLoadingDialog()
+                }
+        )
     }
 
     private fun initViewModel() {
@@ -94,14 +105,6 @@ class SearchFragment : Fragment(), DefAdapter.ClickListener {
 
     private fun reRunAnimation() {
         rv_definition.scheduleLayoutAnimation()
-    }
-
-    private fun showLoadingDialog() {
-        dialog.showDialog()
-    }
-
-    private fun hideLoadingDialog() {
-        dialog.hideDialog()
     }
 
     override fun onThumbUp(position: Int) {

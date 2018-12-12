@@ -42,6 +42,26 @@ class DefinitionRepository
         return mutableLiveData
     }
 
+    // Get word definitions from api.
+    override fun getRandom(): LiveData<List<DefinitionInfo>> {
+        val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
+        val disposable =
+                remoteService.getRandomDefintion()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                { currencyResponse ->
+                                    mutableLiveData.value = transform(currencyResponse)
+
+                                },
+                                { t: Throwable? ->
+                                    t?.printStackTrace()
+                                }
+                        )
+        allCompositeDisposable.add(disposable)
+        return mutableLiveData
+    }
+
 
     // get definitions from local
     override fun getLocalDefs(): LiveData<List<DefinitionInfo>> {

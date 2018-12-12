@@ -21,9 +21,9 @@ interface RemoteService {
     fun getDefinitionById(@Query(RemoteContract.DEFID) id: String)
             : Observable<DefinitionResponse>
 
-    @GET(RemoteContract.API_VERSION)
-    fun getRandomDefintion(@Query(RemoteContract.RANDOM) id: String)
-            : Observable<DefinitionResponse>
+    @GET(RemoteContract.API_VERSION + RemoteContract.RANDOM)
+    fun getRandomDefintion()
+            : Observable<DefinitionListResponse>
 }
 
 

@@ -7,6 +7,8 @@ interface Repository {
 
     fun getWordDefs(word: String): LiveData<List<DefinitionInfo>>
 
+    fun getRandom(): LiveData<List<DefinitionInfo>>
+
     fun getLocalDefs(): LiveData<List<DefinitionInfo>>
 
     fun saveLocalDefs(definitionInfo: DefinitionInfo)

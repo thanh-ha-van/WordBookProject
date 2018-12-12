@@ -32,5 +32,10 @@ interface RoomDefinitionDao {
     @Query(RoomContract.COUNT)
     fun count(): Int
 
+    @Transaction
+    fun insertAndDeleteInTransaction(newProduct: DefinitionInfo, oldProduct: DefinitionInfo) {
+        insertDef(newProduct)
+        deleteDef(oldProduct)
+    }
 }
 

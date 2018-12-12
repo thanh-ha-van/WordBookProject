@@ -2,6 +2,7 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_def"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,8 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_8">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,28 +25,28 @@
             android:orientation="horizontal"
             android:padding="@dimen/margin_8">
 
-            <ImageView
-                android:id="@+id/img_top_def"
-                style="@style/TopButtonStyle"
-                android:src="@drawable/ic_star" />
-
-            <View
+            <TextView
+                android:id="@+id/tv_word"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_premium_badge"
+                android:textColor="@color/orange_50"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/img_save"
                 style="@style/SaveButtonStyle"
-                android:src="@drawable/ic_add" />
+                android:src="@drawable/ic_heart"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_definition"
             style="@style/WordDefinitionStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Means 'as fuck' and is used to clarify things. You can also use it as the word 'very' or 'really'. Mostly used online or in text messages." />
+            android:layout_height="wrap_content" />
 
         <View
             android:layout_width="match_parent"
@@ -58,10 +58,7 @@
             android:id="@+id/tv_example"
             style="@style/ExampleStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1) I'm really tired; I'm tired af
-2) I ship them so hard, I'm (shipname) af
-3) He won't stop poking me, he's annoying af." />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,22 +70,22 @@
             <ImageView
                 android:id="@+id/btn_up"
                 style="@style/ThumbIconStyle"
-                android:src="@drawable/ic_thumb_up" />
+                android:src="@drawable/ic_thumb_up"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tv_thumb_up_value"
-                style="@style/ThumbValueStyle"
-                android:text="121" />
+                style="@style/ThumbValueStyle" />
 
             <ImageView
                 android:id="@+id/btn_down"
                 style="@style/ThumbIconStyle"
+                android:background="@drawable/shape_thumb_down_background"
                 android:src="@drawable/ic_thumb_down" />
 
             <TextView
                 android:id="@+id/tv_thumb_down_value"
-                style="@style/ThumbValueStyle"
-                android:text="123" />
+                style="@style/ThumbValueStyle" />
 
             <TextView
                 android:id="@+id/tv_author"
@@ -97,7 +94,6 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="Thanh Ha"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/blue_50"
                 android:textSize="@dimen/text_size_14" />
@@ -107,7 +103,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8"
-                android:text="Nov 21, 2018"
                 android:textColor="@color/gray_50"
                 android:textSize="@dimen/text_size_14" />
         </LinearLayout>
