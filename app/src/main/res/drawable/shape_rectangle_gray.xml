@@ -1,13 +1,9 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/white"
-    android:radius="0dp">
+    android:color="@color/white">
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <corners android:radius="20dp" />
-            <solid android:color="@color/gray_10" />
-            <stroke
-                android:width="1px"
-                android:color="@color/gray_10" />
+            <corners android:radius="25dp" />
+            <solid android:color="@color/gray_20" />
         </shape>
     </item>
 </ripple>

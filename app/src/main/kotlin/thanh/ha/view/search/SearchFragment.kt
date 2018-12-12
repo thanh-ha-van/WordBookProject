@@ -14,18 +14,29 @@ import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
 import thanh.ha.ui.adapters.DefAdapter
-import thanh.ha.ui.dialogs.LoadingDialog
 
 
 class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
 
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var adapter: DefAdapter
-    private lateinit var dialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_search,
+                container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        getRandom()
     }
 
     private fun initView() {
@@ -50,22 +61,7 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
         btn_search.setOnClickListener {
             searchKeyword(et_search.text.toString().trim())
         }
-        dialog = LoadingDialog(activity!!)
     }
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search,
-                container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        getRandom()
-    }
-
 
     private fun getRandom() {
         showLoadingDialog()
@@ -112,6 +108,14 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
 
     override fun onThumbUpDown(position: Int) {
 
+    }
+
+    override fun onSaveClicked(position: Int) {
+        searchViewModel.saveDefToLocal(position)
+    }
+
+    override fun onUnSaveClicked(position: Int) {
+        searchViewModel.removeDefFromLocal(position)
     }
 
     override fun onClickKeyWord(string: String) {

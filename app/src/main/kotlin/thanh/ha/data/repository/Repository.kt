@@ -12,4 +12,6 @@ interface Repository {
     fun getLocalDefs(): LiveData<List<DefinitionInfo>>
 
     fun saveLocalDefs(definitionInfo: DefinitionInfo)
+
+    fun removeLocalDefs(definitionInfo: DefinitionInfo)
 }

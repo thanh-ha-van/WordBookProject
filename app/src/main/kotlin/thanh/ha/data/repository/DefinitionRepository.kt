@@ -86,6 +86,11 @@ class DefinitionRepository
         roomDataSource.currencyDao().insertDef(definitionInfo)
     }
 
+
+    override fun removeLocalDefs(definitionInfo: DefinitionInfo) {
+        roomDataSource.currencyDao().deleteDef(definitionInfo)
+    }
+
     // transform Response from api to Info object
     private fun transform(response: DefinitionListResponse): List<DefinitionInfo> {
         val currencyList = ArrayList<DefinitionInfo>()

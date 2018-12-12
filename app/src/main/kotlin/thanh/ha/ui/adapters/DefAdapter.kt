@@ -1,6 +1,8 @@
 package thanh.ha.ui.adapters
 
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.text.method.LinkMovementMethod
@@ -11,10 +13,11 @@ import kotlinx.android.synthetic.main.item_word_definition.view.*
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
 import thanh.ha.helpers.SpanHelper
+import thanh.ha.helpers.afterTextChanged
 import thanh.ha.ui.customSpanable.SpannableClickAction
 
 
-class DefAdapter(context: Context?, private val mClickListener: ClickListener)
+class DefAdapter(context: Context?, private val mClickListener: ClickListener?)
     : RecyclerView.Adapter<DefAdapter.MyViewHolder>(), SpannableClickAction {
 
     private var mDefList: List<DefinitionInfo> = ArrayList()
@@ -54,6 +57,27 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
         holder.itemView.tv_author!!.text = mDefList[position].author
         holder.itemView.tv_time!!.text = mDefList[position].writtenOn
         holder.itemView.tv_word!!.text = mDefList[position].word
+
+        holder.itemView.likeIcon.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                mClickListener?.onSaveClicked(position)
+            } else {
+                mClickListener?.onUnSaveClicked(position)
+            }
+        }
+
+        holder.itemView.thumpUpButton.setOnClickListener {
+            mClickListener?.onThumbUp(position)
+            mDefList[position].thumbsUp?.plus(1)
+        }
+
+        holder.itemView.tv_thumb_up_value.afterTextChanged {
+            (AnimatorInflater.loadAnimator(mContext, R.animator.hyperspace_jump) as AnimatorSet).apply {
+                setTarget(holder.itemView.tv_thumb_up_value)
+                start()
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -63,10 +87,12 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener)
     interface ClickListener {
         fun onThumbUp(position: Int)
         fun onThumbUpDown(position: Int)
+        fun onSaveClicked(position: Int)
+        fun onUnSaveClicked(position: Int)
         fun onClickKeyWord(string: String)
     }
 
     override fun onClick(string: String) {
-        mClickListener.onClickKeyWord(string)
+        mClickListener?.onClickKeyWord(string)
     }
 }

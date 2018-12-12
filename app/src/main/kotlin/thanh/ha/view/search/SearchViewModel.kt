@@ -6,6 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import thanh.ha.data.repository.DefinitionRepository
 import thanh.ha.di.WordBookApp
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.helpers.DoAsync
 import javax.inject.Inject
 
 class SearchViewModel : ViewModel(), LifecycleObserver {
@@ -40,6 +41,20 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
             compositeDisposable.addAll(disposable)
         }
         compositeDisposable.clear()
+    }
+
+
+    fun saveDefToLocal(position: Int) {
+        DoAsync {
+            definitionRepository.saveLocalDefs(liveDefinitionData!!.value!![position])
+        }.execute()
+
+    }
+
+    fun removeDefFromLocal(position: Int) {
+        DoAsync {
+            definitionRepository.removeLocalDefs(liveDefinitionData!!.value!![position])
+        }
     }
 
     override fun onCleared() {

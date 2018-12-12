@@ -47,13 +47,13 @@
     </style>
 
     <style name="ThumbIconStyle" parent="AppTheme">
-        <item name="android:layout_width">@dimen/button_size_15</item>
-        <item name="android:layout_height">@dimen/button_size_15</item>
-        <item name="android:background">@drawable/shape_thumb_background</item>
-        <item name="android:padding">@dimen/padding_8</item>
-        <item name="android:tint">@color/white</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_width">@dimen/button_size_10</item>
+        <item name="android:layout_height">@dimen/button_size_10</item>
+        <item name="android:layout_margin">@dimen/padding_4</item>
+        <item name="android:checked">false</item>
     </style>
-    
+
     <style name="TopButtonStyle" parent="SaveButtonStyle">
         <item name="android:background">@drawable/shape_rectangle_orange</item>
     </style>
