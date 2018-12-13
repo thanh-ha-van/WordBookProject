@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.chip.Chip
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +15,12 @@ import thanh.ha.R
 import thanh.ha.base.BaseFragment
 import thanh.ha.bus.RxBus
 import thanh.ha.bus.RxEvent
-import thanh.ha.ui.adapters.DefAdapter
+import thanh.ha.ui.adapters.SavedDefAdapter
 
 class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var adapter: DefAdapter
+    private lateinit var adapter: SavedDefAdapter
     private lateinit var wordDisposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,12 +49,9 @@ class HomeFragment : BaseFragment() {
                 .subscribe {
                     val chip = Chip(context)
                     chip.text = it.word
-                    chip.chipIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_flash)
-                    chip.setChipIconTintResource(R.color.gray_20)
                     chip.isClickable = true
                     chip.isCheckable = false
                     chipGroup.addView(chip as View)
-                    chip.setOnCloseIconClickListener { chipGroup.removeView(chip as View) }
                 }
     }
 
@@ -73,7 +69,7 @@ class HomeFragment : BaseFragment() {
     private fun initView() {
         val layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
-        adapter = DefAdapter(context, null)
+        adapter = SavedDefAdapter(context, null)
         rv_saved_def.layoutManager = layoutManager
         rv_saved_def.adapter = adapter
         val animation = AnimationUtils

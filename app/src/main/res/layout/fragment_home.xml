@@ -12,16 +12,25 @@
         style="@style/WordDefinitionStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8"
+        android:padding="@dimen/margin_8"
         android:text="Recent search" />
 
     <android.support.design.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_12">
+        android:layout_marginStart="@dimen/margin_12"
+        android:layout_marginEnd="@dimen/margin_12">
 
     </android.support.design.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/tv_saved_def"
+        style="@style/WordDefinitionStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_8"
+        android:text="Saved definition" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_saved_def"
@@ -29,6 +38,6 @@
         android:layout_height="wrap_content"
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:overScrollMode="never"
-        tools:listitem="@layout/item_word_definition" />
+        tools:listitem="@layout/item_saved_def" />
 
 </LinearLayout>
