@@ -5,7 +5,7 @@ import android.preference.PreferenceManager
 import org.json.JSONArray
 import org.json.JSONException
 
- fun setStringArrayPref(context: Context, key: String, values: ArrayList<String>) {
+fun setStringArrayPref(context: Context, key: String, values: ArrayList<String>) {
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     val editor = prefs.edit()
     val a = JSONArray()

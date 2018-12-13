@@ -10,11 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_home.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
-import thanh.ha.constants.Constants
-import thanh.ha.helpers.getStringArrayPref
+import thanh.ha.bus.RxBus
+import thanh.ha.bus.RxEvent
 import thanh.ha.ui.adapters.DefAdapter
 
 class HomeFragment : BaseFragment() {
@@ -22,6 +23,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var adapter: DefAdapter
     private var recentSearch = ArrayList<String>()
+    private lateinit var personDisposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,13 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun getRecentSearch() {
-        recentSearch = getStringArrayPref(context!!, Constants.SHARE_PREF)
+
+        personDisposable = RxBus
+                .listen(RxEvent.EventRecentSearch::class.java)
+                .subscribe {
+                    recentSearch.add(it.word)
+
+                }
         for (item: String in recentSearch) {
             val chip = Chip(context)
             chip.text = item
