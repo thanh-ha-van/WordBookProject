@@ -2,6 +2,7 @@ package thanh.ha.di
 
 import android.app.Application
 
+
 class WordBookApp : Application() {
 
     companion object {

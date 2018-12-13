@@ -11,7 +11,6 @@
     app:cardElevation="@dimen/padding_4"
     app:cardPreventCornerOverlap="true">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -29,7 +29,7 @@ class NavigationActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         setupViewPager(viewpager)
-        viewpager.offscreenPageLimit = 3
+        viewpager.offscreenPageLimit = 0
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {

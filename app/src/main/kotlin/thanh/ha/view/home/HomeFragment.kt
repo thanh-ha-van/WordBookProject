@@ -3,6 +3,8 @@ package thanh.ha.view.home
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.chip.Chip
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +13,15 @@ import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
+import thanh.ha.constants.Constants
+import thanh.ha.helpers.getStringArrayPref
 import thanh.ha.ui.adapters.DefAdapter
 
 class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var adapter: DefAdapter
+    private var recentSearch = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,21 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         getLocalSaved()
+        getRecentSearch()
+    }
+
+    private fun getRecentSearch() {
+        recentSearch = getStringArrayPref(context!!, Constants.SHARE_PREF)
+        for (item: String in recentSearch) {
+            val chip = Chip(context)
+            chip.text = item
+            chip.chipIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_flash)
+            chip.setChipIconTintResource(R.color.gray_20)
+            chip.isClickable = true
+            chip.isCheckable = false
+            chipGroup.addView(chip as View)
+            chip.setOnCloseIconClickListener { chipGroup.removeView(chip as View) }
+        }
     }
 
     private fun getLocalSaved() {

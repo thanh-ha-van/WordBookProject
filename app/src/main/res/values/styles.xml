@@ -12,13 +12,11 @@
         </item>
     </style>
 
-
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:background">@android:color/white</item>
     </style>
-
 
     <style name="WordDefinitionStyle" parent="AppTheme">
         <item name="android:clickable">true</item>
@@ -50,7 +48,7 @@
         <item name="android:button">@null</item>
         <item name="android:layout_width">@dimen/button_size_10</item>
         <item name="android:layout_height">@dimen/button_size_10</item>
-        <item name="android:layout_margin">@dimen/padding_4</item>
+        <item name="android:layout_margin">@dimen/padding_6</item>
         <item name="android:checked">false</item>
     </style>
 

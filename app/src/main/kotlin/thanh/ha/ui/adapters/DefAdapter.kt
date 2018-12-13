@@ -1,8 +1,6 @@
 package thanh.ha.ui.adapters
 
 
-import android.animation.AnimatorInflater
-import android.animation.AnimatorSet
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.text.method.LinkMovementMethod
@@ -13,7 +11,6 @@ import kotlinx.android.synthetic.main.item_word_definition.view.*
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
 import thanh.ha.helpers.SpanHelper
-import thanh.ha.helpers.afterTextChanged
 import thanh.ha.ui.customSpanable.SpannableClickAction
 
 
@@ -28,7 +25,6 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener?)
     fun updateInfo(newItems: List<DefinitionInfo>) {
         mDefList = newItems
         notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -38,14 +34,15 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener?)
                         parent,
                         false)
         )
-
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
+        // to override the onclick of text view
         holder.itemView.tv_definition.movementMethod = LinkMovementMethod.getInstance()
         holder.itemView.tv_example.movementMethod = LinkMovementMethod.getInstance()
 
+        // map data
         holder.itemView.tv_definition?.text =
                 SpanHelper.appSpirit(mContext!!, mDefList[position].definition, this)
 
@@ -58,6 +55,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener?)
         holder.itemView.tv_time!!.text = mDefList[position].writtenOn
         holder.itemView.tv_word!!.text = mDefList[position].word
 
+        // listener for save button.
         holder.itemView.likeIcon.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 mClickListener?.onSaveClicked(position)
@@ -65,19 +63,6 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener?)
                 mClickListener?.onUnSaveClicked(position)
             }
         }
-
-        holder.itemView.thumpUpButton.setOnClickListener {
-            mClickListener?.onThumbUp(position)
-            mDefList[position].thumbsUp?.plus(1)
-        }
-
-        holder.itemView.tv_thumb_up_value.afterTextChanged {
-            (AnimatorInflater.loadAnimator(mContext, R.animator.hyperspace_jump) as AnimatorSet).apply {
-                setTarget(holder.itemView.tv_thumb_up_value)
-                start()
-            }
-        }
-
     }
 
     override fun getItemCount(): Int {

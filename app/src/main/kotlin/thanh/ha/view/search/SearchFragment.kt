@@ -13,6 +13,9 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
+import thanh.ha.constants.Constants
+import thanh.ha.helpers.getStringArrayPref
+import thanh.ha.helpers.setStringArrayPref
 import thanh.ha.ui.adapters.DefAdapter
 
 
@@ -20,6 +23,7 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
 
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var adapter: DefAdapter
+    private var recentSearch = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,7 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
         super.onViewCreated(view, savedInstanceState)
         initView()
         getRandom()
+        getLastRecentSearch()
     }
 
     private fun initView() {
@@ -59,7 +64,9 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
                     false
                 })
         btn_search.setOnClickListener {
-            searchKeyword(et_search.text.toString().trim())
+            val text = et_search.text.toString().trim()
+            searchKeyword(text)
+            updateRecentSearch(text)
         }
     }
 
@@ -74,6 +81,11 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
                     hideLoadingDialog()
                 }
         )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveRecentSearch()
     }
 
     private fun initViewModel() {
@@ -121,5 +133,19 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
     override fun onClickKeyWord(string: String) {
         et_search.setText(string)
         searchKeyword(string)
+    }
+
+    private fun getLastRecentSearch() {
+        recentSearch = getStringArrayPref(context!!, Constants.SHARE_PREF)
+    }
+
+    private fun updateRecentSearch(word: String) {
+        recentSearch.add(0, word)
+    }
+
+    private fun saveRecentSearch() {
+        if (recentSearch.size > 10)
+            recentSearch.subList(0, 10)
+        setStringArrayPref(context!!, Constants.SHARE_PREF, recentSearch)
     }
 }

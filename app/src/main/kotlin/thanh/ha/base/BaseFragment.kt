@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import thanh.ha.ui.dialogs.LoadingDialog
 
+
 abstract class BaseFragment : Fragment() {
 
     private lateinit var dialog: LoadingDialog
@@ -13,11 +14,11 @@ abstract class BaseFragment : Fragment() {
         dialog = LoadingDialog(activity!!)
     }
 
-    public fun showLoadingDialog() {
+    protected fun showLoadingDialog() {
         dialog.showDialog()
     }
 
-    public fun hideLoadingDialog() {
+    protected fun hideLoadingDialog() {
         dialog.hideDialog()
     }
 
