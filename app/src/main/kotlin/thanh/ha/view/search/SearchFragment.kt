@@ -63,7 +63,7 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
         btn_search.setOnClickListener {
             val text = et_search.text.toString().trim()
             searchKeyword(text)
-            updateRecentSearch(text)
+
         }
     }
 
@@ -96,6 +96,7 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
     }
 
     private fun searchKeyword(word: String) {
+        updateRecentSearch(word)
         showLoadingDialog()
         searchViewModel
                 .getWordDefinition(word)?.observe(

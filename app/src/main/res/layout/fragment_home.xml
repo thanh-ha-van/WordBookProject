@@ -7,11 +7,19 @@
     android:background="@color/white_trans"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_recent_search"
+        style="@style/WordDefinitionStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8"
+        android:text="Recent search" />
+
     <android.support.design.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16">
+        android:layout_margin="@dimen/margin_12">
 
     </android.support.design.chip.ChipGroup>
 

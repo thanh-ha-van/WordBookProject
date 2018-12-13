@@ -22,8 +22,7 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var adapter: DefAdapter
-    private var recentSearch = ArrayList<String>()
-    private lateinit var personDisposable: Disposable
+    private lateinit var wordDisposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,22 +45,18 @@ class HomeFragment : BaseFragment() {
 
     private fun getRecentSearch() {
 
-        personDisposable = RxBus
+        wordDisposable = RxBus
                 .listen(RxEvent.EventRecentSearch::class.java)
                 .subscribe {
-                    recentSearch.add(it.word)
-
+                    val chip = Chip(context)
+                    chip.text = it.word
+                    chip.chipIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_flash)
+                    chip.setChipIconTintResource(R.color.gray_20)
+                    chip.isClickable = true
+                    chip.isCheckable = false
+                    chipGroup.addView(chip as View)
+                    chip.setOnCloseIconClickListener { chipGroup.removeView(chip as View) }
                 }
-        for (item: String in recentSearch) {
-            val chip = Chip(context)
-            chip.text = item
-            chip.chipIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_flash)
-            chip.setChipIconTintResource(R.color.gray_20)
-            chip.isClickable = true
-            chip.isCheckable = false
-            chipGroup.addView(chip as View)
-            chip.setOnCloseIconClickListener { chipGroup.removeView(chip as View) }
-        }
     }
 
     private fun getLocalSaved() {
@@ -94,5 +89,10 @@ class HomeFragment : BaseFragment() {
                 .let {
                     lifecycle.addObserver(it)
                 }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!wordDisposable.isDisposed) wordDisposable.dispose()
     }
 }
