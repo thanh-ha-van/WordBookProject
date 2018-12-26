@@ -7,7 +7,11 @@
     <!--search bar-->
 
     <string name="search_hint">Search…</string>
-    <string name="search_button">search</string>
+    <string name="search_button">Search</string>
+
+    // for home fragment
+    <string name="search_recent">Recent search</string>
+    <string name="saved_definition">Saved definitions</string>
 
     <string name="ok">OK</string>
     <string name="op_cancel">Cancel</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_trans"
@@ -9,35 +8,36 @@
 
     <TextView
         android:id="@+id/tv_recent_search"
-        style="@style/WordDefinitionStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_8"
-        android:text="Recent search" />
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_8"
+        android:background="@drawable/plate_brown_shade"
+        android:padding="@dimen/padding_8"
+        android:text="@string/search_recent" />
 
     <android.support.design.chip.ChipGroup
-        android:id="@+id/chipGroup"
+        android:id="@+id/cg_recent_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_12"
-        android:layout_marginEnd="@dimen/margin_12">
-
-    </android.support.design.chip.ChipGroup>
+        android:layout_marginEnd="@dimen/margin_12" />
 
     <TextView
         android:id="@+id/tv_saved_def"
-        style="@style/WordDefinitionStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_8"
-        android:text="Saved definition" />
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_8"
+        android:background="@drawable/plate_brown_shade"
+        android:padding="@dimen/padding_8"
+        android:text="@string/saved_definition" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_saved_def"
+    <android.support.design.chip.ChipGroup
+        android:id="@+id/cg_saved_def"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutAnimation="@anim/layout_animation_fall_down"
-        android:overScrollMode="never"
-        tools:listitem="@layout/item_saved_def" />
+        android:layout_marginStart="@dimen/margin_12"
+        android:layout_marginEnd="@dimen/margin_12" />
 
 </LinearLayout>
