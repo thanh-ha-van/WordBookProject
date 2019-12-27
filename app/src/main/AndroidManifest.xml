@@ -4,16 +4,22 @@
     package="thanh.ha">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name="thanh.ha.di.WordBookApp"
+        android:name=".di.WordBookApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/network_security_config" />
+
         <activity
-            android:name="thanh.ha.view.NavigationActivity"
+            android:name=".view.NavigationActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -23,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

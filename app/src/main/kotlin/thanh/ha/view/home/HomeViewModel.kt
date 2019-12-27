@@ -1,9 +1,9 @@
 package thanh.ha.view.home
 
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import thanh.ha.data.repository.DefinitionRepository
 import thanh.ha.di.WordBookApp
 import thanh.ha.domain.DefinitionInfo

@@ -16,7 +16,7 @@
         android:padding="@dimen/padding_8"
         android:text="@string/search_recent" />
 
-    <android.support.design.chip.ChipGroup
+    <com.google.android.material.chip.ChipGroup
         android:id="@+id/cg_recent_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         android:padding="@dimen/padding_8"
         android:text="@string/saved_definition" />
 
-    <android.support.design.chip.ChipGroup
+    <com.google.android.material.chip.ChipGroup
         android:id="@+id/cg_saved_def"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

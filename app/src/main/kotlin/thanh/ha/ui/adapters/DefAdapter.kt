@@ -2,7 +2,7 @@ package thanh.ha.ui.adapters
 
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View

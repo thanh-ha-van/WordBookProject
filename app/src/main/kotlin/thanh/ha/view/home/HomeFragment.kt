@@ -1,9 +1,9 @@
 package thanh.ha.view.home
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.chip.Chip
+import com.google.android.material.chip.Chip
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

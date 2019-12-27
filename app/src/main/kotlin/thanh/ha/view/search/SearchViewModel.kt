@@ -1,7 +1,7 @@
 package thanh.ha.view.search
 
-import android.arch.lifecycle.*
-import android.arch.lifecycle.Lifecycle.Event.ON_DESTROY
+import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle.Event.ON_DESTROY
 import io.reactivex.disposables.CompositeDisposable
 import thanh.ha.data.repository.DefinitionRepository
 import thanh.ha.di.WordBookApp

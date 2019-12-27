@@ -1,6 +1,6 @@
 package thanh.ha.data.room
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import io.reactivex.Flowable
 import thanh.ha.domain.DefinitionInfo
 
