@@ -7,12 +7,13 @@ import android.graphics.RectF
 import androidx.core.content.ContextCompat
 import android.text.style.ReplacementSpan
 import thanh.ha.R
+import kotlin.math.roundToInt
 
 
 class CustomSpannable(context: Context) : ReplacementSpan() {
 
-    val cornerRadius: Float = 16f
-    private val padding: Float = 2f
+    private val cornerRadius: Float = 16f
+    private val padding: Float = 3f
 
     private val backgroundColor = ContextCompat.getColor(context, R.color.gray_10)
     private val borderColor = ContextCompat.getColor(context, R.color.blue_70)
@@ -73,6 +74,6 @@ class CustomSpannable(context: Context) : ReplacementSpan() {
             end: Int,
             fm: Paint.FontMetricsInt?
     ): Int {
-        return Math.round(paint.measureText(text, start, end))
+        return paint.measureText(text, start, end).roundToInt()
     }
 }

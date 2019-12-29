@@ -1,15 +1,15 @@
 package thanh.ha.view.search
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
@@ -18,7 +18,7 @@ import thanh.ha.bus.RxEvent
 import thanh.ha.ui.adapters.DefAdapter
 
 
-class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
+class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var adapter: DefAdapter
@@ -42,15 +42,16 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
     }
 
     private fun initView() {
+
         val layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
         rv_definition.layoutManager = layoutManager
         adapter = DefAdapter(context, this)
         rv_definition.adapter = adapter
 
-        val animation = AnimationUtils
-                .loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
-        rv_definition.layoutAnimation = animation
+//        val animation = AnimationUtils
+//                .loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
+//        rv_definition.layoutAnimation = animation
 
         et_search.setOnEditorActionListener(
                 TextView.OnEditorActionListener { _, actionId, _ ->
@@ -63,8 +64,12 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
         btn_search.setOnClickListener {
             val text = et_search.text.toString().trim()
             searchKeyword(text)
-
         }
+        swipe_refresh.setOnRefreshListener(this)
+    }
+
+    override fun onRefresh() {
+        getRandom()
     }
 
     private fun updateRecentSearch(word: String) {
@@ -72,14 +77,14 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
     }
 
     private fun getRandom() {
-        showLoadingDialog()
+        swipe_refresh.isRefreshing = true
         searchViewModel.getRandom()?.observe(
                 this,
                 Observer {
                     adapter.updateInfo(it!!)
                     reRunAnimation()
                     rv_definition.smoothScrollToPosition(0)
-                    hideLoadingDialog()
+                    swipe_refresh.isRefreshing = false
                 }
         )
     }
@@ -96,8 +101,9 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
     }
 
     private fun searchKeyword(word: String) {
+        if (word.isEmpty()) return
         updateRecentSearch(word)
-        showLoadingDialog()
+        swipe_refresh.isRefreshing = true
         searchViewModel
                 .getWordDefinition(word)?.observe(
                         this,
@@ -105,12 +111,12 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
                             adapter.updateInfo(definitionList!!)
                             reRunAnimation()
                             rv_definition.smoothScrollToPosition(0)
-                            hideLoadingDialog()
+                            swipe_refresh.isRefreshing = false
                         })
     }
 
     private fun reRunAnimation() {
-        rv_definition.scheduleLayoutAnimation()
+        //rv_definition.scheduleLayoutAnimation()
     }
 
     override fun onThumbUp(position: Int) {

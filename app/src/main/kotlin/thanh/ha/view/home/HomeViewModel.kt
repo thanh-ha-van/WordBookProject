@@ -28,7 +28,8 @@ class HomeViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun deleteAllLocalWord() {
-        definitionRepository.getLocalDefs()
+
+        definitionRepository.deleteAllDefs()
 
     }
 }

@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_trans"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16">
 
     <TextView
         android:id="@+id/tv_recent_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_8"
-        android:background="@drawable/plate_brown_shade"
-        android:padding="@dimen/padding_8"
-        android:text="@string/search_recent" />
+        android:padding="@dimen/padding_16"
+        android:text="@string/search_recent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_recent_search_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_16"
+        android:text="@string/search_recent_desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cg_recent_search" />
+
+    <TextView
+        android:id="@+id/tv_clear_search"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_rectangle_green"
+        android:gravity="center"
+        android:paddingStart="@dimen/margin_32"
+        android:paddingEnd="@dimen/margin_32"
+        android:text="@string/clear"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_recent_search" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cg_recent_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_12"
-        android:layout_marginEnd="@dimen/margin_12" />
+        app:layout_constraintTop_toBottomOf="@id/tv_recent_search" />
 
     <TextView
         android:id="@+id/tv_saved_def"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_8"
-        android:background="@drawable/plate_brown_shade"
-        android:padding="@dimen/padding_8"
-        android:text="@string/saved_definition" />
+        android:padding="@dimen/padding_16"
+        android:text="@string/saved_definition"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recent_search_desc" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/cg_saved_def"
+    <TextView
+        android:id="@+id/saved_def_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_16"
+        android:text="@string/saved_definition_desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_saved_def" />
+
+    <TextView
+        android:id="@+id/tv_clear_saved"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_rectangle_green"
+        android:gravity="center"
+        android:paddingStart="@dimen/margin_32"
+        android:paddingEnd="@dimen/margin_32"
+        android:text="@string/clear"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_saved_def" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_saved_def"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_12"
-        android:layout_marginEnd="@dimen/margin_12" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/saved_def_desc"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_small_word_definition" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

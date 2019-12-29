@@ -6,6 +6,7 @@
     android:background="@color/gray_10"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:id="@+id/view_search"
         android:layout_width="match_parent"
@@ -42,11 +43,16 @@
             android:tint="@color/white" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_definition"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutAnimation="@anim/layout_animation_fall_down"
-        android:overScrollMode="never"
-        tools:listitem="@layout/item_word_definition" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_definition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_word_definition" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

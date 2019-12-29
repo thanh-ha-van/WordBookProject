@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_def"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_12"
+    android:background="@drawable/shape_rectangle_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_word"
+        style="@style/WordDefinitionStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/orange_50"
+        android:textSize="@dimen/text_size_24"
+        android:textStyle="bold"
+        tools:text="word" />
+
+    <TextView
+        android:id="@+id/tv_definition"
+        style="@style/WordDefinitionStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="word word word word word word word word word word word " />
+
+    <TextView
+        android:id="@+id/tv_example"
+        style="@style/ExampleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="word word word word word word word word word word word " />
+</LinearLayout>

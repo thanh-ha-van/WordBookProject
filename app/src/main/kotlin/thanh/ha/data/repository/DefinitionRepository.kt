@@ -9,7 +9,8 @@ import io.reactivex.schedulers.Schedulers
 import thanh.ha.data.remote.RemoteService
 import thanh.ha.data.room.RoomDataSource
 import thanh.ha.domain.DefinitionInfo
-import thanh.ha.utitls.DateTimeUtil
+import thanh.ha.utils.convertToNewFormat
+import thanh.ha.utils.runOnIoThread
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -83,12 +84,22 @@ class DefinitionRepository
 
 
     override fun saveLocalDefs(definitionInfo: DefinitionInfo) {
-        roomDataSource.currencyDao().insertDef(definitionInfo)
+        runOnIoThread {
+            roomDataSource.currencyDao().insertDef(definitionInfo)
+        }
     }
 
 
     override fun removeLocalDefs(definitionInfo: DefinitionInfo) {
-        roomDataSource.currencyDao().deleteDef(definitionInfo)
+        runOnIoThread {
+            roomDataSource.currencyDao().deleteDef(definitionInfo)
+        }
+    }
+
+    override fun deleteAllDefs() {
+        runOnIoThread {
+            roomDataSource.clearAllTables()
+        }
     }
 
     // transform Response from api to Info object
@@ -103,7 +114,7 @@ class DefinitionRepository
                             it.thumbsUp,
                             it.thumbsDown,
                             it.author!!,
-                            DateTimeUtil.convertToNewFormat(it.writtenOn!!),
+                            convertToNewFormat(it.writtenOn!!),
                             it.example))
         }
         return currencyList

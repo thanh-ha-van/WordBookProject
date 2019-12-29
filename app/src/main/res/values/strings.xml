@@ -11,7 +11,10 @@
 
     // for home fragment
     <string name="search_recent">Recent search</string>
+    <string name="search_recent_desc">Your recent search will show here</string>
+    <string name="clear">Clear</string>
     <string name="saved_definition">Saved definitions</string>
+    <string name="saved_definition_desc">Your saved definitions will display here</string>
 
     <string name="ok">OK</string>
     <string name="op_cancel">Cancel</string>

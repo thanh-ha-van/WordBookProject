@@ -14,4 +14,6 @@ interface Repository {
     fun saveLocalDefs(definitionInfo: DefinitionInfo)
 
     fun removeLocalDefs(definitionInfo: DefinitionInfo)
+
+    fun deleteAllDefs()
 }
