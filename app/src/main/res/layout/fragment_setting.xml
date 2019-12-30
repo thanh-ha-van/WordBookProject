@@ -1,13 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_trans">
+    android:background="@color/white_trans"
+    android:padding="@dimen/margin_16">
 
-    <TextView
+
+    <ImageView
+        android:id="@+id/img_setting"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="@dimen/padding_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings_black" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_setting"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_24"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/img_setting"
+        app:layout_constraintStart_toEndOf="@+id/img_setting"
+        app:layout_constraintTop_toTopOf="@id/img_setting" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/night_mode"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Settings stuffs" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_16"
+        android:padding="@dimen/padding_16"
+        android:text="@string/setting_dark_mode"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_setting" />
 
-</LinearLayout>
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_16"
+        android:thumb="@drawable/custom_thumb"
+        app:layout_constraintBottom_toBottomOf="@id/night_mode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/night_mode"
+        app:switchMinWidth="70dp"
+        app:track="@drawable/custom_track" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/setting_term"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_white"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/padding_16"
+        android:text="@string/setting_term"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/night_mode" />
+
+    <ImageView
+        android:layout_width="@dimen/button_size_40"
+        android:layout_height="@dimen/button_size_40"
+        android:padding="@dimen/padding_16"
+        android:src="@drawable/ic_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/setting_term"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/setting_term" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/setting_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_white"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/padding_16"
+        android:text="@string/setting_about"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_term" />
+
+    <ImageView
+        android:layout_width="@dimen/button_size_40"
+        android:layout_height="@dimen/button_size_40"
+        android:padding="@dimen/padding_16"
+        android:src="@drawable/ic_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/setting_about"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/setting_about" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/setting_rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_white"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/padding_16"
+        android:text="@string/setting_rate"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_about" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/setting_rate_desc"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/shape_rectangle_white"-->
+    <!--        android:paddingStart="@dimen/padding_16"-->
+    <!--        android:paddingEnd="@dimen/padding_16"-->
+    <!--        android:paddingBottom="@dimen/padding_16"-->
+    <!--        android:text="@string/setting_rate_desc"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/imageViewRate"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/setting_rate" />-->
+
+    <ImageView
+        android:id="@+id/imageViewRate"
+        android:layout_width="@dimen/button_size_40"
+        android:layout_height="@dimen/button_size_40"
+        android:padding="@dimen/padding_16"
+        android:src="@drawable/ic_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/setting_rate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/setting_rate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

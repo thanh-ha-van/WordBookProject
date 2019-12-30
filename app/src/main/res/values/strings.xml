@@ -24,4 +24,11 @@
     <string name="text_search">Search</string>
     <string name="text_setting">Settings</string>
 
+
+    <string name="setting_dark_mode">Night mode</string>
+    <string name="setting_about">About us</string>
+    <string name="setting_rate">Rate us</string>
+    <string name="setting_rate_desc">Rate and give feedback to us on Google Play Store</string>
+    <string name="setting_term">Term and condition</string>
+    <string name="setting_version">Version %s</string>
 </resources>
