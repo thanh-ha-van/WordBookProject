@@ -11,13 +11,13 @@
     <item
         android:id="@+id/action_search"
         android:enabled="true"
-        android:icon="@drawable/ic_cube"
+        android:icon="@drawable/paw_print_state_list"
         android:title="@string/text_home"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_setting"
         android:enabled="true"
-        android:icon="@drawable/ic_controls"
+        android:icon="@drawable/setting_state_list"
         android:title="@string/text_setting"
         app:showAsAction="ifRoom|withText" />
 </menu>

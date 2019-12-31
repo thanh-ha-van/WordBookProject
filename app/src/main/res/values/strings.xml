@@ -26,6 +26,7 @@
 
 
     <string name="setting_dark_mode">Night mode</string>
+    <string name="setting_notification">Notification</string>
     <string name="setting_about">About us</string>
     <string name="setting_rate">Rate us</string>
     <string name="setting_rate_desc">Rate and give feedback to us on Google Play Store</string>

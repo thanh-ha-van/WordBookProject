@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,24 +9,21 @@
     android:orientation="vertical"
     tools:context=".view.NavigationActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <thanh.ha.ui.adapters.LockableViewPager
         android:id="@+id/viewpager"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" />
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        app:elevation="5dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_bottom_navigation"
+        app:elevation="15dp"
         app:itemIconTint="@drawable/cs_bottom_navigation"
         app:itemTextColor="@drawable/cs_bottom_navigation"
-        android:foreground="?attr/selectableItemBackground"
         app:labelVisibilityMode="unlabeled"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:menu="@menu/bottom_navigation_main" />
-</LinearLayout>
+</FrameLayout>

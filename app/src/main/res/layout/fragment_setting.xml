@@ -7,7 +7,6 @@
     android:background="@color/white_trans"
     android:padding="@dimen/margin_16">
 
-
     <ImageView
         android:id="@+id/img_setting"
         android:layout_width="80dp"
@@ -15,7 +14,7 @@
         android:padding="@dimen/padding_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_settings_black" />
+        app:srcCompat="@drawable/ic_settings_colorful" />
 
     <thanh.ha.ui.textviews.GradientTextView
         android:id="@+id/title"
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/text_setting"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_24"
+        android:textSize="@dimen/text_size_28"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/img_setting"
         app:layout_constraintStart_toEndOf="@+id/img_setting"
@@ -31,7 +30,7 @@
 
     <thanh.ha.ui.textviews.GradientTextView
         android:id="@+id/night_mode"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_16"
         android:padding="@dimen/padding_16"
@@ -50,23 +49,56 @@
         app:layout_constraintBottom_toBottomOf="@id/night_mode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/night_mode"
-        app:switchMinWidth="70dp"
+        app:switchMinWidth="60dp"
         app:track="@drawable/custom_track" />
 
     <thanh.ha.ui.textviews.GradientTextView
-        android:id="@+id/setting_term"
-        android:layout_width="match_parent"
+        android:id="@+id/notification"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_16"
+        android:padding="@dimen/padding_16"
+        android:text="@string/setting_notification"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/night_mode" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/notification_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_16"
+        android:thumb="@drawable/custom_thumb"
+        app:layout_constraintBottom_toBottomOf="@id/notification"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/notification"
+        app:switchMinWidth="60dp"
+        app:track="@drawable/custom_track" />
+
+    <View
+        android:id="@+id/notification_select_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:background="@drawable/shape_rectangle_white"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/setting_term"
+        app:layout_constraintStart_toStartOf="@id/setting_term"
+        app:layout_constraintTop_toTopOf="@id/setting_term" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/setting_term"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_term"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_16"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/night_mode" />
+        app:layout_constraintTop_toBottomOf="@id/notification" />
 
     <ImageView
         android:layout_width="@dimen/button_size_40"
@@ -77,13 +109,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/setting_term" />
 
-    <thanh.ha.ui.textviews.GradientTextView
-        android:id="@+id/setting_about"
+
+    <View
+        android:id="@+id/about_us_select_area"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@drawable/shape_rectangle_white"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/setting_about"
+        app:layout_constraintStart_toStartOf="@id/setting_about"
+        app:layout_constraintTop_toTopOf="@id/setting_about" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/setting_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_about"
         android:textColor="@color/white"
@@ -101,13 +142,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/setting_about" />
 
-    <thanh.ha.ui.textviews.GradientTextView
-        android:id="@+id/setting_rate"
+    <View
+        android:id="@+id/rate_select_area"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@drawable/shape_rectangle_white"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/setting_rate"
+        app:layout_constraintStart_toStartOf="@id/setting_rate"
+        app:layout_constraintTop_toTopOf="@id/setting_rate" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:id="@+id/setting_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_rate"
         android:textColor="@color/white"
@@ -115,19 +164,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/setting_about" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/setting_rate_desc"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@drawable/shape_rectangle_white"-->
-    <!--        android:paddingStart="@dimen/padding_16"-->
-    <!--        android:paddingEnd="@dimen/padding_16"-->
-    <!--        android:paddingBottom="@dimen/padding_16"-->
-    <!--        android:text="@string/setting_rate_desc"-->
-    <!--        app:layout_constraintEnd_toStartOf="@id/imageViewRate"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/setting_rate" />-->
 
     <ImageView
         android:id="@+id/imageViewRate"
@@ -139,4 +175,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/setting_rate" />
 
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_margin="@dimen/margin_40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_rate" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="@dimen/margin_40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:srcCompat="@drawable/ic_fire" />
+
+    <thanh.ha.ui.textviews.GradientTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_16"
+        android:text="@string/setting_version"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

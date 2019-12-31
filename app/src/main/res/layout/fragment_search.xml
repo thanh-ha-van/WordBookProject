@@ -11,9 +11,9 @@
         android:id="@+id/view_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue_50"
+        android:background="@drawable/shape_search_bar"
         android:orientation="horizontal"
-        android:padding="@dimen/padding_4">
+        android:padding="@dimen/padding_8">
 
         <EditText
             android:id="@+id/et_search"
@@ -43,16 +43,10 @@
             android:tint="@color/white" />
     </LinearLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_definition"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_definition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            tools:listitem="@layout/item_word_definition" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        tools:listitem="@layout/item_word_definition" />
 </LinearLayout>
