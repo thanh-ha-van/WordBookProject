@@ -46,7 +46,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_definition"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
         android:overScrollMode="never"
         tools:listitem="@layout/item_word_definition" />
 </LinearLayout>

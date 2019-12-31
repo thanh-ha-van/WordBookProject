@@ -42,17 +42,11 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
     }
 
     private fun initView() {
-
         val layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager.HORIZONTAL, false)
         rv_definition.layoutManager = layoutManager
         adapter = DefAdapter(context, this)
         rv_definition.adapter = adapter
-
-//        val animation = AnimationUtils
-//                .loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
-//        rv_definition.layoutAnimation = animation
-
         et_search.setOnEditorActionListener(
                 TextView.OnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -65,7 +59,6 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
             val text = et_search.text.toString().trim()
             searchKeyword(text)
         }
-        swipe_refresh.setOnRefreshListener(this)
     }
 
     override fun onRefresh() {
@@ -77,14 +70,13 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
     }
 
     private fun getRandom() {
-        swipe_refresh.isRefreshing = true
+        showLoadingDialog()
         searchViewModel.getRandom()?.observe(
                 this,
                 Observer {
+                    hideLoadingDialog()
                     adapter.updateInfo(it!!)
-                    reRunAnimation()
                     rv_definition.smoothScrollToPosition(0)
-                    swipe_refresh.isRefreshing = false
                 }
         )
     }
@@ -102,22 +94,18 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
 
     private fun searchKeyword(word: String) {
         if (word.isEmpty()) return
+        showLoadingDialog()
         updateRecentSearch(word)
-        swipe_refresh.isRefreshing = true
         searchViewModel
                 .getWordDefinition(word)?.observe(
                         this,
                         Observer { definitionList ->
+                            hideLoadingDialog()
                             adapter.updateInfo(definitionList!!)
-                            reRunAnimation()
                             rv_definition.smoothScrollToPosition(0)
-                            swipe_refresh.isRefreshing = false
                         })
     }
 
-    private fun reRunAnimation() {
-        //rv_definition.scheduleLayoutAnimation()
-    }
 
     override fun onThumbUp(position: Int) {
     }
