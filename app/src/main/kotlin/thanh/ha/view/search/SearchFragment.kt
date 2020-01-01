@@ -1,5 +1,6 @@
 package thanh.ha.view.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
@@ -21,7 +21,9 @@ import thanh.ha.ui.adapters.DefAdapter
 class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var searchViewModel: SearchViewModel
-    private lateinit var adapter: DefAdapter
+
+    private lateinit var mCardAdapter: CardFragmentPagerAdapter
+    private lateinit var mCardShadowTransformer: ShadowTransformer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +44,11 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
     }
 
     private fun initView() {
-        val layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.HORIZONTAL, false)
-        rv_definition.layoutManager = layoutManager
-        adapter = DefAdapter(context, this)
-        rv_definition.adapter = adapter
+
+        mCardAdapter = CardFragmentPagerAdapter(fragmentManager, dpToPixels(2, context!!))
+        mCardShadowTransformer = ShadowTransformer(vp_definition, mCardAdapter)
+        mCardShadowTransformer.enableScaling(true)
+        vp_definition.adapter = mCardAdapter
         et_search.setOnEditorActionListener(
                 TextView.OnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -60,6 +62,11 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
             searchKeyword(text)
         }
     }
+
+    fun dpToPixels(dp: Int, context: Context): Float {
+        return dp * context.getResources().getDisplayMetrics().density
+    }
+
 
     override fun onRefresh() {
         getRandom()
@@ -75,12 +82,12 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
                 this,
                 Observer {
                     hideLoadingDialog()
-                    adapter.updateInfo(it!!)
-                    rv_definition.smoothScrollToPosition(0)
+                    for (item in it) {
+                        mCardAdapter.addCardFragment(CardFragment(item))
+                    }
                 }
         )
     }
-
 
     private fun initViewModel() {
         searchViewModel = ViewModelProviders
@@ -99,10 +106,11 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
         searchViewModel
                 .getWordDefinition(word)?.observe(
                         this,
-                        Observer { definitionList ->
+                        Observer {
                             hideLoadingDialog()
-                            adapter.updateInfo(definitionList!!)
-                            rv_definition.smoothScrollToPosition(0)
+                            for (item in it) {
+                                mCardAdapter.addCardFragment(CardFragment(item))
+                            }
                         })
     }
 

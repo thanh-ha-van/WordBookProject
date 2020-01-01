@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_def"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="0dp"
+    app:cardCornerRadius="25dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_8">
+
+            <TextView
+                android:id="@+id/tv_word"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_size_28"
+                android:textStyle="bold"
+                tools:text="Word" />
+
+            <CheckBox
+                android:id="@+id/likeIcon"
+                style="@style/ThumbIconStyle"
+                android:background="@drawable/selector_like"
+                android:stateListAnimator="@animator/scale" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_definition"
+            style="@style/WordDefinitionStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="@dimen/margin_8"
+            android:background="@color/gray_30" />
+
+        <TextView
+            android:id="@+id/tv_example"
+            style="@style/ExampleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_8">
+
+            <CheckBox
+                android:id="@+id/thumpUpButton"
+                style="@style/ThumbIconStyle"
+                android:background="@drawable/selector_thumb_up"
+                android:stateListAnimator="@animator/scale" />
+
+            <TextView
+                android:id="@+id/tv_thumb_up_value"
+                style="@style/ThumbValueStyle" />
+
+            <CheckBox
+                android:id="@+id/thumpDownButton"
+                style="@style/ThumbIconStyle"
+                android:background="@drawable/selector_thumb_down"
+                android:stateListAnimator="@animator/scale" />
+
+            <TextView
+                android:id="@+id/tv_thumb_down_value"
+                style="@style/ThumbValueStyle" />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/blue_50"
+                android:textSize="@dimen/text_size_14" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:textColor="@color/gray_50"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
