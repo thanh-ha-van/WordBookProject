@@ -22,7 +22,7 @@
     <style name="WordDefinitionStyle" parent="AppTheme">
         <item name="android:clickable">true</item>
         <item name="android:lineSpacingExtra">5dp</item>
-        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:textColor">@color/black_40</item>
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:padding">@dimen/margin_8</item>
         <item name="android:textStyle">bold</item>
@@ -31,7 +31,7 @@
     <style name="ExampleStyle" parent="AppTheme">
         <item name="android:clickable">true</item>
         <item name="android:lineSpacingExtra">5dp</item>
-        <item name="android:textColor">@color/black_40</item>
+        <item name="android:textColor">@color/black_50</item>
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:padding">@dimen/margin_8</item>
     </style>

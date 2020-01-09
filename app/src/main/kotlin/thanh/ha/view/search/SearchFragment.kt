@@ -1,6 +1,5 @@
 package thanh.ha.view.search
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +8,15 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
 import thanh.ha.bus.RxBus
 import thanh.ha.bus.RxEvent
-import thanh.ha.ui.adapters.DefAdapter
+import thanh.ha.domain.DefinitionInfo
 
 
-class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLayout.OnRefreshListener {
+class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
 
     private lateinit var searchViewModel: SearchViewModel
 
@@ -43,9 +41,18 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
         getRandom()
     }
 
-    private fun initView() {
+    private fun showLoading() {
+        shimmerFrame.visibility = View.VISIBLE
+        shimmerFrame.showShimmer(true)
+    }
 
-        mCardAdapter = CardFragmentPagerAdapter(fragmentManager, dpToPixels(2, context!!))
+    private fun hideLoading() {
+        shimmerFrame.stopShimmer()
+        shimmerFrame.visibility = View.GONE
+    }
+
+    private fun initView() {
+        mCardAdapter = CardFragmentPagerAdapter(childFragmentManager)
         mCardShadowTransformer = ShadowTransformer(vp_definition, mCardAdapter)
         mCardShadowTransformer.enableScaling(true)
         vp_definition.adapter = mCardAdapter
@@ -63,27 +70,19 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
         }
     }
 
-    fun dpToPixels(dp: Int, context: Context): Float {
-        return dp * context.getResources().getDisplayMetrics().density
-    }
-
-
-    override fun onRefresh() {
-        getRandom()
-    }
-
     private fun updateRecentSearch(word: String) {
         RxBus.publish(RxEvent.EventRecentSearch(word))
     }
 
     private fun getRandom() {
-        showLoadingDialog()
+        mCardAdapter.clear()
+        showLoading()
         searchViewModel.getRandom()?.observe(
                 this,
                 Observer {
-                    hideLoadingDialog()
+                    hideLoading()
                     for (item in it) {
-                        mCardAdapter.addCardFragment(CardFragment(item))
+                        mCardAdapter.addCardFragment(CardFragment(item, this))
                     }
                 }
         )
@@ -101,37 +100,40 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener, SwipeRefreshLay
 
     private fun searchKeyword(word: String) {
         if (word.isEmpty()) return
-        showLoadingDialog()
+        mCardAdapter.clear()
+        showLoading()
         updateRecentSearch(word)
         searchViewModel
                 .getWordDefinition(word)?.observe(
                         this,
                         Observer {
-                            hideLoadingDialog()
+                            hideLoading()
                             for (item in it) {
-                                mCardAdapter.addCardFragment(CardFragment(item))
+                                mCardAdapter.addCardFragment(CardFragment(item, this))
                             }
                         })
     }
 
 
-    override fun onThumbUp(position: Int) {
-    }
-
-    override fun onThumbUpDown(position: Int) {
-
-    }
-
-    override fun onSaveClicked(position: Int) {
-        searchViewModel.saveDefToLocal(position)
-    }
-
-    override fun onUnSaveClicked(position: Int) {
-        searchViewModel.removeDefFromLocal(position)
-    }
-
-    override fun onClickKeyWord(string: String) {
+    override fun onKeyWordClicked(string: String) {
         et_search.setText(string)
         searchKeyword(string)
     }
+
+    override fun onThumbUp() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onThumbUpDown() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onSaveClicked(def: DefinitionInfo) {
+        searchViewModel.saveDefToLocal(def)
+    }
+
+    override fun onUnSaveClicked(def: DefinitionInfo) {
+        searchViewModel.removeDefFromLocal(def)
+    }
+
 }

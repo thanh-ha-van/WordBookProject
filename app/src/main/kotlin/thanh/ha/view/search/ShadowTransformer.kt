@@ -10,19 +10,20 @@ class ShadowTransformer(private val mViewPager: ViewPager, adapter: CardAdapter)
     private val mAdapter: CardAdapter
     private var mLastOffset = 0f
     private var mScalingEnabled = false
+    private val scale = 0.08f
 
     fun enableScaling(enable: Boolean) {
-        if (mScalingEnabled && !enable) { // shrink main card
+        if (mScalingEnabled && !enable) {
             val currentCard = mAdapter.getCardViewAt(mViewPager.currentItem)
             if (currentCard != null) {
                 currentCard.animate().scaleY(1f)
                 currentCard.animate().scaleX(1f)
             }
-        } else if (!mScalingEnabled && enable) { // grow main card
+        } else if (!mScalingEnabled && enable) {
             val currentCard = mAdapter.getCardViewAt(mViewPager.currentItem)
             if (currentCard != null) {
-                currentCard.animate().scaleY(1.1f)
-                currentCard.animate().scaleX(1.1f)
+                currentCard.animate().scaleY(1 + scale)
+                currentCard.animate().scaleX(1 + scale)
             }
         }
         mScalingEnabled = enable
@@ -31,6 +32,7 @@ class ShadowTransformer(private val mViewPager: ViewPager, adapter: CardAdapter)
     override fun transformPage(page: View, position: Float) {}
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
         val realCurrentPosition: Int
         val nextPosition: Int
         val baseElevation = mAdapter.baseElevation
@@ -53,8 +55,8 @@ class ShadowTransformer(private val mViewPager: ViewPager, adapter: CardAdapter)
 
         if (currentCard != null) {
             if (mScalingEnabled) {
-                currentCard.scaleX = (1 + 0.1 * (1 - realOffset)).toFloat()
-                currentCard.scaleY = (1 + 0.1 * (1 - realOffset)).toFloat()
+                currentCard.scaleX = (1 + scale * (1 - realOffset))
+                currentCard.scaleY = (1 + scale * (1 - realOffset))
             }
             currentCard.cardElevation = baseElevation + (baseElevation
                     * (CardAdapter.MAX_ELEVATION_FACTOR - 1) * (1 - realOffset))
@@ -62,8 +64,8 @@ class ShadowTransformer(private val mViewPager: ViewPager, adapter: CardAdapter)
         val nextCard = mAdapter.getCardViewAt(nextPosition)
         if (nextCard != null) {
             if (mScalingEnabled) {
-                nextCard.scaleX = (1 + 0.1 * realOffset).toFloat()
-                nextCard.scaleY = (1 + 0.1 * realOffset).toFloat()
+                nextCard.scaleX = (1 + scale * realOffset)
+                nextCard.scaleY = (1 + scale * realOffset)
             }
             nextCard.cardElevation = baseElevation + (baseElevation
                     * (CardAdapter.MAX_ELEVATION_FACTOR - 1) * realOffset)

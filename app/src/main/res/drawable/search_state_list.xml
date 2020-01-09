@@ -6,14 +6,14 @@
     <!-- provide a different drawable for each state-->
     <item
         android:id="@+id/state_on"
-        android:drawable="@drawable/ic_settings"
+        android:drawable="@drawable/ic_menu_search"
         android:state_checked="true" />
     <item
         android:id="@+id/state_off"
-        android:drawable="@drawable/ic_settings" />
+        android:drawable="@drawable/ic_menu_search" />
     <!-- specify transitions -->
     <transition
-        android:drawable="@drawable/setting_animation"
+        android:drawable="@drawable/search_animation"
         android:fromId="@id/state_off"
         android:toId="@id/state_on" />
 </animated-selector>

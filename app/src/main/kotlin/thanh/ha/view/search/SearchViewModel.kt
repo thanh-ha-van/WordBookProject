@@ -44,17 +44,17 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
     }
 
 
-    fun saveDefToLocal(position: Int) {
+    fun saveDefToLocal(def: DefinitionInfo) {
         DoAsync {
-            definitionRepository.saveLocalDefs(liveDefinitionData!!.value!![position])
+            definitionRepository.saveLocalDefs(def)
         }.execute()
 
     }
 
-    fun removeDefFromLocal(position: Int) {
+    fun removeDefFromLocal(def: DefinitionInfo) {
         DoAsync {
-            definitionRepository.removeLocalDefs(liveDefinitionData!!.value!![position])
-        }
+            definitionRepository.removeLocalDefs(def)
+        }.execute()
     }
 
     override fun onCleared() {

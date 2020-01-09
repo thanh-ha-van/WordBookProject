@@ -68,7 +68,7 @@ class HomeFragment : BaseFragment(), SmallWordDefAdapter.ClickListener {
         mDisposable = RxBus
                 .listen(RxEvent.EventRecentSearch::class.java)
                 .subscribe {
-                    tv_recent_search_desc.visibility = View.GONE
+                    tv_recent_search_desc?.visibility = View.GONE
                     addChipToView(context, it.word)
                 }
     }

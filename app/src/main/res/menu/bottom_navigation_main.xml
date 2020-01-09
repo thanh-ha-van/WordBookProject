@@ -5,13 +5,13 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/ic_history"
+        android:icon="@drawable/paw_print_state_list"
         android:title="@string/text_search"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_search"
         android:enabled="true"
-        android:icon="@drawable/paw_print_state_list"
+        android:icon="@drawable/search_state_list"
         android:title="@string/text_home"
         app:showAsAction="ifRoom|withText" />
     <item

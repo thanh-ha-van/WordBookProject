@@ -5,22 +5,21 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import java.util.*
+import androidx.fragment.app.FragmentTransaction
 
-class CardFragmentPagerAdapter(fm: FragmentManager?, baseElevation: Float)
-    : FragmentStatePagerAdapter(fm!!, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT), CardAdapter {
+class CardFragmentPagerAdapter(private val fm: FragmentManager)
+    : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT), CardAdapter {
 
-    private val mFragments: MutableList<CardFragment>
-    private val mBaseElevation: Float
+    private val mFragments: ArrayList<CardFragment> = ArrayList()
 
 
     override fun getCardViewAt(position: Int): CardView? {
-        if(mFragments.isNullOrEmpty()) return null
+        if (mFragments.isNullOrEmpty()) return null
         return mFragments[position].cardView
     }
 
     override val baseElevation: Float
-        get() = 6f
+        get() = 5f
     override val mCount: Int
         get() = mFragments.size
 
@@ -39,13 +38,19 @@ class CardFragmentPagerAdapter(fm: FragmentManager?, baseElevation: Float)
         return fragment
     }
 
+    fun clear() {
+        for (item in mFragments) {
+            val transaction: FragmentTransaction = fm.beginTransaction()
+            transaction.remove(item)
+            transaction.commitAllowingStateLoss()
+        }
+        mFragments.clear()
+        notifyDataSetChanged()
+    }
+
     fun addCardFragment(fragment: CardFragment) {
         mFragments.add(fragment)
         notifyDataSetChanged()
     }
 
-    init {
-        mFragments = ArrayList()
-        mBaseElevation = baseElevation
-    }
 }

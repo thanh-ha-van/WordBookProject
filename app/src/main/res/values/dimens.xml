@@ -38,8 +38,8 @@
     <dimen name="margin_70">70dp</dimen>
 
     <!--button height size-->
-    <dimen name="button_size_10">24dp</dimen>
-    <dimen name="button_size_15">28dp</dimen>
+    <dimen name="button_size_10">22dp</dimen>
+    <dimen name="button_size_15">26dp</dimen>
     <dimen name="button_size_20">32dp</dimen>
     <dimen name="button_size_30">40dp</dimen>
     <dimen name="button_size_40">48dp</dimen>
