@@ -29,7 +29,7 @@ interface RoomDefinitionDao {
     @Query(RoomContract.SELECT_DEFINITION)
     fun getAllDefs(): Flowable<List<DefinitionInfo>>
 
-    @Query(RoomContract.COUNT)
+    @Query(RoomContract.COUNT_DEFINITION)
     fun count(): Int
 
     @Transaction

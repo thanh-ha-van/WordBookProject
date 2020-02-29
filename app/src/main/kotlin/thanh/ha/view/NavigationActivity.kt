@@ -29,7 +29,7 @@ class NavigationActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         setupViewPager(viewpager)
-        viewpager.setSwipeable(false)
+        viewpager.setSwipeable(true)
         viewpager.offscreenPageLimit = 0
     }
 

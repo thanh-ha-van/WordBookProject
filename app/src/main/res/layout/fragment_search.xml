@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_10"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:id="@+id/view_search"
@@ -13,7 +11,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_search_bar"
         android:orientation="horizontal"
-        android:padding="@dimen/padding_8"
+        android:paddingStart="@dimen/padding_8"
+        android:paddingTop="@dimen/margin_24"
+        android:paddingEnd="@dimen/padding_8"
+        android:paddingBottom="@dimen/padding_6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -45,14 +46,13 @@
             android:tint="@color/white" />
     </LinearLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_definition"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_definition"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="50dp"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_search" />
 
@@ -66,7 +66,8 @@
         android:padding="30dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_search">
+        app:layout_constraintTop_toBottomOf="@id/view_search"
+        app:shimmer_duration="2000">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_trans"
     android:padding="@dimen/margin_16">
 
     <ImageView
@@ -28,11 +27,21 @@
         app:layout_constraintStart_toEndOf="@+id/img_setting"
         app:layout_constraintTop_toTopOf="@id/img_setting" />
 
+    <View
+        android:id="@+id/night_select_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle_white_none_ripple"
+        app:layout_constraintBottom_toBottomOf="@id/night_mode"
+        app:layout_constraintStart_toStartOf="@id/night_mode"
+        app:layout_constraintTop_toTopOf="@id/night_mode" />
+
     <thanh.ha.ui.textviews.GradientTextView
         android:id="@+id/night_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_16"
+        android:background="@drawable/shape_rectangle_white"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_dark_mode"
         android:textColor="@color/white"
@@ -52,11 +61,21 @@
         app:switchMinWidth="60dp"
         app:track="@drawable/custom_track" />
 
+    <View
+        android:id="@+id/notification_select_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rectangle_white_none_ripple"
+        app:layout_constraintBottom_toBottomOf="@id/notification"
+        app:layout_constraintStart_toStartOf="@id/notification"
+        app:layout_constraintTop_toTopOf="@id/notification" />
+
     <thanh.ha.ui.textviews.GradientTextView
         android:id="@+id/notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_16"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@drawable/shape_rectangle_white"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_notification"
         android:textColor="@color/white"
@@ -78,7 +97,7 @@
         app:track="@drawable/custom_track" />
 
     <View
-        android:id="@+id/notification_select_area"
+        android:id="@+id/term_select_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/shape_rectangle_white"
@@ -92,6 +111,7 @@
         android:id="@+id/setting_term"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_term"
         android:textColor="@color/white"
@@ -125,6 +145,7 @@
         android:id="@+id/setting_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_about"
         android:textColor="@color/white"
@@ -157,6 +178,7 @@
         android:id="@+id/setting_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
         android:padding="@dimen/padding_16"
         android:text="@string/setting_rate"
         android:textColor="@color/white"
@@ -172,6 +194,7 @@
         android:padding="@dimen/padding_16"
         android:src="@drawable/ic_right_arrow"
         app:layout_constraintBottom_toBottomOf="@id/setting_rate"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/setting_rate" />
 
@@ -179,16 +202,17 @@
     <View
         android:id="@+id/divider1"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_margin="@dimen/margin_40"
+        android:layout_height="3dp"
+        android:layout_margin="@dimen/margin_32"
+        android:background="@drawable/shape_rectangle_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/setting_rate" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_40"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

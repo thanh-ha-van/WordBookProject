@@ -1,91 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_trans"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_16">
+    android:layout_marginBottom="@dimen/actionbar_size_50">
 
-    <TextView
-        android:id="@+id/tv_recent_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_16"
-        android:text="@string/search_recent"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_recent_search_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_16"
-        android:text="@string/search_recent_desc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cg_recent_search" />
-
-    <TextView
-        android:id="@+id/tv_clear_search"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/shape_rectangle_green"
-        android:gravity="center"
-        android:paddingStart="@dimen/margin_32"
-        android:paddingEnd="@dimen/margin_32"
-        android:text="@string/clear"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_recent_search" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/cg_recent_search"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_recent_search" />
+        android:clipChildren="false"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_saved_def"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_16"
-        android:text="@string/saved_definition"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_recent_search_desc" />
+        <thanh.ha.ui.textviews.GradientTextView
+            android:id="@+id/tv_recent_search"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/padding_16"
+            android:gravity="center_vertical"
+            android:text="@string/search_recent"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/saved_def_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_16"
-        android:text="@string/saved_definition_desc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_saved_def" />
+        <TextView
+            android:id="@+id/tv_recent_search_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_16"
+            android:text="@string/search_recent_desc"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_search" />
 
-    <TextView
-        android:id="@+id/tv_clear_saved"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/shape_rectangle_green"
-        android:gravity="center"
-        android:paddingStart="@dimen/margin_32"
-        android:paddingEnd="@dimen/margin_32"
-        android:text="@string/clear"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_saved_def" />
+        <thanh.ha.ui.textviews.GradientTextView
+            android:id="@+id/tv_clear_search"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="@drawable/shape_rectangle_white"
+            android:gravity="center"
+            android:text="@string/clear"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_recent_search" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_saved_def"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/saved_def_desc"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_small_word_definition" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_search_desc"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_keyword" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <thanh.ha.ui.textviews.GradientTextView
+            android:id="@+id/tv_saved_def"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/padding_16"
+            android:gravity="center_vertical"
+            android:text="@string/saved_definition"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_recent" />
+
+        <TextView
+            android:id="@+id/saved_def_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_16"
+            android:text="@string/saved_definition_desc"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_saved_def" />
+
+        <thanh.ha.ui.textviews.GradientTextView
+            android:id="@+id/tv_clear_saved"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="@drawable/shape_rectangle_white"
+            android:gravity="center"
+            android:text="@string/clear"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_saved_def" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_saved_def"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saved_def_desc"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_small_word_definition" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

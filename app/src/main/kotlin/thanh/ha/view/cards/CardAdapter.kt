@@ -1,4 +1,4 @@
-package thanh.ha.view.search
+package thanh.ha.view.cards
 
 import androidx.cardview.widget.CardView
 
@@ -11,6 +11,6 @@ interface CardAdapter {
     val mCount: Int
 
     companion object {
-        const val MAX_ELEVATION_FACTOR = 6
+        const val MAX_ELEVATION_FACTOR = 4
     }
 }

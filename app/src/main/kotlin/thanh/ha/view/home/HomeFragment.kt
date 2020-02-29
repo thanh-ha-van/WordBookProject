@@ -1,6 +1,5 @@
 package thanh.ha.view.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,21 +7,22 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.Chip
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_home.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
-import thanh.ha.bus.RxBus
-import thanh.ha.bus.RxEvent
+import thanh.ha.ui.adapters.KeywordAdapter
 import thanh.ha.ui.adapters.SmallWordDefAdapter
 
 
-class HomeFragment : BaseFragment(), SmallWordDefAdapter.ClickListener {
+class HomeFragment : BaseFragment(),
+        SmallWordDefAdapter.ClickListener,
+        KeywordAdapter.ClickListener {
 
     private lateinit var mHomeViewModel: HomeViewModel
     private lateinit var mDisposable: Disposable
-    private lateinit var adapter: SmallWordDefAdapter
+    private lateinit var savedWordAdapter: SmallWordDefAdapter
+    private lateinit var recentSearchAdapter: KeywordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,54 +40,68 @@ class HomeFragment : BaseFragment(), SmallWordDefAdapter.ClickListener {
         super.onViewCreated(view, savedInstanceState)
         initView()
         getLocalSaved()
-        getRecentSearch()
+        getLocalRecentKeyword()
     }
 
     private fun initView() {
-        val layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL, false)
+
+        //set up for save definitions adapter
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rv_saved_def.layoutManager = layoutManager
-        adapter = SmallWordDefAdapter(context, this)
-        rv_saved_def.adapter = adapter
+
+        savedWordAdapter = SmallWordDefAdapter(context, this)
+        rv_saved_def.layoutManager = layoutManager
+        rv_saved_def.adapter = savedWordAdapter
+
+
+        //set up for recent search keyword adapter
+        val layoutManager2 = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        recentSearchAdapter = KeywordAdapter(context, this)
+        rv_recent.layoutManager = layoutManager2
+        rv_recent.adapter = recentSearchAdapter
 
         tv_clear_saved.setOnClickListener {
             saved_def_desc.visibility = View.VISIBLE
             mHomeViewModel.deleteAllLocalWord()
-            adapter.clear()
         }
+
         tv_clear_search.setOnClickListener {
-            cg_recent_search.clearCheck()
+            tv_recent_search_desc.visibility = View.VISIBLE
+            mHomeViewModel.deleteAllKeyword()
         }
+    }
+
+    private fun getLocalRecentKeyword() {
+        mHomeViewModel.getLocalKeyword()?.observe(
+                this,
+                Observer {
+                    if (it.isNullOrEmpty()) {
+                        tv_recent_search_desc.visibility = View.VISIBLE
+                    } else {
+                        tv_recent_search_desc.visibility = View.GONE
+                    }
+                    recentSearchAdapter.clear()
+                    recentSearchAdapter.updateInfo(it.toMutableList())
+                }
+        )
     }
 
     override fun onClickKeyWord(string: String) {
-
-    }
-
-    private fun getRecentSearch() {
-        mDisposable = RxBus
-                .listen(RxEvent.EventRecentSearch::class.java)
-                .subscribe {
-                    tv_recent_search_desc?.visibility = View.GONE
-                    addChipToView(context, it.word)
-                }
-    }
-
-    private fun addChipToView(context: Context?, def: String) {
-        if (context != null) {
-            val chip = Chip(context)
-            chip.text = def
-            chip.setOnCloseIconClickListener { cg_recent_search.removeView(chip) }
-            cg_recent_search.addView(chip as View)
-        }
+        //TODO
     }
 
     private fun getLocalSaved() {
         mHomeViewModel.getLocalDefinitions()?.observe(
                 this,
                 Observer {
-                    saved_def_desc.visibility = View.GONE
-                    adapter.updateInfo(it.toMutableList())
+                    if (it.isNullOrEmpty()) {
+                        saved_def_desc.visibility = View.VISIBLE
+                    } else {
+                        saved_def_desc.visibility = View.GONE
+                    }
+                    recentSearchAdapter.clear()
+                    savedWordAdapter.updateInfo(it.toMutableList())
                 }
         )
     }

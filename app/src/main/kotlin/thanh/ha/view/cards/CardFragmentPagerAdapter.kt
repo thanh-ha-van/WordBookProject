@@ -1,25 +1,26 @@
-package thanh.ha.view.search
+package thanh.ha.view.cards
 
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentTransaction
+import androidx.viewpager.widget.PagerAdapter
 
 class CardFragmentPagerAdapter(private val fm: FragmentManager)
-    : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT), CardAdapter {
+    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT), CardAdapter {
 
     private val mFragments: ArrayList<CardFragment> = ArrayList()
 
-
+    private var baseId: Long = 0
     override fun getCardViewAt(position: Int): CardView? {
         if (mFragments.isNullOrEmpty()) return null
         return mFragments[position].cardView
     }
 
     override val baseElevation: Float
-        get() = 5f
+        get() = 6f
     override val mCount: Int
         get() = mFragments.size
 
@@ -28,8 +29,15 @@ class CardFragmentPagerAdapter(private val fm: FragmentManager)
         return mFragments.size
     }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return PagerAdapter.POSITION_NONE
+    }
     override fun getItem(position: Int): Fragment {
         return mFragments[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return baseId + position
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -52,5 +60,4 @@ class CardFragmentPagerAdapter(private val fm: FragmentManager)
         mFragments.add(fragment)
         notifyDataSetChanged()
     }
-
 }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_def"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:elevation="0dp"
     app:cardCornerRadius="25dp"
@@ -46,13 +46,12 @@
             android:id="@+id/tv_definition"
             style="@style/WordDefinitionStyle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            tools:text="Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection. Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection." />
+            android:layout_height="wrap_content"
+            tools:text="Text messaging"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="3dp"
             android:layout_margin="@dimen/margin_8"
             android:background="@color/gray_30" />
 
@@ -60,9 +59,8 @@
             android:id="@+id/tv_example"
             style="@style/ExampleStyle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            tools:text="Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection. Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection. Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, between two or more users of mobile devices, desktops/laptops, or other type of compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection." />
+            android:layout_height="wrap_content"
+            tools:text="Text messaging, or textioralso be sent via an Internet connection." />
 
         <LinearLayout
             android:layout_width="match_parent"

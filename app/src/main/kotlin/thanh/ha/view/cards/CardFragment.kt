@@ -1,4 +1,4 @@
-package thanh.ha.view.search
+package thanh.ha.view.cards
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.view_word_definition.*
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo

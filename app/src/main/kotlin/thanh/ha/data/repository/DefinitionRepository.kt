@@ -2,13 +2,14 @@ package thanh.ha.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.DefinitionListResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import thanh.ha.data.remote.DefinitionListResponse
 import thanh.ha.data.remote.RemoteService
 import thanh.ha.data.room.RoomDataSource
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.domain.Keyword
 import thanh.ha.utils.convertToNewFormat
 import thanh.ha.utils.runOnIoThread
 import javax.inject.Inject
@@ -66,7 +67,7 @@ class DefinitionRepository
 
     // get definitions from local
     override fun getLocalDefs(): LiveData<List<DefinitionInfo>> {
-        val roomCurrencyDao = roomDataSource.currencyDao()
+        val roomCurrencyDao = roomDataSource.definitionDao()
         val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
         val disposable = roomCurrencyDao.getAllDefs()
                 .subscribeOn(Schedulers.io())
@@ -85,20 +86,20 @@ class DefinitionRepository
 
     override fun saveLocalDefs(definitionInfo: DefinitionInfo) {
         runOnIoThread {
-            roomDataSource.currencyDao().insertDef(definitionInfo)
+            roomDataSource.definitionDao().insertDef(definitionInfo)
         }
     }
 
 
     override fun removeLocalDefs(definitionInfo: DefinitionInfo) {
         runOnIoThread {
-            roomDataSource.currencyDao().deleteDef(definitionInfo)
+            roomDataSource.definitionDao().deleteDef(definitionInfo)
         }
     }
 
     override fun deleteAllDefs() {
         runOnIoThread {
-            roomDataSource.clearAllTables()
+            roomDataSource.definitionDao().deleteAllDefs()
         }
     }
 
@@ -118,5 +119,34 @@ class DefinitionRepository
                             it.example))
         }
         return currencyList
+    }
+
+    override fun getLocalKeyword(): LiveData<List<Keyword>> {
+        val keywordDao = roomDataSource.keywordDao()
+        val mutableLiveData = MutableLiveData<List<Keyword>>()
+        val disposable = keywordDao.getAll()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { response ->
+                            mutableLiveData.value = response
+                        },
+                        { t: Throwable? ->
+                            t?.printStackTrace()
+                        })
+        allCompositeDisposable.add(disposable)
+        return mutableLiveData
+    }
+
+    override fun saveLocalKeyword(keyword: Keyword) {
+        runOnIoThread {
+            roomDataSource.keywordDao().insertKeyword(keyword)
+        }
+    }
+
+    override fun deleteAllKeyword() {
+        runOnIoThread {
+            roomDataSource.keywordDao().deleteAll()
+        }
     }
 }

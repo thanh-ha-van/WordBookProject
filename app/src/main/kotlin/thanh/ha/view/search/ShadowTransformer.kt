@@ -4,29 +4,32 @@ import android.view.View
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import androidx.viewpager.widget.ViewPager.PageTransformer
+import thanh.ha.view.cards.CardAdapter
 
 class ShadowTransformer(private val mViewPager: ViewPager, adapter: CardAdapter) : OnPageChangeListener, PageTransformer {
 
     private val mAdapter: CardAdapter
     private var mLastOffset = 0f
     private var mScalingEnabled = false
-    private val scale = 0.08f
+    private val scale = 0.1f
 
     fun enableScaling(enable: Boolean) {
+        mScalingEnabled = enable
         if (mScalingEnabled && !enable) {
             val currentCard = mAdapter.getCardViewAt(mViewPager.currentItem)
             if (currentCard != null) {
                 currentCard.animate().scaleY(1f)
                 currentCard.animate().scaleX(1f)
+                currentCard.invalidate()
             }
         } else if (!mScalingEnabled && enable) {
             val currentCard = mAdapter.getCardViewAt(mViewPager.currentItem)
             if (currentCard != null) {
                 currentCard.animate().scaleY(1 + scale)
                 currentCard.animate().scaleX(1 + scale)
+                currentCard.invalidate()
             }
         }
-        mScalingEnabled = enable
     }
 
     override fun transformPage(page: View, position: Float) {}

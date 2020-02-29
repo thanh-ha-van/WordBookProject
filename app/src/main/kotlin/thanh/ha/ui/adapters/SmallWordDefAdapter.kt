@@ -46,12 +46,12 @@ class SmallWordDefAdapter(context: Context?, private val mClickListener: ClickLi
 
         // to override the onclick of text view
         holder.itemView.tv_definition.movementMethod = LinkMovementMethod.getInstance()
-        holder.itemView.tv_example.movementMethod = LinkMovementMethod.getInstance()
+//        holder.itemView.tv_example.movementMethod = LinkMovementMethod.getInstance()
         // map data
         holder.itemView.tv_definition?.text =
                 SpanHelper.appSpirit(mContext!!, mDefList[position].definition, this)
-        holder.itemView.tv_example!!.text =
-                SpanHelper.appSpirit(mContext, mDefList[position].example, this)
+//        holder.itemView.tv_example!!.text =
+//                SpanHelper.appSpirit(mContext, mDefList[position].example, this)
         holder.itemView.tv_word!!.text = mDefList[position].word
     }
 

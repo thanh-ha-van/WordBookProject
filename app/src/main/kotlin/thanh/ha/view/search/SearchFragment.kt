@@ -8,20 +8,18 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
-import thanh.ha.bus.RxBus
-import thanh.ha.bus.RxEvent
-import thanh.ha.domain.DefinitionInfo
+import thanh.ha.ui.adapters.DefAdapter
 
 
-class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
+class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
 
     private lateinit var searchViewModel: SearchViewModel
 
-    private lateinit var mCardAdapter: CardFragmentPagerAdapter
-    private lateinit var mCardShadowTransformer: ShadowTransformer
+    private lateinit var mCardAdapter: DefAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +41,7 @@ class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
 
     private fun showLoading() {
         shimmerFrame.visibility = View.VISIBLE
-        shimmerFrame.showShimmer(true)
+        shimmerFrame.startShimmer()
     }
 
     private fun hideLoading() {
@@ -52,10 +50,13 @@ class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
     }
 
     private fun initView() {
-        mCardAdapter = CardFragmentPagerAdapter(childFragmentManager)
-        mCardShadowTransformer = ShadowTransformer(vp_definition, mCardAdapter)
-        mCardShadowTransformer.enableScaling(true)
-        vp_definition.adapter = mCardAdapter
+        val layoutManager = LinearLayoutManager(context,
+                LinearLayoutManager.VERTICAL, false)
+        rv_definition.layoutManager = layoutManager
+
+        mCardAdapter = DefAdapter(context, this)
+        rv_definition.adapter = mCardAdapter
+
         et_search.setOnEditorActionListener(
                 TextView.OnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -64,6 +65,7 @@ class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
                     }
                     false
                 })
+
         btn_search.setOnClickListener {
             val text = et_search.text.toString().trim()
             searchKeyword(text)
@@ -71,19 +73,16 @@ class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
     }
 
     private fun updateRecentSearch(word: String) {
-        RxBus.publish(RxEvent.EventRecentSearch(word))
+        searchViewModel.saveRecent(word)
     }
 
     private fun getRandom() {
-        mCardAdapter.clear()
         showLoading()
         searchViewModel.getRandom()?.observe(
                 this,
                 Observer {
+                    mCardAdapter.updateInfo(newItems = it)
                     hideLoading()
-                    for (item in it) {
-                        mCardAdapter.addCardFragment(CardFragment(item, this))
-                    }
                 }
         )
     }
@@ -100,40 +99,37 @@ class SearchFragment : BaseFragment(), CardFragment.KeyWordListener {
 
     private fun searchKeyword(word: String) {
         if (word.isEmpty()) return
-        mCardAdapter.clear()
         showLoading()
         updateRecentSearch(word)
         searchViewModel
                 .getWordDefinition(word)?.observe(
                         this,
                         Observer {
+                            mCardAdapter.updateInfo(newItems = it)
+                            rv_definition.smoothScrollToPosition(0)
                             hideLoading()
-                            for (item in it) {
-                                mCardAdapter.addCardFragment(CardFragment(item, this))
-                            }
                         })
     }
 
+    override fun onThumbUp(position: Int) {
 
-    override fun onKeyWordClicked(string: String) {
+    }
+
+    override fun onThumbUpDown(position: Int) {
+
+    }
+
+    override fun onSaveClicked(position: Int) {
+        searchViewModel.saveDefToLocal(position)
+    }
+
+    override fun onUnSaveClicked(position: Int) {
+        searchViewModel.removeDefFromLocal(position)
+    }
+
+    override fun onClickKeyWord(string: String) {
         et_search.setText(string)
         searchKeyword(string)
-    }
-
-    override fun onThumbUp() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onThumbUpDown() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onSaveClicked(def: DefinitionInfo) {
-        searchViewModel.saveDefToLocal(def)
-    }
-
-    override fun onUnSaveClicked(def: DefinitionInfo) {
-        searchViewModel.removeDefFromLocal(def)
     }
 
 }

@@ -3,9 +3,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_def"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_12"
+    android:layout_marginStart="@dimen/margin_16"
+    android:layout_marginTop="@dimen/margin_16"
+    android:layout_marginEnd="@dimen/margin_16"
     android:background="@drawable/shape_rectangle_white"
     android:orientation="vertical">
 
@@ -27,15 +29,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:lines="1"
-        tools:text="word word word word word word word word word word word " />
-
-    <TextView
-        android:id="@+id/tv_example"
-        style="@style/ExampleStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:lines="1"
         tools:text="word word word word word word word word word word word " />
 </LinearLayout>

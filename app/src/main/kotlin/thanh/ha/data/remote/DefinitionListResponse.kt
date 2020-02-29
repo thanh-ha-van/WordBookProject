@@ -1,8 +1,7 @@
-package com.example
+package thanh.ha.data.remote
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import thanh.ha.data.remote.DefinitionResponse
 
 class DefinitionListResponse {
 

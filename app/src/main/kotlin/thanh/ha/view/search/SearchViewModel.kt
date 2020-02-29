@@ -6,6 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import thanh.ha.data.repository.DefinitionRepository
 import thanh.ha.di.WordBookApp
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.domain.Keyword
 import thanh.ha.helpers.DoAsync
 import javax.inject.Inject
 
@@ -44,16 +45,21 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
     }
 
 
-    fun saveDefToLocal(def: DefinitionInfo) {
+    fun saveDefToLocal(position: Int) {
         DoAsync {
-            definitionRepository.saveLocalDefs(def)
+            definitionRepository.saveLocalDefs(liveDefinitionData!!.value!![position])
         }.execute()
-
     }
 
-    fun removeDefFromLocal(def: DefinitionInfo) {
+    fun removeDefFromLocal(position: Int) {
         DoAsync {
-            definitionRepository.removeLocalDefs(def)
+            definitionRepository.removeLocalDefs(liveDefinitionData!!.value!![position])
+        }.execute()
+    }
+
+    fun saveRecent(string: String) {
+        DoAsync {
+            definitionRepository.saveLocalKeyword(Keyword(string))
         }.execute()
     }
 

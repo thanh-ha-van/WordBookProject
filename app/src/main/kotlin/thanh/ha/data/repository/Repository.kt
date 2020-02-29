@@ -2,6 +2,7 @@ package thanh.ha.data.repository
 
 import androidx.lifecycle.LiveData
 import thanh.ha.domain.DefinitionInfo
+import thanh.ha.domain.Keyword
 
 interface Repository {
 
@@ -16,4 +17,10 @@ interface Repository {
     fun removeLocalDefs(definitionInfo: DefinitionInfo)
 
     fun deleteAllDefs()
+
+    fun getLocalKeyword(): LiveData<List<Keyword>>
+
+    fun saveLocalKeyword(keyword: Keyword)
+
+    fun deleteAllKeyword()
 }
