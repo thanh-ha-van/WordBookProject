@@ -11,8 +11,8 @@ import thanh.ha.R
 
 class GradientTextView : AppCompatTextView {
 
-    private var startColor = 0
-    private var endColor = 0
+    private var mStartColor = 0
+    private var mEndColor = 0
 
     private var shader: Shader? = null
 
@@ -35,9 +35,9 @@ class GradientTextView : AppCompatTextView {
 
         if (attrs != null) {
             val styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.GradientTextView)
-            startColor = styledAttrs.getColor(R.styleable.GradientTextView_startColor,
+            mStartColor = styledAttrs.getColor(R.styleable.GradientTextView_startColor,
                     ContextCompat.getColor(context, R.color.blue_90))
-            endColor = styledAttrs.getColor(R.styleable.GradientTextView_endColor,
+            mEndColor = styledAttrs.getColor(R.styleable.GradientTextView_endColor,
                     ContextCompat.getColor(context, R.color.blue_50))
             styledAttrs.recycle()
         }
@@ -51,10 +51,16 @@ class GradientTextView : AppCompatTextView {
                     0f,
                     width.toFloat(),
                     height.toFloat(),
-                    startColor,
-                    endColor,
+                    mStartColor,
+                    mEndColor,
                     Shader.TileMode.CLAMP)
         }
+    }
+
+    fun setColors(startColor: Int, endColor: Int) {
+        mStartColor = startColor
+        mEndColor = endColor
+        invalidate()
     }
 
 

@@ -1,186 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="@dimen/actionbar_size_40"
+        android:clipChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_definition"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_word_definition" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_search_bar"
+        android:background="@color/gray_10"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/padding_8"
-        android:paddingTop="@dimen/margin_24"
-        android:paddingEnd="@dimen/padding_8"
-        android:paddingBottom="@dimen/padding_6"
+        android:paddingStart="@dimen/padding_16"
+        android:paddingTop="28dp"
+        android:paddingEnd="@dimen/padding_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/et_search"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/bar_height"
-            android:layout_weight="1"
             android:background="@null"
             android:hint="@string/search_hint"
             android:imeOptions="actionSearch"
-            android:inputType="text"
+            android:inputType="textAutoComplete|textNoSuggestions"
             android:lines="1"
-            android:paddingLeft="@dimen/padding_4"
-            android:paddingRight="@dimen/padding_4"
-            android:textColor="@color/white"
-            android:textColorHint="@color/blue_10"
-            android:textSize="@dimen/text_size_18"
-            android:textStyle="bold" />
+            android:paddingLeft="@dimen/padding_6"
+            android:paddingRight="@dimen/padding_6"
+            android:textColor="@color/blue_50"
+            android:textColorHint="@color/gray_40"
+            android:textSize="@dimen/text_size_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btn_search"
             android:layout_width="@dimen/search_button_size"
             android:layout_height="@dimen/search_button_size"
-            android:layout_marginStart="@dimen/padding_4"
             android:contentDescription="@string/search_button"
-            android:padding="@dimen/padding_8"
+            android:padding="@dimen/padding_12"
             android:src="@drawable/ic_search"
-            android:tint="@color/white" />
-    </LinearLayout>
+            android:tint="@color/gray_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_definition"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="50dp"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_search" />
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerFrame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="50dp"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:padding="30dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_search"
-        app:shimmer_duration="2000">
-
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_2">
+            android:layout_height="3dp"
+            android:background="@drawable/shape_gradiant_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <View
-                    android:id="@+id/tv_word"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_rectangle_gray" />
-
-                <View
-                    android:id="@+id/likeIcon"
-                    style="@style/ThumbIconStyle"
-                    android:background="@drawable/shape_rectangle_gray" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/shape_rectangle_gray" />
-
-            <View
-                android:layout_width="160dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/shape_rectangle_gray" />
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/shape_rectangle_gray" />
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:layout_weight="1" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_margin="@dimen/margin_8" />
-
-            <View
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/shape_rectangle_gray" />
-
-            <View
-                android:layout_width="160dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/shape_rectangle_gray" />
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/shape_rectangle_gray" />
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_10"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <View
-                    android:id="@+id/thumpUpButton"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:background="@drawable/shape_rectangle_gray" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:background="@drawable/shape_rectangle_gray" />
-
-                <View
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:background="@drawable/shape_rectangle_gray" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:background="@drawable/shape_rectangle_gray" />
-            </LinearLayout>
-        </LinearLayout>
-    </com.facebook.shimmer.ShimmerFrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

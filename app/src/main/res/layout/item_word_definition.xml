@@ -3,10 +3,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/margin_16"
     android:layout_marginStart="@dimen/margin_16"
+    android:layout_marginTop="@dimen/margin_16"
     android:layout_marginEnd="@dimen/margin_16"
     android:background="@drawable/shape_def_background"
+    android:clipChildren="false"
     android:orientation="vertical">
 
     <LinearLayout
@@ -40,8 +41,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_margin="@dimen/margin_8"
+        android:layout_height="2dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
         android:background="@drawable/shape_rectangle_gray" />
 
     <TextView
@@ -59,9 +61,9 @@
 
         <CheckBox
             android:id="@+id/thumpUpButton"
-            android:enabled="false"
             style="@style/ThumbIconStyle"
             android:background="@drawable/selector_thumb_up"
+            android:enabled="false"
             android:stateListAnimator="@animator/scale" />
 
         <TextView
@@ -71,8 +73,8 @@
         <CheckBox
             android:id="@+id/thumpDownButton"
             style="@style/ThumbIconStyle"
-            android:enabled="false"
             android:background="@drawable/selector_thumb_down"
+            android:enabled="false"
             android:stateListAnimator="@animator/scale" />
 
         <TextView

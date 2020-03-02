@@ -2,11 +2,11 @@ package thanh.ha.ui.adapters
 
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_word_definition.view.*
 import thanh.ha.R
 import thanh.ha.domain.DefinitionInfo
@@ -54,7 +54,7 @@ class DefAdapter(context: Context?, private val mClickListener: ClickListener?)
         holder.itemView.tv_author!!.text = mDefList[position].author
         holder.itemView.tv_time!!.text = mDefList[position].writtenOn
         holder.itemView.tv_word!!.text = mDefList[position].word
-
+        holder.itemView.likeIcon.isChecked = false
         // listener for save button.
         holder.itemView.likeIcon.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

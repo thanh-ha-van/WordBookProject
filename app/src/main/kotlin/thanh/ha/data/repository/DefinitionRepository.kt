@@ -64,7 +64,6 @@ class DefinitionRepository
         return mutableLiveData
     }
 
-
     // get definitions from local
     override fun getLocalDefs(): LiveData<List<DefinitionInfo>> {
         val roomCurrencyDao = roomDataSource.definitionDao()

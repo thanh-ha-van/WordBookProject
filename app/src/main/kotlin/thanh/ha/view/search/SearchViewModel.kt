@@ -44,7 +44,6 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
         compositeDisposable.clear()
     }
 
-
     fun saveDefToLocal(position: Int) {
         DoAsync {
             definitionRepository.saveLocalDefs(liveDefinitionData!!.value!![position])

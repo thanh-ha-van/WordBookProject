@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_small_word_definition.view.*
+import kotlinx.android.synthetic.main.item_keyword.view.*
 import thanh.ha.R
 import thanh.ha.domain.Keyword
 
@@ -41,7 +41,8 @@ class KeywordAdapter(context: Context?, private val mClickListener: ClickListene
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.tv_word!!.text = mDefList[position].word
-        holder.itemView.setOnClickListener{
+        holder.itemView.tv_word.setTextColor(getRandomColorInt(mContext!!))
+        holder.itemView.setOnClickListener {
             mClickListener?.onClickKeyWord(mDefList[position].word)
         }
     }

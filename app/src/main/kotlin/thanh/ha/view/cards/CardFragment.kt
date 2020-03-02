@@ -13,7 +13,7 @@ import thanh.ha.domain.DefinitionInfo
 import thanh.ha.helpers.SpanHelper
 import thanh.ha.ui.customSpanable.SpannableClickAction
 
-
+@Deprecated ("Not use anymore, have bug")
 class CardFragment(private val definitionInfo: DefinitionInfo, private val keyWordListener: KeyWordListener) : Fragment(), SpannableClickAction {
 
     var cardView: CardView? = null

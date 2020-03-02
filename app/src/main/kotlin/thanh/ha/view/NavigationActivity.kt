@@ -1,7 +1,9 @@
 package thanh.ha.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -10,13 +12,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 import thanh.ha.R
 import thanh.ha.ui.adapters.ViewPagerAdapter
 import thanh.ha.view.home.HomeFragment
+import thanh.ha.view.home.KeywordPasser
 import thanh.ha.view.search.SearchFragment
 import thanh.ha.view.setting.SettingFragment
 import java.util.*
 
 class NavigationActivity : AppCompatActivity(),
         ViewPager.OnPageChangeListener,
-        BottomNavigationView.OnNavigationItemSelectedListener {
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        KeywordPasser {
 
     private var fragments: MutableList<Fragment> = ArrayList()
     private var homeFragment: HomeFragment? = null
@@ -29,7 +33,7 @@ class NavigationActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         setupViewPager(viewpager)
-        viewpager.setSwipeable(true)
+        viewpager.setSwipeable(false)
         viewpager.offscreenPageLimit = 0
     }
 
@@ -62,7 +66,7 @@ class NavigationActivity : AppCompatActivity(),
 
     private fun setupViewPager(viewPager: ViewPager) {
         fragments = ArrayList()
-        homeFragment = HomeFragment()
+        homeFragment = HomeFragment(this)
         searchFragment = SearchFragment()
         settingFragment = SettingFragment()
         fragments.add(homeFragment!!)
@@ -72,5 +76,24 @@ class NavigationActivity : AppCompatActivity(),
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(this)
         viewPager.currentItem = 1
+    }
+
+    override fun onPassKeyword(string: String) {
+        viewpager.currentItem = 1
+        searchFragment?.onSearchIntent(string)
+    }
+
+    private var doubleBackToExitPressedOnce = false
+
+    override fun onBackPressed() {
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 }

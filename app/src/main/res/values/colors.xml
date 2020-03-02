@@ -70,18 +70,24 @@
     <color name="black_80">#191919</color>
 
     <integer-array name="ChipColor">
+
+        <item>@color/blue_90</item>
+        <item>@color/blue_70</item>
         <item>@color/blue_50</item>
-        <item>@color/gray_30</item>
-        <item>@color/green_50</item>
-        <item>@color/orange_50</item>
-        <item>@color/red_50</item>
-        <item>@color/violet_50</item>
-        <item>@color/pink_50</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/orange_70</item>
+        <item>@color/blue_30</item>
         <item>@color/green_70</item>
+        <item>@color/green_50</item>
+        <item>@color/green_30</item>
+        <item>@color/orange_50</item>
+        <item>@color/orange_70</item>
+        <item>@color/red_70</item>
         <item>@color/red_30</item>
-        <item>@color/violet_30</item>
+        <item>@color/violet_70</item>
+        <item>@color/violet_50</item>
+        <item>@color/pink_70</item>
+        <item>@color/black_40</item>
+        <item>@color/pink_50</item>
+        <item>@color/orange_70</item>
         <item>@color/yellow_70</item>
     </integer-array>
 </resources>

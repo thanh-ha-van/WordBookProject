@@ -3,31 +3,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_def"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/margin_16"
     android:layout_marginTop="@dimen/margin_16"
     android:layout_marginEnd="@dimen/margin_16"
+    android:animateLayoutChanges="true"
     android:background="@drawable/shape_rectangle_white"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_word"
-        style="@style/WordDefinitionStyle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:lines="1"
-        android:textColor="@color/orange_50"
-        android:textSize="@dimen/text_size_24"
-        android:textStyle="bold"
-        tools:text="word" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_word"
+            style="@style/WordDefinitionStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLength="255"
+            android:textColor="@color/orange_50"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            tools:text="word" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_definition"
         style="@style/WordDefinitionStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
+        tools:text="word word word word word word word word word word word " />
+
+    <TextView
+        android:id="@+id/tv_sample"
+        style="@style/ExampleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         tools:text="word word word word word word word word word word word " />
 </LinearLayout>

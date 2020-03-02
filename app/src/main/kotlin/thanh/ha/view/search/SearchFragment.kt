@@ -9,13 +9,17 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 import thanh.ha.R
 import thanh.ha.base.BaseFragment
+import thanh.ha.domain.DefinitionInfo
 import thanh.ha.ui.adapters.DefAdapter
 
 
-class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
+class SearchFragment : BaseFragment(),
+        SwipeRefreshLayout.OnRefreshListener,
+        DefAdapter.ClickListener {
 
     private lateinit var searchViewModel: SearchViewModel
 
@@ -39,14 +43,18 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
         getRandom()
     }
 
+
     private fun showLoading() {
-        shimmerFrame.visibility = View.VISIBLE
-        shimmerFrame.startShimmer()
+        swipe_layout.isRefreshing = true
     }
 
     private fun hideLoading() {
-        shimmerFrame.stopShimmer()
-        shimmerFrame.visibility = View.GONE
+        swipe_layout.isRefreshing = false
+    }
+
+    fun onSearchIntent(string: String) {
+        et_search.setText(string)
+        searchKeyword(string)
     }
 
     private fun initView() {
@@ -70,6 +78,15 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
             val text = et_search.text.toString().trim()
             searchKeyword(text)
         }
+        swipe_layout.setOnRefreshListener(this)
+    }
+
+    override fun onRefresh() {
+        if (et_search.text.isNullOrEmpty()) {
+            getRandom()
+        } else {
+            searchKeyword(et_search.text.toString())
+        }
     }
 
     private fun updateRecentSearch(word: String) {
@@ -79,10 +96,9 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
     private fun getRandom() {
         showLoading()
         searchViewModel.getRandom()?.observe(
-                this,
+                viewLifecycleOwner,
                 Observer {
-                    mCardAdapter.updateInfo(newItems = it)
-                    hideLoading()
+                    bindResult(it)
                 }
         )
     }
@@ -103,12 +119,16 @@ class SearchFragment : BaseFragment(), DefAdapter.ClickListener {
         updateRecentSearch(word)
         searchViewModel
                 .getWordDefinition(word)?.observe(
-                        this,
+                        viewLifecycleOwner,
                         Observer {
-                            mCardAdapter.updateInfo(newItems = it)
-                            rv_definition.smoothScrollToPosition(0)
-                            hideLoading()
+                            bindResult(it)
                         })
+    }
+
+    private fun bindResult(it: List<DefinitionInfo>) {
+        mCardAdapter.updateInfo(newItems = it)
+        rv_definition.smoothScrollToPosition(0)
+        hideLoading()
     }
 
     override fun onThumbUp(position: Int) {

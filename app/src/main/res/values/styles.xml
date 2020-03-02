@@ -23,7 +23,7 @@
         <item name="android:clickable">true</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:textColor">@color/black_40</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
         <item name="android:padding">@dimen/margin_8</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -32,7 +32,7 @@
         <item name="android:clickable">true</item>
         <item name="android:lineSpacingMultiplier">1.32</item>
         <item name="android:textColor">@color/black_50</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
         <item name="android:padding">@dimen/margin_8</item>
     </style>
 
@@ -47,8 +47,8 @@
 
     <style name="ThumbIconStyle" parent="AppTheme">
         <item name="android:button">@null</item>
-        <item name="android:layout_width">@dimen/button_size_10</item>
-        <item name="android:layout_height">@dimen/button_size_10</item>
+        <item name="android:layout_width">@dimen/button_size_15</item>
+        <item name="android:layout_height">@dimen/button_size_15</item>
         <item name="android:layout_margin">@dimen/padding_6</item>
         <item name="android:checked">false</item>
     </style>

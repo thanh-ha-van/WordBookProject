@@ -1,11 +1,10 @@
-package thanh.ha.view.search
+package thanh.ha.view.cards
 
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import androidx.viewpager.widget.ViewPager.PageTransformer
-import thanh.ha.view.cards.CardAdapter
-
+@Deprecated ("Not use anymore")
 class ShadowTransformer(private val mViewPager: ViewPager, adapter: CardAdapter) : OnPageChangeListener, PageTransformer {
 
     private val mAdapter: CardAdapter
