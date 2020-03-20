@@ -18,5 +18,7 @@ object Constants {
     val STATUS_CLOSE = 2
     val POST_VIEW = "post_view"
     val POST_SEARCH = "post_search"
-
+    const val EXTRA_TITLE = "title"
+    const val EXTRA_TEXT = "text"
+    const val EXTRA_ID = "id"
 }

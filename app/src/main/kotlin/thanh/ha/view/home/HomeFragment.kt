@@ -43,6 +43,7 @@ class HomeFragment(private var keywordPasser: KeywordPasser) : BaseFragment(),
         initView()
         getLocalSaved()
         getLocalRecentKeyword()
+
     }
     private fun initView() {
 

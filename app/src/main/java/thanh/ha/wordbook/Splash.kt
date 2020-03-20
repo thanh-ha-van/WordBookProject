@@ -16,6 +16,7 @@ class Splash : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        startAnimation()
         Handler().postDelayed(
                 {
                     val intent = Intent(this, NavigationActivity::class.java)
@@ -23,5 +24,9 @@ class Splash : AppCompatActivity() {
                     this.finish()
                 }, 2000
         )
+    }
+
+    private fun startAnimation() {
+
     }
 }

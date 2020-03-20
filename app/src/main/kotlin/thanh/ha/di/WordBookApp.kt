@@ -13,10 +13,18 @@ class WordBookApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initializeDagger()
+        initDagger()
+        initWorkManager()
     }
 
-    private fun initializeDagger() {
+    private fun initWorkManager() {
+//        val myConfig = Configuration.Builder()
+//                .setMinimumLoggingLevel(android.util.Log.INFO)
+//                .build()
+//        WorkManager.initialize(this, myConfig)
+    }
+
+    private fun initDagger() {
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .roomModule(RoomModule())

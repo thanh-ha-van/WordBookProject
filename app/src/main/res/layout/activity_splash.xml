@@ -13,10 +13,11 @@
         android:layout_weight="10" />
 
     <ImageView
-        android:layout_width="100dp"
+        android:id="@+id/imgSplash"
+        android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_weight="10"
-        android:src="@drawable/ic_fire" />
+        android:src="@drawable/ic_up_arrow" />
 
     <thanh.ha.ui.textviews.GradientTextView
         android:layout_width="wrap_content"
