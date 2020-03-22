@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REAL_GET_TASKS " />
 
     <application
         android:name=".di.WordBookApp"
@@ -15,8 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".wordbook.DothActivity" />
-        <activity android:name=".wordbook.Splash">
+
+        <service
+            android:name=".view.notify.MyIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+
+        <activity android:name=".view.WodActivity" />
+        <activity android:name=".view.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +40,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <receiver android:name=".view.setting.NotificationReceiver" />
-    </application>
 
+        <receiver android:name=".view.notify.NotificationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
 </manifest>

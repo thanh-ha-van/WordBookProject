@@ -18,6 +18,8 @@ class RemoteContract {
         // get a random definition
         const val RANDOM = "random"
 
+        const val WORD_OF_DAY = "wod"
+
         // page index of the definition list
         const val PAGE = "page"
 

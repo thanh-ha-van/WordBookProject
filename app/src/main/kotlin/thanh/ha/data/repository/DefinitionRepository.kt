@@ -48,7 +48,7 @@ class DefinitionRepository
     override fun getRandom(): LiveData<List<DefinitionInfo>> {
         val mutableLiveData = MutableLiveData<List<DefinitionInfo>>()
         val disposable =
-                remoteService.getRandomDefintion()
+                remoteService.getRandomDefinition()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(

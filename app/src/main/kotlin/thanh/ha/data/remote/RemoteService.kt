@@ -21,8 +21,12 @@ interface RemoteService {
             : Observable<DefinitionResponse>
 
     @GET(RemoteContract.API_VERSION + RemoteContract.RANDOM)
-    fun getRandomDefintion()
+    fun getRandomDefinition()
             : Observable<DefinitionListResponse>
+
+    @GET("/today")
+    fun getWordOfDay()
+            : Observable<WodResponse>
 }
 
 

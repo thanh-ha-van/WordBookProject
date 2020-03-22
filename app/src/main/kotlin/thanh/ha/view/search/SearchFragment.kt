@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -104,8 +104,7 @@ class SearchFragment : BaseFragment(),
     }
 
     private fun initViewModel() {
-        searchViewModel = ViewModelProviders
-                .of(this)
+        searchViewModel = ViewModelProvider(this)
                 .get(SearchViewModel::class.java)
         searchViewModel
                 .let {

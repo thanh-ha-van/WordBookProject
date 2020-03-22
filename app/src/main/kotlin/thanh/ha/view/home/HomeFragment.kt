@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +23,7 @@ class HomeFragment(private var keywordPasser: KeywordPasser) : BaseFragment(),
         KeywordAdapter.ClickListener {
 
     private lateinit var mHomeViewModel: HomeViewModel
-    private lateinit var mDisposable: Disposable
+    private var mDisposable: Disposable? = null
     private lateinit var savedWordAdapter: SmallWordDefAdapter
     private lateinit var recentSearchAdapter: KeywordAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,8 +125,7 @@ class HomeFragment(private var keywordPasser: KeywordPasser) : BaseFragment(),
     }
 
     private fun initViewModel() {
-        mHomeViewModel = ViewModelProviders
-                .of(this)
+        mHomeViewModel = ViewModelProvider(this)
                 .get(HomeViewModel::class.java)
         mHomeViewModel
                 .let {
@@ -136,6 +135,6 @@ class HomeFragment(private var keywordPasser: KeywordPasser) : BaseFragment(),
 
     override fun onDestroy() {
         super.onDestroy()
-        if (!mDisposable.isDisposed) mDisposable.dispose()
+        if (mDisposable != null && mDisposable?.isDisposed!!) mDisposable?.dispose()
     }
 }

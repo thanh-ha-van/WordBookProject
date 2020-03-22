@@ -32,4 +32,5 @@
     <string name="setting_rate_desc">Rate and give feedback to us on Google Play Store</string>
     <string name="setting_term">Term and condition</string>
     <string name="setting_version">Version %s</string>
+    <string name="wod_title">Word of the day</string>
 </resources>

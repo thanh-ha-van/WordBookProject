@@ -1,11 +1,10 @@
-package thanh.ha.wordbook
+package thanh.ha.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import thanh.ha.R
-import thanh.ha.view.NavigationActivity
 
 class Splash : AppCompatActivity() {
 

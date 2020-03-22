@@ -25,10 +25,13 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient =
-            OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build()
+    fun provideOkHttpClient(): OkHttpClient {
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        return OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor.apply {
+                    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY })
+                .build()
+    }
 
 
     @Provides
