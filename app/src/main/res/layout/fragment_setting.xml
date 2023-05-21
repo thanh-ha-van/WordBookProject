@@ -218,8 +218,8 @@
         app:layout_constraintTop_toBottomOf="@id/divider1"
         android:background="@drawable/shape_gradiant_blue"
         android:padding="@dimen/margin_16"
-        android:tint="@color/white"
-        app:srcCompat="@drawable/ic_up_arrow" />
+        app:srcCompat="@drawable/ic_up_arrow"
+        app:tint="@color/white" />
 
     <thanh.ha.ui.textviews.GradientTextView
         android:id="@+id/tv_version"

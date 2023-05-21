@@ -62,9 +62,9 @@
             android:contentDescription="@string/search_button"
             android:padding="@dimen/padding_12"
             android:src="@drawable/ic_search"
-            android:tint="@color/gray_20"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/gray_20" />
 
         <View
             android:layout_width="match_parent"

@@ -10,31 +10,34 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import kotlinx.android.synthetic.main.fragment_search.*
-import thanh.ha.R
 import thanh.ha.base.BaseFragment
+import thanh.ha.databinding.FragmentSearchBinding
 import thanh.ha.domain.DefinitionInfo
 import thanh.ha.ui.adapters.DefAdapter
 
 
 class SearchFragment : BaseFragment(),
-        SwipeRefreshLayout.OnRefreshListener,
-        DefAdapter.ClickListener {
+    SwipeRefreshLayout.OnRefreshListener,
+    DefAdapter.ClickListener {
 
     private lateinit var searchViewModel: SearchViewModel
 
     private lateinit var mCardAdapter: DefAdapter
+
+    private lateinit var binding: FragmentSearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search,
-                container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentSearchBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,47 +48,49 @@ class SearchFragment : BaseFragment(),
 
 
     private fun showLoading() {
-        swipe_layout.isRefreshing = true
+        binding.swipeLayout.isRefreshing = true
     }
 
     private fun hideLoading() {
-        swipe_layout.isRefreshing = false
+        binding.swipeLayout.isRefreshing = false
     }
 
     fun onSearchIntent(string: String) {
-        et_search.setText(string)
+        binding.etSearch.setText(string)
         searchKeyword(string)
     }
 
     private fun initView() {
-        val layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL, false)
-        rv_definition.layoutManager = layoutManager
+        val layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL, false
+        )
+        binding.rvDefinition.layoutManager = layoutManager
 
         mCardAdapter = DefAdapter(context, this)
-        rv_definition.adapter = mCardAdapter
+        binding.rvDefinition.adapter = mCardAdapter
 
-        et_search.setOnEditorActionListener(
-                TextView.OnEditorActionListener { _, actionId, _ ->
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                        searchKeyword(et_search.text.toString().trim())
-                        return@OnEditorActionListener true
-                    }
-                    false
-                })
+        binding.etSearch.setOnEditorActionListener(
+            TextView.OnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchKeyword(binding.etSearch.text.toString().trim())
+                    return@OnEditorActionListener true
+                }
+                false
+            })
 
-        btn_search.setOnClickListener {
-            val text = et_search.text.toString().trim()
+        binding.btnSearch.setOnClickListener {
+            val text = binding.etSearch.text.toString().trim()
             searchKeyword(text)
         }
-        swipe_layout.setOnRefreshListener(this)
+        binding.swipeLayout.setOnRefreshListener(this)
     }
 
     override fun onRefresh() {
-        if (et_search.text.isNullOrEmpty()) {
+        if (binding.etSearch.text.isNullOrEmpty()) {
             getRandom()
         } else {
-            searchKeyword(et_search.text.toString())
+            searchKeyword(binding.etSearch.text.toString())
         }
     }
 
@@ -96,20 +101,20 @@ class SearchFragment : BaseFragment(),
     private fun getRandom() {
         showLoading()
         searchViewModel.getRandom()?.observe(
-                viewLifecycleOwner,
-                Observer {
-                    bindResult(it)
-                }
+            viewLifecycleOwner,
+            Observer {
+                bindResult(it)
+            }
         )
     }
 
     private fun initViewModel() {
         searchViewModel = ViewModelProvider(this)
-                .get(SearchViewModel::class.java)
+            .get(SearchViewModel::class.java)
         searchViewModel
-                .let {
-                    lifecycle.addObserver(it)
-                }
+            .let {
+                lifecycle.addObserver(it)
+            }
     }
 
     private fun searchKeyword(word: String) {
@@ -117,16 +122,16 @@ class SearchFragment : BaseFragment(),
         showLoading()
         updateRecentSearch(word)
         searchViewModel
-                .getWordDefinition(word)?.observe(
-                        viewLifecycleOwner,
-                        Observer {
-                            bindResult(it)
-                        })
+            .getWordDefinition(word)?.observe(
+                viewLifecycleOwner,
+                Observer {
+                    bindResult(it)
+                })
     }
 
     private fun bindResult(it: List<DefinitionInfo>) {
         mCardAdapter.updateInfo(newItems = it)
-        rv_definition.smoothScrollToPosition(0)
+        binding.rvDefinition.smoothScrollToPosition(0)
         hideLoading()
     }
 
@@ -147,7 +152,7 @@ class SearchFragment : BaseFragment(),
     }
 
     override fun onClickKeyWord(string: String) {
-        et_search.setText(string)
+        binding.etSearch.setText(string)
         searchKeyword(string)
     }
 

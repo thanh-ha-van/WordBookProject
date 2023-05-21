@@ -23,7 +23,8 @@
             android:exported="false"/>
 
         <activity android:name=".view.WodActivity" />
-        <activity android:name=".view.Splash">
+        <activity android:name=".view.Splash"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +42,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
-        <receiver android:name=".view.notify.NotificationReceiver">
+        <receiver android:name=".view.notify.NotificationReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
