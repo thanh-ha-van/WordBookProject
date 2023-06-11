@@ -24,14 +24,14 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
 
     fun getWordDefinition(info: String): LiveData<List<DefinitionInfo>>? {
         liveDefinitionData = null
-        liveDefinitionData = MutableLiveData<List<DefinitionInfo>>()
+        liveDefinitionData = MutableLiveData()
         liveDefinitionData = definitionRepository.getWordDefs(info)
         return liveDefinitionData
     }
 
     fun getRandom(): LiveData<List<DefinitionInfo>>? {
         liveDefinitionData = null
-        liveDefinitionData = MutableLiveData<List<DefinitionInfo>>()
+        liveDefinitionData = MutableLiveData()
         liveDefinitionData = definitionRepository.getRandom()
         return liveDefinitionData
     }
@@ -44,15 +44,15 @@ class SearchViewModel : ViewModel(), LifecycleObserver {
         compositeDisposable.clear()
     }
 
-    fun saveDefToLocal(position: Int) {
+    fun saveDefToLocal(item: DefinitionInfo) {
         DoAsync {
-            definitionRepository.saveLocalDefs(liveDefinitionData!!.value!![position])
+            definitionRepository.saveLocalDefs(item)
         }.execute()
     }
 
-    fun removeDefFromLocal(position: Int) {
+    fun removeDefFromLocal(item: DefinitionInfo) {
         DoAsync {
-            definitionRepository.removeLocalDefs(liveDefinitionData!!.value!![position])
+            definitionRepository.removeLocalDefs(item)
         }.execute()
     }
 

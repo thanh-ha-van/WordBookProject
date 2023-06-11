@@ -1,5 +1,6 @@
 package thanh.ha.ui.textviews
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.LinearGradient
 import android.graphics.Shader
@@ -16,16 +17,16 @@ class GradientTextView : AppCompatTextView {
 
     private var shader: Shader? = null
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         init(null)
     }
 
-    constructor(context: Context?,
+    constructor(context: Context,
                 attrs: AttributeSet?) : super(context, attrs) {
         init(attrs)
     }
 
-    constructor(context: Context?,
+    constructor(context: Context,
                 attrs: AttributeSet?,
                 defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init(attrs)
@@ -43,6 +44,7 @@ class GradientTextView : AppCompatTextView {
         }
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         if (changed) {

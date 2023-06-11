@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import thanh.ha.R
+import thanh.ha.databinding.ActivityMainBinding
 import thanh.ha.ui.adapters.ViewPagerAdapter
 import thanh.ha.view.home.HomeFragment
 import thanh.ha.view.home.KeywordPasser
@@ -18,9 +18,9 @@ import thanh.ha.view.setting.SettingFragment
 import java.util.*
 
 class NavigationActivity : AppCompatActivity(),
-        ViewPager.OnPageChangeListener,
-        BottomNavigationView.OnNavigationItemSelectedListener,
-        KeywordPasser {
+    ViewPager.OnPageChangeListener,
+    BottomNavigationView.OnNavigationItemSelectedListener,
+    KeywordPasser {
 
     private var fragments: MutableList<Fragment> = ArrayList()
     private var homeFragment: HomeFragment? = null
@@ -28,20 +28,24 @@ class NavigationActivity : AppCompatActivity(),
     private var settingFragment: SettingFragment? = null
     private var prevMenuItem: MenuItem? = null
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bottom_navigation.setOnNavigationItemSelectedListener(this)
-        setupViewPager(viewpager)
-        viewpager.setSwipeable(false)
-        viewpager.offscreenPageLimit = 0
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(this)
+        with(binding.viewpager) {
+            setupViewPager(this)
+            setSwipeable(false)
+            offscreenPageLimit = 0
+        }
     }
 
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean = with(binding.viewpager) {
         when (p0.itemId) {
-            R.id.action_home -> viewpager.currentItem = 0
-            R.id.action_search -> viewpager.currentItem = 1
-            R.id.action_setting -> viewpager.currentItem = 2
+            R.id.action_home -> currentItem = 0
+            R.id.action_search -> currentItem = 1
+            R.id.action_setting -> currentItem = 2
         }
         return false
     }
@@ -54,14 +58,14 @@ class NavigationActivity : AppCompatActivity(),
         // do nothing
     }
 
-    override fun onPageSelected(p0: Int) {
+    override fun onPageSelected(p0: Int) = with(binding.bottomNavigation) {
         if (prevMenuItem != null) {
             prevMenuItem!!.isChecked = false
         } else {
-            bottom_navigation.menu.getItem(0).isChecked = false
+            menu.getItem(0).isChecked = false
         }
-        bottom_navigation.menu.getItem(p0).isChecked = true
-        prevMenuItem = bottom_navigation.menu.getItem(p0)
+        menu.getItem(p0).isChecked = true
+        prevMenuItem = menu.getItem(p0)
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
@@ -79,7 +83,7 @@ class NavigationActivity : AppCompatActivity(),
     }
 
     override fun onPassKeyword(string: String) {
-        viewpager.currentItem = 1
+        binding.viewpager.currentItem = 1
         searchFragment?.onSearchIntent(string)
     }
 

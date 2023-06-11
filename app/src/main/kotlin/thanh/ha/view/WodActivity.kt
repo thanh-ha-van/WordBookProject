@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_wod.*
-import thanh.ha.R
+import thanh.ha.databinding.ActivityWodBinding
 
 class WodActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityWodBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_wod)
+        binding = ActivityWodBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         processIntent(savedInstanceState)
     }
 
@@ -23,12 +25,12 @@ class WodActivity : AppCompatActivity() {
             val definition = bundle.getString("definition")
             val sample = bundle.getString("sample")
 
-            tv_definition.movementMethod = LinkMovementMethod.getInstance()
-            tv_example.movementMethod = LinkMovementMethod.getInstance()
+            binding.tvDefinition.movementMethod = LinkMovementMethod.getInstance()
+            binding.tvExample.movementMethod = LinkMovementMethod.getInstance()
 
-            tv_word.text = word
-            tv_definition.text = definition
-            tv_example!!.text = sample
+            binding.tvWord.text = word
+            binding.tvDefinition.text = definition
+            binding.tvExample.text = sample
 
         } else {
             Toast.makeText(this, "Failed to load data", Toast.LENGTH_SHORT).show()

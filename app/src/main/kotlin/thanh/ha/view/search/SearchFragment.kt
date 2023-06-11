@@ -35,7 +35,7 @@ class SearchFragment : BaseFragment(),
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -67,7 +67,7 @@ class SearchFragment : BaseFragment(),
         )
         binding.rvDefinition.layoutManager = layoutManager
 
-        mCardAdapter = DefAdapter(context, this)
+        mCardAdapter = DefAdapter(requireContext(), this)
         binding.rvDefinition.adapter = mCardAdapter
 
         binding.etSearch.setOnEditorActionListener(
@@ -135,20 +135,12 @@ class SearchFragment : BaseFragment(),
         hideLoading()
     }
 
-    override fun onThumbUp(position: Int) {
-
+    override fun onSaveClicked(item: DefinitionInfo) {
+        searchViewModel.saveDefToLocal(item)
     }
 
-    override fun onThumbUpDown(position: Int) {
-
-    }
-
-    override fun onSaveClicked(position: Int) {
-        searchViewModel.saveDefToLocal(position)
-    }
-
-    override fun onUnSaveClicked(position: Int) {
-        searchViewModel.removeDefFromLocal(position)
+    override fun onUnSaveClicked(item: DefinitionInfo) {
+        searchViewModel.removeDefFromLocal(item)
     }
 
     override fun onClickKeyWord(string: String) {

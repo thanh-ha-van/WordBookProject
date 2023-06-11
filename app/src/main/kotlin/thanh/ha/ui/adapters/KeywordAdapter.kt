@@ -24,7 +24,6 @@ class KeywordAdapter(context: Context?, private val mClickListener: ClickListene
         notifyDataSetChanged()
     }
 
-
     fun clear() {
         mDefList.clear()
         notifyDataSetChanged()
