@@ -5,14 +5,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_keyword.view.*
 import thanh.ha.R
 import thanh.ha.domain.Keyword
 
 
-class KeywordAdapter(context: Context?, private val mClickListener: ClickListener?)
-    : RecyclerView.Adapter<KeywordAdapter.MyViewHolder>() {
+class KeywordAdapter(context: Context?, private val mClickListener: ClickListener?) :
+    RecyclerView.Adapter<KeywordAdapter.MyViewHolder>() {
 
     private var mDefList: MutableList<Keyword> = ArrayList()
     private val mContext = context
@@ -32,15 +32,18 @@ class KeywordAdapter(context: Context?, private val mClickListener: ClickListene
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(mContext)
         return MyViewHolder(
-                inflater.inflate(R.layout.item_keyword,
-                        parent,
-                        false)
+            inflater.inflate(
+                R.layout.item_keyword,
+                parent,
+                false
+            )
         )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemView.tv_word!!.text = mDefList[position].word
-        holder.itemView.tv_word.setTextColor(getRandomColorInt(mContext!!))
+        val word = holder.itemView.findViewById<TextView>(R.id.tv_word)
+        word.text = mDefList[position].word
+        word.setTextColor(getRandomColorInt(mContext!!))
         holder.itemView.setOnClickListener {
             mClickListener?.onClickKeyWord(mDefList[position].word)
         }

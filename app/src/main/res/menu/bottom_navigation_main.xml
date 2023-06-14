@@ -5,19 +5,19 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/paw_print_state_list"
+        android:icon="@drawable/round_home_24"
         android:title="@string/text_search"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_search"
         android:enabled="true"
-        android:icon="@drawable/search_state_list"
+        android:icon="@drawable/round_whatshot_24"
         android:title="@string/text_home"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_setting"
         android:enabled="true"
-        android:icon="@drawable/setting_state_list"
+        android:icon="@drawable/round_settings_24"
         android:title="@string/text_setting"
         app:showAsAction="ifRoom|withText" />
 </menu>

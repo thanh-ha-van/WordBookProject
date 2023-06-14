@@ -62,7 +62,7 @@ class SettingFragment : Fragment() {
         intent.action = ACTION_DAILY_DEFINITION
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+            0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         if (isCheck) {
             val calendar: Calendar = Calendar.getInstance()

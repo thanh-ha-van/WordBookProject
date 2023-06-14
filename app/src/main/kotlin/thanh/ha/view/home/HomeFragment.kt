@@ -109,16 +109,15 @@ class HomeFragment(private var keywordPasser: KeywordPasser) : BaseFragment(),
 
     private fun getLocalSaved() {
         mHomeViewModel.getLocalDefinitions()?.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it.isNullOrEmpty()) {
-                    binding.savedDefDesc.visibility = View.VISIBLE
-                } else {
-                    binding.savedDefDesc.visibility = View.GONE
-                }
-                savedWordAdapter.updateInfo(it.toMutableList())
+            viewLifecycleOwner
+        ) {
+            if (it.isNullOrEmpty()) {
+                binding.savedDefDesc.visibility = View.VISIBLE
+            } else {
+                binding.savedDefDesc.visibility = View.GONE
             }
-        )
+            savedWordAdapter.updateInfo(it.toMutableList())
+        }
     }
 
     override fun onResume() {

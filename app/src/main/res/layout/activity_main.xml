@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/shape_bottom_navigation"
+        android:background="@color/white"
         app:elevation="15dp"
         app:itemIconTint="@drawable/cs_bottom_navigation"
         app:itemTextColor="@drawable/cs_bottom_navigation"
